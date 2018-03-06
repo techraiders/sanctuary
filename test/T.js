@@ -9,10 +9,10 @@ var map = require('./internal/map');
 test('T', function() {
 
   eq(typeof S.T, 'function');
-  eq(S.T.length, 2);
+  eq(S.T.length, 1);
   eq(S.T.toString(), 'T :: a -> (a -> b) -> b');
 
-  eq(S.T(42, S.add(1)), 43);
-  eq(map(S.T(100))([S.add(1), Math.sqrt]), [101, 10]);
+  eq(S.T('!')(S.concat('foo')), 'foo!');
+  eq(S.T('!')(S.concat('bar')), 'bar!');
 
 });

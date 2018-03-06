@@ -7,6 +7,10 @@ var eq = require('./internal/eq');
 
 test('singleton', function() {
 
-  eq(S.singleton('foo', 42), {foo: 42});
+  eq(typeof S.singleton, 'function');
+  eq(S.singleton.length, 1);
+  eq(S.singleton.toString(), 'singleton :: String -> a -> StrMap a');
+
+  eq(S.singleton('foo')(42), {foo: 42});
 
 });

@@ -9,7 +9,7 @@ var throws = require('./internal/throws');
 
 
 //  FooTrue42 :: Type
-var FooTrue42 = $.EnumType('my-package/FooTrue42', '', ['foo', true, 42]);
+var FooTrue42 = $.EnumType('my-package/FooTrue42')('')(['foo', true, 42]);
 
 //  customEnv :: Array Type
 var customEnv = S.env.concat([FooTrue42]);
@@ -32,8 +32,8 @@ test('create', function() {
   eq(S.sort(Object.keys(uncheckedDefaultEnv)), expected);
   eq(S.sort(Object.keys(uncheckedCustomEnv)), expected);
 
-  eq(uncheckedDefaultEnv.add(1, 42), S.add(1, 42));
-  eq(uncheckedDefaultEnv.add(1, 'XXX'), '1XXX');
+  eq(uncheckedDefaultEnv.add(1)(42), S.add(1)(42));
+  eq(uncheckedDefaultEnv.add(1)('XXX'), '1XXX');
 
   throws(function() { S.I(['foo', 'foo', 42]); },
          TypeError,

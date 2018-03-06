@@ -176,7 +176,7 @@ suite('Either', function() {
     var traversableLaws = laws.Traversable(equals);
 
     traversableLaws.naturality(
-      jsc.constant(S.compose(S.Just, S.prop('value'))),
+      jsc.constant(S.compose(S.Just)(S.prop('value'))),
       EitherArb(jsc.string, IdentityArb(jsc.number)),
       jsc.constant(Identity),
       jsc.constant(S.Maybe)

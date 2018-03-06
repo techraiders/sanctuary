@@ -15,11 +15,10 @@ function Sum(value) {
 Sum['@@type'] = 'sanctuary/Sum';
 
 //  Type :: Type
-Sum.Type = $.NullaryType(
-  Sum['@@type'],
-  '',
-  function(x) { return type(x) === Sum['@@type']; }
-);
+Sum.Type = $.NullaryType
+  (Sum['@@type'])
+  ('')
+  (function(x) { return type(x) === Sum['@@type']; });
 
 Sum[FL.empty] = function() { return Sum(0); };
 

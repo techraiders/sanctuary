@@ -11,12 +11,12 @@ var equals = require('./internal/equals');
 test('remove', function() {
 
   eq(typeof S.remove, 'function');
-  eq(S.remove.length, 2);
+  eq(S.remove.length, 1);
   eq(S.remove.toString(), 'remove :: String -> StrMap a -> StrMap a');
 
-  eq(S.remove('a', {}), {});
-  eq(S.remove('b', {a: 1}), {a: 1});
-  eq(S.remove('c', {a: 1, b: 2, c: 3}), {a: 1, b: 2});
+  eq(S.remove('a')({}), {});
+  eq(S.remove('b')({a: 1}), {a: 1});
+  eq(S.remove('c')({a: 1, b: 2, c: 3}), {a: 1, b: 2});
 
   jsc.assert(jsc.forall(jsc.string, jsc.dict(jsc.number), function(key, map) {
     var remove = S.remove(key);

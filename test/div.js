@@ -11,6 +11,6 @@ test('div', function() {
   eq(S.div.length, 1);
   eq(S.div.toString(), 'div :: NonZeroFiniteNumber -> (FiniteNumber -> FiniteNumber)');
 
-  eq(S.map(S.div(2), [0, 1, 2, 3]), [0, 0.5, 1, 1.5]);
+  eq(S.map(S.div(2))([0, 1, 2, 3]), [0, 0.5, 1, 1.5]);
 
 });

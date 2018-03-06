@@ -25,14 +25,13 @@ function _List(tag, head, tail) {
 List['@@type'] = 'sanctuary/List';
 
 //  Type :: Type -> Type
-List.Type = $.UnaryType(
-  List['@@type'],
-  '',
-  function(x) { return type(x) === List['@@type']; },
-  function(list) {
-    return Z.reduce(function(xs, x) { xs.push(x); return xs; }, [], list);
-  }
-);
+List.Type = $.UnaryType
+  (List['@@type'])
+  ('')
+  (function(x) { return type(x) === List['@@type']; })
+  (function(list) {
+     return Z.reduce(function(xs, x) { xs.push(x); return xs; }, [], list);
+   });
 
 //  Nil :: List a
 var Nil = List.Nil = new _List('Nil');

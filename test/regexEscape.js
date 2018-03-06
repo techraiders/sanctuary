@@ -16,11 +16,11 @@ test('regexEscape', function() {
   eq(S.regexEscape('-=*{XYZ}*=-'), '\\-=\\*\\{XYZ\\}\\*=\\-');
 
   jsc.assert(jsc.forall(jsc.string, function(s) {
-    return S.test(S.regex('', S.regexEscape(s)), s);
+    return S.test(S.regex('')(S.regexEscape(s)))(s);
   }), {tests: 1000});
 
   jsc.assert(jsc.forall(jsc.string, function(s) {
-    return S.test(S.regex('', '^' + S.regexEscape(s) + '$'), s);
+    return S.test(S.regex('')('^' + S.regexEscape(s) + '$'))(s);
   }), {tests: 1000});
 
 });

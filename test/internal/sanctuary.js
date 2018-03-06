@@ -11,20 +11,19 @@ var Sum = require('./Sum');
 
 //  UnaryType :: String -> Type
 function UnaryType(typeIdent) {
-  return $.UnaryType(
-    typeIdent,
-    '',
-    function(x) { return type(x) === typeIdent; },
-    function(v) { return [v.value]; }
-  )($.Unknown);
+  return $.UnaryType
+    (typeIdent)
+    ('')
+    (function(x) { return type(x) === typeIdent; })
+    (function(v) { return [v.value]; })
+    ($.Unknown);
 }
 
 //  UselessType :: Type
-var UselessType = $.NullaryType(
-  'sanctuary/Useless',
-  '',
-  function(x) { return type(x) === 'sanctuary/Useless'; }
-);
+var UselessType = $.NullaryType
+  ('sanctuary/Useless')
+  ('')
+  (function(x) { return type(x) === 'sanctuary/Useless'; });
 
 //  env :: Array Type
 var env = S.env.concat([
