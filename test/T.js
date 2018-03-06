@@ -1,18 +1,17 @@
 'use strict';
 
-var S = require('..');
+var S = require ('..');
 
-var eq = require('./internal/eq');
-var map = require('./internal/map');
+var eq = require ('./internal/eq');
 
 
-test('T', function() {
+test ('T', function() {
 
-  eq(typeof S.T, 'function');
-  eq(S.T.length, 1);
-  eq(S.T.toString(), 'T :: a -> (a -> b) -> b');
+  eq (typeof S.T, 'function');
+  eq (S.T.length, 1);
+  eq (S.T.toString (), 'T :: a -> (a -> b) -> b');
 
-  eq(S.T('!')(S.concat('foo')), 'foo!');
-  eq(S.T('!')(S.concat('bar')), 'bar!');
+  eq (S.T ('!') (S.concat ('foo')), 'foo!');
+  eq (S.T ('!') (S.concat ('bar')), 'bar!');
 
 });
