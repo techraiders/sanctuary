@@ -417,10 +417,10 @@
   //. Returns the result of parsing the [type identifier][] of the given value.
   //.
   //. ```javascript
-  //. > S.type(S.Just(42))
+  //. > S.type (S.Just (42))
   //. {namespace: Just('sanctuary'), name: 'Maybe', version: 0}
   //.
-  //. > S.type([1, 2, 3])
+  //. > S.type ([1, 2, 3])
   //. {namespace: Nothing, name: 'Array', version: 0}
   //. ```
   S.type =
@@ -443,13 +443,13 @@
   //. Subtyping is not respected.
   //.
   //. ```javascript
-  //. > S.is(Number, 42)
+  //. > S.is (Number) (42)
   //. true
   //.
-  //. > S.is(Object, 42)
+  //. > S.is (Object) (42)
   //. false
   //.
-  //. > S.is(String, 42)
+  //. > S.is (String) (42)
   //. false
   //. ```
   function is(typeRep) {
@@ -472,16 +472,16 @@
   //. Alias of [`Z.toString`][].
   //.
   //. ```javascript
-  //. > S.toString(-0)
+  //. > S.toString (-0)
   //. '-0'
   //.
-  //. > S.toString(['foo', 'bar', 'baz'])
+  //. > S.toString (['foo', 'bar', 'baz'])
   //. '["foo", "bar", "baz"]'
   //.
-  //. > S.toString({x: 1, y: 2, z: 3})
+  //. > S.toString ({x: 1, y: 2, z: 3})
   //. '{"x": 1, "y": 2, "z": 3}'
   //.
-  //. > S.toString(S.Left(S.Right(S.Just(S.Nothing))))
+  //. > S.toString (S.Left (S.Right (S.Just (S.Nothing))))
   //. 'Left(Right(Just(Nothing)))'
   //. ```
   S.toString = def ('toString') ({}) ([$.Any, $.String]) (Z.toString);
@@ -500,16 +500,16 @@
   //. module's `equals` function.
   //.
   //. ```javascript
-  //. > S.equals(0, -0)
+  //. > S.equals (0) (-0)
   //. true
   //.
-  //. > S.equals(NaN, NaN)
+  //. > S.equals (NaN) (NaN)
   //. true
   //.
-  //. > S.equals(S.Just([1, 2, 3]), S.Just([1, 2, 3]))
+  //. > S.equals (S.Just ([1, 2, 3])) (S.Just ([1, 2, 3]))
   //. true
   //.
-  //. > S.equals(S.Just([1, 2, 3]), S.Just([1, 2, 4]))
+  //. > S.equals (S.Just ([1, 2, 3])) (S.Just ([1, 2, 4]))
   //. false
   //. ```
   S.equals =
@@ -526,7 +526,7 @@
   //. See also [`lt_`](#lt_).
   //.
   //. ```javascript
-  //. > S.filter(S.lt(3), [1, 2, 3, 4, 5])
+  //. > S.filter (S.lt (3)) ([1, 2, 3, 4, 5])
   //. [1, 2]
   //. ```
   function lt(y) {
@@ -544,13 +544,13 @@
   //. See also [`lt`](#lt).
   //.
   //. ```javascript
-  //. > S.lt_([1, 2, 3], [1, 2, 3])
+  //. > S.lt_ ([1, 2, 3]) ([1, 2, 3])
   //. false
   //.
-  //. > S.lt_([1, 2, 3], [1, 2, 4])
+  //. > S.lt_ ([1, 2, 3]) ([1, 2, 4])
   //. true
   //.
-  //. > S.lt_([1, 2, 3], [1, 2])
+  //. > S.lt_ ([1, 2, 3]) ([1, 2])
   //. false
   //. ```
   S.lt_ = def ('lt_') ({a: [Z.Ord]}) ([a, a, $.Boolean]) (curry2 (Z.lt));
@@ -564,7 +564,7 @@
   //. See also [`lte_`](#lte_).
   //.
   //. ```javascript
-  //. > S.filter(S.lte(3), [1, 2, 3, 4, 5])
+  //. > S.filter (S.lte (3)) ([1, 2, 3, 4, 5])
   //. [1, 2, 3]
   //. ```
   function lte(y) {
@@ -582,13 +582,13 @@
   //. See also [`lte`](#lte).
   //.
   //. ```javascript
-  //. > S.lte_([1, 2, 3], [1, 2, 3])
+  //. > S.lte_ ([1, 2, 3]) ([1, 2, 3])
   //. true
   //.
-  //. > S.lte_([1, 2, 3], [1, 2, 4])
+  //. > S.lte_ ([1, 2, 3]) ([1, 2, 4])
   //. true
   //.
-  //. > S.lte_([1, 2, 3], [1, 2])
+  //. > S.lte_ ([1, 2, 3]) ([1, 2])
   //. false
   //. ```
   S.lte_ = def ('lte_') ({a: [Z.Ord]}) ([a, a, $.Boolean]) (curry2 (Z.lte));
@@ -601,7 +601,7 @@
   //. See also [`gt_`](#gt_).
   //.
   //. ```javascript
-  //. > S.filter(S.gt(3), [1, 2, 3, 4, 5])
+  //. > S.filter (S.gt (3)) ([1, 2, 3, 4, 5])
   //. [4, 5]
   //. ```
   function gt(y) {
@@ -619,13 +619,13 @@
   //. See also [`gt`](#gt).
   //.
   //. ```javascript
-  //. > S.gt_([1, 2, 3], [1, 2, 3])
+  //. > S.gt_ ([1, 2, 3]) ([1, 2, 3])
   //. false
   //.
-  //. > S.gt_([1, 2, 3], [1, 2, 4])
+  //. > S.gt_ ([1, 2, 3]) ([1, 2, 4])
   //. false
   //.
-  //. > S.gt_([1, 2, 3], [1, 2])
+  //. > S.gt_ ([1, 2, 3]) ([1, 2])
   //. true
   //. ```
   S.gt_ = def ('gt_') ({a: [Z.Ord]}) ([a, a, $.Boolean]) (curry2 (Z.gt));
@@ -639,7 +639,7 @@
   //. See also [`gte_`](#gte_).
   //.
   //. ```javascript
-  //. > S.filter(S.gte(3), [1, 2, 3, 4, 5])
+  //. > S.filter (S.gte (3)) ([1, 2, 3, 4, 5])
   //. [3, 4, 5]
   //. ```
   function gte(y) {
@@ -657,13 +657,13 @@
   //. See also [`gte`](#gte).
   //.
   //. ```javascript
-  //. > S.gte_([1, 2, 3], [1, 2, 3])
+  //. > S.gte_ ([1, 2, 3]) ([1, 2, 3])
   //. true
   //.
-  //. > S.gte_([1, 2, 3], [1, 2, 4])
+  //. > S.gte_ ([1, 2, 3]) ([1, 2, 4])
   //. false
   //.
-  //. > S.gte_([1, 2, 3], [1, 2])
+  //. > S.gte_ ([1, 2, 3]) ([1, 2])
   //. true
   //. ```
   S.gte_ = def ('gte_') ({a: [Z.Ord]}) ([a, a, $.Boolean]) (curry2 (Z.gte));
@@ -675,13 +675,13 @@
   //. See also [`max`](#max).
   //.
   //. ```javascript
-  //. > S.min(10, 2)
+  //. > S.min (10) (2)
   //. 2
   //.
-  //. > S.min(new Date('1999-12-31'), new Date('2000-01-01'))
-  //. new Date('1999-12-31')
+  //. > S.min (new Date ('1999-12-31')) (new Date ('2000-01-01'))
+  //. new Date ('1999-12-31')
   //.
-  //. > S.min('10', '2')
+  //. > S.min ('10') ('2')
   //. '10'
   //. ```
   S.min = def ('min') ({a: [Z.Ord]}) ([a, a, a]) (curry2 (Z.min));
@@ -693,13 +693,13 @@
   //. See also [`min`](#min).
   //.
   //. ```javascript
-  //. > S.max(10, 2)
+  //. > S.max (10) (2)
   //. 10
   //.
-  //. > S.max(new Date('1999-12-31'), new Date('2000-01-01'))
-  //. new Date('2000-01-01')
+  //. > S.max (new Date ('1999-12-31')) (new Date ('2000-01-01'))
+  //. new Date ('2000-01-01')
   //.
-  //. > S.max('10', '2')
+  //. > S.max ('10') ('2')
   //. '2'
   //. ```
   S.max = def ('max') ({a: [Z.Ord]}) ([a, a, a]) (curry2 (Z.max));
@@ -709,7 +709,7 @@
   //. [Type-safe][sanctuary-def] version of [`Z.id`][].
   //.
   //. ```javascript
-  //. > S.id(Function)(42)
+  //. > S.id (Function) (42)
   //. 42
   //. ```
   S.id = def ('id') ({c: [Z.Category]}) ([TypeRep (c), c]) (Z.id);
@@ -719,20 +719,20 @@
   //. Curried version of [`Z.concat`][].
   //.
   //. ```javascript
-  //. > S.concat('abc', 'def')
+  //. > S.concat ('abc') ('def')
   //. 'abcdef'
   //.
-  //. > S.concat([1, 2, 3], [4, 5, 6])
+  //. > S.concat ([1, 2, 3]) ([4, 5, 6])
   //. [1, 2, 3, 4, 5, 6]
   //.
-  //. > S.concat({x: 1, y: 2}, {y: 3, z: 4})
+  //. > S.concat ({x: 1, y: 2}) ({y: 3, z: 4})
   //. {x: 1, y: 3, z: 4}
   //.
-  //. > S.concat(S.Just([1, 2, 3]), S.Just([4, 5, 6]))
-  //. Just([1, 2, 3, 4, 5, 6])
+  //. > S.concat (S.Just ([1, 2, 3])) (S.Just ([4, 5, 6]))
+  //. Just ([1, 2, 3, 4, 5, 6])
   //.
-  //. > S.concat(Sum(18), Sum(24))
-  //. Sum(42)
+  //. > S.concat (Sum (18)) (Sum (24))
+  //. Sum (42)
   //. ```
   S.concat =
   def ('concat')
@@ -745,16 +745,16 @@
   //. [Type-safe][sanctuary-def] version of [`Z.empty`][].
   //.
   //. ```javascript
-  //. > S.empty(String)
+  //. > S.empty (String)
   //. ''
   //.
-  //. > S.empty(Array)
+  //. > S.empty (Array)
   //. []
   //.
-  //. > S.empty(Object)
+  //. > S.empty (Object)
   //. {}
   //.
-  //. > S.empty(Sum)
+  //. > S.empty (Sum)
   //. Sum(0)
   //. ```
   S.empty = def ('empty') ({a: [Z.Monoid]}) ([TypeRep (a), a]) (Z.empty);
@@ -764,7 +764,7 @@
   //. [Type-safe][sanctuary-def] version of [`Z.invert`][].
   //.
   //. ```javascript
-  //. > S.invert(Sum(5))
+  //. > S.invert (Sum (5))
   //. Sum(-5)
   //. ```
   S.invert = def ('invert') ({g: [Z.Group]}) ([g, g]) (Z.invert);
@@ -777,19 +777,19 @@
   //. See also [`reject`](#reject).
   //.
   //. ```javascript
-  //. > S.filter(S.odd, [1, 2, 3])
+  //. > S.filter (S.odd) ([1, 2, 3])
   //. [1, 3]
   //.
-  //. > S.filter(S.odd, {x: 1, y: 2, z: 3})
+  //. > S.filter (S.odd) ({x: 1, y: 2, z: 3})
   //. {x: 1, z: 3}
   //.
-  //. > S.filter(S.odd, S.Nothing)
+  //. > S.filter (S.odd) (S.Nothing)
   //. Nothing
   //.
-  //. > S.filter(S.odd, S.Just(0))
+  //. > S.filter (S.odd) (S.Just (0))
   //. Nothing
   //.
-  //. > S.filter(S.odd, S.Just(1))
+  //. > S.filter (S.odd) (S.Just (1))
   //. Just(1)
   //. ```
   S.filter =
@@ -806,19 +806,19 @@
   //. See also [`filter`](#filter).
   //.
   //. ```javascript
-  //. > S.reject(S.odd, [1, 2, 3])
+  //. > S.reject (S.odd) ([1, 2, 3])
   //. [2]
   //.
-  //. > S.reject(S.odd, {x: 1, y: 2, z: 3})
+  //. > S.reject (S.odd) ({x: 1, y: 2, z: 3})
   //. {y: 2}
   //.
-  //. > S.reject(S.odd, S.Nothing)
+  //. > S.reject (S.odd) (S.Nothing)
   //. Nothing
   //.
-  //. > S.reject(S.odd, S.Just(0))
+  //. > S.reject (S.odd) (S.Just (0))
   //. Just(0)
   //.
-  //. > S.reject(S.odd, S.Just(1))
+  //. > S.reject (S.odd) (S.Just (1))
   //. Nothing
   //. ```
   S.reject =
@@ -835,10 +835,10 @@
   //. See also [`dropWhile`](#dropWhile).
   //.
   //. ```javascript
-  //. > S.takeWhile(S.odd, [3, 3, 3, 7, 6, 3, 5, 4])
+  //. > S.takeWhile (S.odd) ([3, 3, 3, 7, 6, 3, 5, 4])
   //. [3, 3, 3, 7]
   //.
-  //. > S.takeWhile(S.even, [3, 3, 3, 7, 6, 3, 5, 4])
+  //. > S.takeWhile (S.even) ([3, 3, 3, 7, 6, 3, 5, 4])
   //. []
   //. ```
   S.takeWhile =
@@ -855,10 +855,10 @@
   //. See also [`takeWhile`](#takeWhile).
   //.
   //. ```javascript
-  //. > S.dropWhile(S.odd, [3, 3, 3, 7, 6, 3, 5, 4])
+  //. > S.dropWhile (S.odd) ([3, 3, 3, 7, 6, 3, 5, 4])
   //. [6, 3, 5, 4]
   //.
-  //. > S.dropWhile(S.even, [3, 3, 3, 7, 6, 3, 5, 4])
+  //. > S.dropWhile (S.even) ([3, 3, 3, 7, 6, 3, 5, 4])
   //. [3, 3, 3, 7, 6, 3, 5, 4]
   //. ```
   S.dropWhile =
@@ -872,17 +872,17 @@
   //. Curried version of [`Z.map`][].
   //.
   //. ```javascript
-  //. > S.map(Math.sqrt, [1, 4, 9])
+  //. > S.map (Math.sqrt) ([1, 4, 9])
   //. [1, 2, 3]
   //.
-  //. > S.map(Math.sqrt, {x: 1, y: 4, z: 9})
+  //. > S.map (Math.sqrt) ({x: 1, y: 4, z: 9})
   //. {x: 1, y: 2, z: 3}
   //.
-  //. > S.map(Math.sqrt, S.Just(9))
-  //. Just(3)
+  //. > S.map (Math.sqrt) (S.Just (9))
+  //. Just (3)
   //.
-  //. > S.map(Math.sqrt, S.Right(9))
-  //. Right(3)
+  //. > S.map (Math.sqrt) (S.Right (9))
+  //. Right (3)
   //. ```
   //.
   //. Replacing `Functor f => f` with `Function x` produces the B combinator
@@ -896,7 +896,7 @@
   //.     (b -> c) -> (a -> b) -> (a -> c)
   //.
   //. ```javascript
-  //. > S.map(Math.sqrt, S.add(1))(99)
+  //. > S.map (Math.sqrt) (S.add (1)) (99)
   //. 10
   //. ```
   S.map =
@@ -910,10 +910,10 @@
   //. Curried version of [`Z.bimap`][].
   //.
   //. ```javascript
-  //. > S.bimap(S.toUpper, Math.sqrt, S.Left('foo'))
+  //. > S.bimap (S.toUpper) (Math.sqrt) (S.Left ('foo'))
   //. Left('FOO')
   //.
-  //. > S.bimap(S.toUpper, Math.sqrt, S.Right(64))
+  //. > S.bimap (S.toUpper) (Math.sqrt) (S.Right (64))
   //. Right(8)
   //. ```
   S.bimap =
@@ -928,10 +928,10 @@
   //. side of a Bifunctor.
   //.
   //. ```javascript
-  //. > S.mapLeft(S.toUpper, S.Left('foo'))
+  //. > S.mapLeft (S.toUpper) (S.Left ('foo'))
   //. Left('FOO')
   //.
-  //. > S.mapLeft(S.toUpper, S.Right(64))
+  //. > S.mapLeft (S.toUpper) (S.Right (64))
   //. Right(64)
   //. ```
   S.mapLeft =
@@ -945,7 +945,7 @@
   //. Curried version of [`Z.promap`][].
   //.
   //. ```javascript
-  //. > S.promap(Math.abs, S.add(1), Math.sqrt)(-100)
+  //. > S.promap (Math.abs) (S.add (1)) (Math.sqrt) (-100)
   //. 11
   //. ```
   S.promap =
@@ -959,17 +959,17 @@
   //. Curried version of [`Z.alt`][].
   //.
   //. ```javascript
-  //. > S.alt(S.Nothing, S.Just(1))
-  //. Just(1)
+  //. > S.alt (S.Nothing) (S.Just (1))
+  //. Just (1)
   //.
-  //. > S.alt(S.Just(2), S.Just(3))
-  //. Just(2)
+  //. > S.alt (S.Just (2)) (S.Just (3))
+  //. Just (2)
   //.
-  //. > S.alt(S.Left('X'), S.Right(1))
-  //. Right(1)
+  //. > S.alt (S.Left ('X')) (S.Right (1))
+  //. Right (1)
   //.
-  //. > S.alt(S.Right(2), S.Right(3))
-  //. Right(2)
+  //. > S.alt (S.Right (2))(S.Right (3))
+  //. Right (2)
   //. ```
   S.alt = def ('alt') ({f: [Z.Alt]}) ([f (a), f (a), f (a)]) (curry2 (Z.alt));
 
@@ -978,13 +978,13 @@
   //. [Type-safe][sanctuary-def] version of [`Z.zero`][].
   //.
   //. ```javascript
-  //. > S.zero(Array)
+  //. > S.zero (Array)
   //. []
   //.
-  //. > S.zero(Object)
+  //. > S.zero (Object)
   //. {}
   //.
-  //. > S.zero(S.Maybe)
+  //. > S.zero (S.Maybe)
   //. Nothing
   //. ```
   S.zero =
@@ -1004,10 +1004,10 @@
   //. otherwise.
   //.
   //. ```javascript
-  //. > S.reduce(S.add, 0, [1, 2, 3, 4, 5])
+  //. > S.reduce (S.add) (0) ([1, 2, 3, 4, 5])
   //. 15
   //.
-  //. > S.reduce(xs => x => [x].concat(xs), [], [1, 2, 3, 4, 5])
+  //. > S.reduce (xs => x => S.prepend (x) (xs)) ([]) ([1, 2, 3, 4, 5])
   //. [5, 4, 3, 2, 1]
   //. ```
   function reduce(f) {
@@ -1030,22 +1030,22 @@
   //. Curried version of [`Z.traverse`][].
   //.
   //. ```javascript
-  //. > S.traverse(Array, S.words, S.Just('foo bar baz'))
-  //. [Just('foo'), Just('bar'), Just('baz')]
+  //. > S.traverse (Array) (S.words) (S.Just ('foo bar baz'))
+  //. [Just ('foo'), Just ('bar'), Just ('baz')]
   //.
-  //. > S.traverse(Array, S.words, S.Nothing)
+  //. > S.traverse (Array) (S.words) (S.Nothing)
   //. [Nothing]
   //.
-  //. > S.traverse(S.Maybe, S.parseInt(16), ['A', 'B', 'C'])
-  //. Just([10, 11, 12])
+  //. > S.traverse (S.Maybe) (S.parseInt (16)) (['A', 'B', 'C'])
+  //. Just ([10, 11, 12])
   //.
-  //. > S.traverse(S.Maybe, S.parseInt(16), ['A', 'B', 'C', 'X'])
+  //. > S.traverse (S.Maybe) (S.parseInt (16)) (['A', 'B', 'C', 'X'])
   //. Nothing
   //.
-  //. > S.traverse(S.Maybe, S.parseInt(16), {a: 'A', b: 'B', c: 'C'})
-  //. Just({a: 10, b: 11, c: 12})
+  //. > S.traverse (S.Maybe) (S.parseInt (16)) ({a: 'A', b: 'B', c: 'C'})
+  //. Just ({a: 10, b: 11, c: 12})
   //.
-  //. > S.traverse(S.Maybe, S.parseInt(16), {a: 'A', b: 'B', c: 'C', x: 'X'})
+  //. > S.traverse (S.Maybe) (S.parseInt (16)) ({a: 'A', b: 'B', c: 'C', x: 'X'})
   //. Nothing
   //. ```
   S.traverse =
@@ -1060,19 +1060,19 @@
   //. to produce an `f (t a)`.
   //.
   //. ```javascript
-  //. > S.sequence(Array, S.Just([1, 2, 3]))
-  //. [Just(1), Just(2), Just(3)]
+  //. > S.sequence (Array) (S.Just ([1, 2, 3]))
+  //. [Just (1), Just (2), Just (3)]
   //.
-  //. > S.sequence(S.Maybe, [S.Just(1), S.Just(2), S.Just(3)])
-  //. Just([1, 2, 3])
+  //. > S.sequence (S.Maybe) ([S.Just (1), S.Just (2), S.Just (3)])
+  //. Just ([1, 2, 3])
   //.
-  //. > S.sequence(S.Maybe, [S.Just(1), S.Just(2), S.Nothing])
+  //. > S.sequence (S.Maybe) ([S.Just (1), S.Just (2), S.Nothing])
   //. Nothing
   //.
-  //. > S.sequence(S.Maybe, {a: S.Just(1), b: S.Just(2), c: S.Just(3)})
-  //. Just({a: 1, b: 2, c: 3})
+  //. > S.sequence (S.Maybe) ({a: S.Just (1), b: S.Just (2), c: S.Just (3)})
+  //. Just ({a: 1, b: 2, c: 3})
   //.
-  //. > S.sequence(S.Maybe, {a: S.Just(1), b: S.Just(2), c: S.Nothing})
+  //. > S.sequence (S.Maybe) ({a: S.Just (1), b: S.Just (2), c: S.Nothing})
   //. Nothing
   //. ```
   S.sequence =
@@ -1086,14 +1086,14 @@
   //. Curried version of [`Z.ap`][].
   //.
   //. ```javascript
-  //. > S.ap([Math.sqrt, x => x * x], [1, 4, 9, 16, 25])
+  //. > S.ap ([Math.sqrt, x => x * x]) ([1, 4, 9, 16, 25])
   //. [1, 2, 3, 4, 5, 1, 16, 81, 256, 625]
   //.
-  //. > S.ap({x: Math.sqrt, y: S.add(1), z: S.sub(1)}, {w: 4, x: 4, y: 4})
+  //. > S.ap ({x: Math.sqrt, y: S.add (1), z: S.sub (1)}) ({w: 4, x: 4, y: 4})
   //. {x: 2, y: 5}
   //.
-  //. > S.ap(S.Just(Math.sqrt), S.Just(64))
-  //. Just(8)
+  //. > S.ap (S.Just (Math.sqrt)) (S.Just (64))
+  //. Just (8)
   //. ```
   //.
   //. Replacing `Apply f => f` with `Function x` produces the S combinator
@@ -1107,7 +1107,7 @@
   //.     (a -> b -> c) -> (a -> b) -> (a -> c)
   //.
   //. ```javascript
-  //. > S.ap(s => n => s.slice(0, n), s => Math.ceil(s.length / 2))('Haskell')
+  //. > S.ap (s => n => s.slice (0, n)) (s => Math.ceil (s.length / 2)) ('Haskell')
   //. 'Hask'
   //. ```
   S.ap =
@@ -1122,17 +1122,17 @@
   //. [Apply][]s.
   //.
   //. ```javascript
-  //. > S.lift2(S.add, S.Just(2), S.Just(3))
-  //. Just(5)
+  //. > S.lift2 (S.add) (S.Just (2)) (S.Just (3))
+  //. Just (5)
   //.
-  //. > S.lift2(S.add, S.Just(2), S.Nothing)
+  //. > S.lift2 (S.add) (S.Just (2)) (S.Nothing)
   //. Nothing
   //.
-  //. > S.lift2(S.and, S.Just(true), S.Just(true))
-  //. Just(true)
+  //. > S.lift2 (S.and) (S.Just (true)) (S.Just (true))
+  //. Just (true)
   //.
-  //. > S.lift2(S.and, S.Just(true), S.Just(false))
-  //. Just(false)
+  //. > S.lift2 (S.and) (S.Just (true)) (S.Just (false))
+  //. Just (false)
   //. ```
   S.lift2 =
   def ('lift2')
@@ -1146,10 +1146,10 @@
   //. [Apply][]s.
   //.
   //. ```javascript
-  //. > S.lift3(S.reduce, S.Just(S.add), S.Just(0), S.Just([1, 2, 3]))
-  //. Just(6)
+  //. > S.lift3 (S.reduce) (S.Just (S.add)) (S.Just (0)) (S.Just ([1, 2, 3]))
+  //. Just (6)
   //.
-  //. > S.lift3(S.reduce, S.Just(S.add), S.Just(0), S.Nothing)
+  //. > S.lift3 (S.reduce) (S.Just (S.add)) (S.Just (0)) (S.Nothing)
   //. Nothing
   //. ```
   S.lift3 =
@@ -1167,11 +1167,11 @@
   //. See also [`apSecond`](#apSecond).
   //.
   //. ```javascript
-  //. > S.apFirst([1, 2], [3, 4])
+  //. > S.apFirst ([1, 2]) ([3, 4])
   //. [1, 1, 2, 2]
   //.
-  //. > S.apFirst(S.Just(1), S.Just(2))
-  //. Just(1)
+  //. > S.apFirst (S.Just (1)) (S.Just (2))
+  //. Just (1)
   //. ```
   S.apFirst =
   def ('apFirst')
@@ -1188,11 +1188,11 @@
   //. See also [`apFirst`](#apFirst).
   //.
   //. ```javascript
-  //. > S.apSecond([1, 2], [3, 4])
+  //. > S.apSecond ([1, 2]) ([3, 4])
   //. [3, 4, 3, 4]
   //.
-  //. > S.apSecond(S.Just(1), S.Just(2))
-  //. Just(2)
+  //. > S.apSecond (S.Just (1)) (S.Just (2))
+  //. Just (2)
   //. ```
   S.apSecond =
   def ('apSecond')
@@ -1205,17 +1205,17 @@
   //. Curried version of [`Z.of`][].
   //.
   //. ```javascript
-  //. > S.of(Array, 42)
+  //. > S.of (Array) (42)
   //. [42]
   //.
-  //. > S.of(Function, 42)(null)
+  //. > S.of (Function) (42) (null)
   //. 42
   //.
-  //. > S.of(S.Maybe, 42)
-  //. Just(42)
+  //. > S.of (S.Maybe) (42)
+  //. Just (42)
   //.
-  //. > S.of(S.Either, 42)
-  //. Right(42)
+  //. > S.of (S.Either) (42)
+  //. Right (42)
   //. ```
   S.of =
   def ('of')
@@ -1228,16 +1228,16 @@
   //. Curried version of [`Z.chain`][].
   //.
   //. ```javascript
-  //. > S.chain(x => [x, x], [1, 2, 3])
+  //. > S.chain (x => [x, x]) ([1, 2, 3])
   //. [1, 1, 2, 2, 3, 3]
   //.
-  //. > S.chain(n => s => s.slice(0, n), s => Math.ceil(s.length / 2))('slice')
+  //. > S.chain (n => s => s.slice (0, n)) (s => Math.ceil (s.length / 2)) ('slice')
   //. 'sli'
   //.
-  //. > S.chain(S.parseInt(10), S.Just('123'))
+  //. > S.chain (S.parseInt (10)) (S.Just ('123'))
   //. Just(123)
   //.
-  //. > S.chain(S.parseInt(10), S.Just('XXX'))
+  //. > S.chain (S.parseInt (10)) (S.Just ('XXX'))
   //. Nothing
   //. ```
   function chain(f) {
@@ -1257,14 +1257,14 @@
   //. Removes one level of nesting from a nested monadic structure.
   //.
   //. ```javascript
-  //. > S.join([[1], [2], [3]])
+  //. > S.join ([[1], [2], [3]])
   //. [1, 2, 3]
   //.
-  //. > S.join([[[1, 2, 3]]])
+  //. > S.join ([[[1, 2, 3]]])
   //. [[1, 2, 3]]
   //.
-  //. > S.join(S.Just(S.Just(1)))
-  //. S.Just(1)
+  //. > S.join (S.Just (S.Just (1)))
+  //. S.Just (1)
   //. ```
   //.
   //. Replacing `Chain m => m` with `Function x` produces the W combinator
@@ -1275,7 +1275,7 @@
   //.     (x -> x -> a) -> (x -> a)
   //.
   //. ```javascript
-  //. > S.join(S.concat)('abc')
+  //. > S.join (S.concat) ('abc')
   //. 'abcabc'
   //. ```
   S.join = def ('join') ({m: [Z.Chain]}) ([m (m (a)), m (a)]) (Z.join);
@@ -1287,10 +1287,10 @@
   //. use of the Either type to indicate completion (via a Right).
   //.
   //. ```javascript
-  //. > S.chainRec(Array,
-  //. .            s => s.length === 2 ? S.map(S.Right, [s + '!', s + '?'])
-  //. .                                : S.map(S.Left, [s + 'o', s + 'n']),
-  //. .            '')
+  //. > S.chainRec (Array)
+  //. .            (s => s.length === 2 ? S.map (S.Right) ([s + '!', s + '?'])
+  //. .                                 : S.map (S.Left) ([s + 'o', s + 'n']))
+  //. .            ('')
   //. ['oo!', 'oo?', 'on!', 'on?', 'no!', 'no?', 'nn!', 'nn?']
   //. ```
   function chainRec(typeRep) {
@@ -1320,10 +1320,10 @@
   //. Curried version of [`Z.extend`][].
   //.
   //. ```javascript
-  //. > S.extend(S.joinWith(''), ['x', 'y', 'z'])
+  //. > S.extend (S.joinWith ('')) (['x', 'y', 'z'])
   //. ['xyz', 'yz', 'z']
   //.
-  //. > S.extend(f => f([3, 4]), S.reverse)([1, 2])
+  //. > S.extend (f => f ([3, 4])) (S.reverse) ([1, 2])
   //. [4, 3, 2, 1]
   //. ```
   S.extend =
@@ -1338,16 +1338,16 @@
   //. Adds one level of nesting to a comonadic structure.
   //.
   //. ```javascript
-  //. > S.duplicate(S.Just(1))
-  //. S.Just(S.Just(1))
+  //. > S.duplicate (S.Just (1))
+  //. S.Just (S.Just (1))
   //.
-  //. > S.duplicate([1])
+  //. > S.duplicate ([1])
   //. [[1]]
   //.
-  //. > S.duplicate([1, 2, 3])
+  //. > S.duplicate ([1, 2, 3])
   //. [[1, 2, 3], [2, 3], [3]]
   //.
-  //. > S.duplicate(S.reverse)([1, 2])([3, 4])
+  //. > S.duplicate (S.reverse) ([1, 2]) ([3, 4])
   //. [4, 3, 2, 1]
   //. ```
   S.duplicate =
@@ -1364,7 +1364,7 @@
   //. [Type-safe][sanctuary-def] version of [`Z.contramap`][].
   //.
   //. ```javascript
-  //. > S.contramap(s => s.length, Math.sqrt)('Sanctuary')
+  //. > S.contramap (s => s.length) (Math.sqrt) ('Sanctuary')
   //. 3
   //. ```
   S.contramap =
@@ -1381,7 +1381,7 @@
   //. function.
   //.
   //. ```javascript
-  //. > S.I('foo')
+  //. > S.I ('foo')
   //. 'foo'
   //. ```
   function I(x) {
@@ -1395,10 +1395,10 @@
   //. Haskell's `const` function.
   //.
   //. ```javascript
-  //. > S.K('foo', 'bar')
+  //. > S.K ('foo') ('bar')
   //. 'foo'
   //.
-  //. > S.map(S.K(42), S.range(0, 5))
+  //. > S.map (S.K (42)) (S.range (0) (5))
   //. [42, 42, 42, 42, 42]
   //. ```
   function K(x) {
@@ -1415,10 +1415,10 @@
   //. `(&)` function.
   //.
   //. ```javascript
-  //. > S.T(42, S.add(1))
+  //. > S.T (42) (S.add (1))
   //. 43
   //.
-  //. > S.map(S.T(100), [S.add(1), Math.sqrt])
+  //. > S.map (S.T (100)) ([S.add (1), Math.sqrt])
   //. [101, 10]
   //. ```
   function T(x) {
@@ -1435,10 +1435,7 @@
   //. Curries the given binary function.
   //.
   //. ```javascript
-  //. > S.map(S.curry2(Math.pow)(10), [1, 2, 3])
-  //. [10, 100, 1000]
-  //.
-  //. > S.map(S.curry2(Math.pow, 10), [1, 2, 3])
+  //. > S.map (S.curry2 (Math.pow) (10)) ([1, 2, 3])
   //. [10, 100, 1000]
   //. ```
   function curry2(f) {
@@ -1459,15 +1456,12 @@
   //. Curries the given ternary function.
   //.
   //. ```javascript
-  //. > global.replaceString = S.curry3((what, replacement, string) =>
-  //. .   string.replace(what, replacement)
+  //. > global.replaceString = S.curry3 ((what, replacement, string) =>
+  //. .   string.replace (what, replacement)
   //. . )
   //. replaceString
   //.
-  //. > replaceString('banana')('orange')('banana icecream')
-  //. 'orange icecream'
-  //.
-  //. > replaceString('banana', 'orange', 'banana icecream')
+  //. > replaceString ('banana') ('orange') ('banana icecream')
   //. 'orange icecream'
   //. ```
   function curry3(f) {
@@ -1490,15 +1484,12 @@
   //. Curries the given quaternary function.
   //.
   //. ```javascript
-  //. > global.createRect = S.curry4((x, y, width, height) =>
+  //. > global.createRect = S.curry4 ((x, y, width, height) =>
   //. .   ({x, y, width, height})
   //. . )
   //. createRect
   //.
-  //. > createRect(0)(0)(10)(10)
-  //. {x: 0, y: 0, width: 10, height: 10}
-  //.
-  //. > createRect(0, 0, 10, 10)
+  //. > createRect (0) (0) (10) (10)
   //. {x: 0, y: 0, width: 10, height: 10}
   //. ```
   function curry4(f) {
@@ -1523,19 +1514,16 @@
   //. Curries the given quinary function.
   //.
   //. ```javascript
-  //. > global.toUrl = S.curry5((protocol, creds, hostname, port, pathname) =>
+  //. > global.toUrl = S.curry5 ((protocol, creds, hostname, port, pathname) =>
   //. .   protocol + '//' +
-  //. .   S.maybe('', _ => _.username + ':' + _.password + '@', creds) +
+  //. .   S.maybe ('') (_ => _.username + ':' + _.password + '@') (creds) +
   //. .   hostname +
-  //. .   S.maybe('', S.concat(':'), port) +
+  //. .   S.maybe ('') (S.concat (':')) (port) +
   //. .   pathname
   //. . )
   //. toUrl
   //.
-  //. > toUrl('https:')(S.Nothing)('example.com')(S.Just('443'))('/foo/bar')
-  //. 'https://example.com:443/foo/bar'
-  //.
-  //. > toUrl('https:', S.Nothing, 'example.com', S.Just('443'), '/foo/bar')
+  //. > toUrl ('https:') (S.Nothing) ('example.com') (S.Just ('443')) ('/foo/bar')
   //. 'https://example.com:443/foo/bar'
   //. ```
   function curry5(f) {
@@ -1565,7 +1553,7 @@
   //. This is the C combinator from combinatory logic.
   //.
   //. ```javascript
-  //. > S.flip(S.concat, 'foo', 'bar')
+  //. > S.flip (S.concat) ('foo') ('bar')
   //. 'barfoo'
   //. ```
   function flip(f) {
@@ -1592,7 +1580,7 @@
   //. See also [`pipe`](#pipe).
   //.
   //. ```javascript
-  //. > S.compose(Math.sqrt, S.add(1))(99)
+  //. > S.compose (Math.sqrt) (S.add (1)) (99)
   //. 10
   //. ```
   S.compose =
@@ -1611,7 +1599,7 @@
   //. of functions. `pipe([f, g, h], x)` is equivalent to `h(g(f(x)))`.
   //.
   //. ```javascript
-  //. > S.pipe([S.add(1), Math.sqrt, S.sub(1)], 99)
+  //. > S.pipe ([S.add (1), Math.sqrt, S.sub (1)]) (99)
   //. 9
   //. ```
   function pipe(fs) {
@@ -1636,8 +1624,8 @@
   //. `chain(h, chain(g, chain(f, x)))`.
   //.
   //. ```javascript
-  //. > S.pipeK([S.tail, S.tail, S.head], S.Just([1, 2, 3, 4]))
-  //. Just(3)
+  //. > S.pipeK ([S.tail, S.tail, S.head]) (S.Just ([1, 2, 3, 4]))
+  //. Just (3)
   //. ```
   function pipeK(fs) {
     return function(x) {
@@ -1658,7 +1646,7 @@
   //. This is the P combinator from combinatory logic.
   //.
   //. ```javascript
-  //. > S.on(S.concat, S.reverse, [1, 2, 3], [4, 5, 6])
+  //. > S.on (S.concat) (S.reverse) ([1, 2, 3]) ([4, 5, 6])
   //. [3, 2, 1, 6, 5, 4]
   //. ```
   function on(f) {
@@ -1727,8 +1715,8 @@
   //. Takes a value of any type and returns a Just with the given value.
   //.
   //. ```javascript
-  //. > S.Just(42)
-  //. Just(42)
+  //. > S.Just (42)
+  //. Just (42)
   //. ```
   function Just(x) {
     return new _Maybe ('Just', x);
@@ -1748,7 +1736,7 @@
   //. directly.
   //.
   //. ```javascript
-  //. > S.empty(S.Maybe)
+  //. > S.empty (S.Maybe)
   //. Nothing
   //. ```
   Maybe['fantasy-land/empty'] = function() { return Nothing; };
@@ -1761,8 +1749,8 @@
   //. directly.
   //.
   //. ```javascript
-  //. > S.of(S.Maybe, 42)
-  //. Just(42)
+  //. > S.of (S.Maybe) (42)
+  //. Just (42)
   //. ```
   Maybe['fantasy-land/of'] = Just;
 
@@ -1774,7 +1762,7 @@
   //. directly.
   //.
   //. ```javascript
-  //. > S.zero(S.Maybe)
+  //. > S.zero (S.Maybe)
   //. Nothing
   //. ```
   Maybe['fantasy-land/zero'] = function() { return Nothing; };
@@ -1787,7 +1775,7 @@
   //. > S.Nothing.isNothing
   //. true
   //.
-  //. > S.Just(42).isNothing
+  //. > (S.Just (42)).isNothing
   //. false
   //. ```
 
@@ -1796,7 +1784,7 @@
   //. `true` if `this` is a Just; `false` if `this` is Nothing.
   //.
   //. ```javascript
-  //. > S.Just(42).isJust
+  //. > (S.Just (42)).isJust
   //. true
   //.
   //. > S.Nothing.isJust
@@ -1808,10 +1796,10 @@
   //. Returns the string representation of the Maybe.
   //.
   //. ```javascript
-  //. > S.toString(S.Nothing)
+  //. > S.toString (S.Nothing)
   //. 'Nothing'
   //.
-  //. > S.toString(S.Just([1, 2, 3]))
+  //. > S.toString (S.Just ([1, 2, 3]))
   //. 'Just([1, 2, 3])'
   //. ```
   Maybe.prototype.toString = function() {
@@ -1826,10 +1814,10 @@
   //. See also [`Maybe#toString`][].
   //.
   //. ```javascript
-  //. > S.Nothing.inspect()
+  //. > S.Nothing.inspect ()
   //. 'Nothing'
   //.
-  //. > S.Just([1, 2, 3]).inspect()
+  //. > (S.Just ([1, 2, 3])).inspect ()
   //. 'Just([1, 2, 3])'
   //. ```
   Maybe.prototype.inspect = function() { return this.toString (); };
@@ -1847,16 +1835,16 @@
   //. directly.
   //.
   //. ```javascript
-  //. > S.equals(S.Nothing, S.Nothing)
+  //. > S.equals (S.Nothing) (S.Nothing)
   //. true
   //.
-  //. > S.equals(S.Just([1, 2, 3]), S.Just([1, 2, 3]))
+  //. > S.equals (S.Just ([1, 2, 3])) (S.Just ([1, 2, 3]))
   //. true
   //.
-  //. > S.equals(S.Just([1, 2, 3]), S.Just([3, 2, 1]))
+  //. > S.equals (S.Just ([1, 2, 3])) (S.Just ([3, 2, 1]))
   //. false
   //.
-  //. > S.equals(S.Just([1, 2, 3]), S.Nothing)
+  //. > S.equals (S.Just ([1, 2, 3])) (S.Nothing)
   //. false
   //. ```
   function Maybe$prototype$equals(other) {
@@ -1877,19 +1865,19 @@
   //. this method directly.
   //.
   //. ```javascript
-  //. > S.lte_(S.Nothing, S.Nothing)
+  //. > S.lte_ (S.Nothing) (S.Nothing)
   //. true
   //.
-  //. > S.lte_(S.Nothing, S.Just(0))
+  //. > S.lte_ (S.Nothing) (S.Just (0))
   //. true
   //.
-  //. > S.lte_(S.Just(0), S.Nothing)
+  //. > S.lte_ (S.Just (0)) (S.Nothing)
   //. false
   //.
-  //. > S.lte_(S.Just(0), S.Just(1))
+  //. > S.lte_ (S.Just (0)) (S.Just (1))
   //. true
   //.
-  //. > S.lte_(S.Just(1), S.Just(0))
+  //. > S.lte_ (S.Just (1)) (S.Just (0))
   //. false
   //. ```
   function Maybe$prototype$lte(other) {
@@ -1914,17 +1902,17 @@
   //. directly.
   //.
   //. ```javascript
-  //. > S.concat(S.Nothing, S.Nothing)
+  //. > S.concat (S.Nothing) (S.Nothing)
   //. Nothing
   //.
-  //. > S.concat(S.Just([1, 2, 3]), S.Just([4, 5, 6]))
-  //. Just([1, 2, 3, 4, 5, 6])
+  //. > S.concat (S.Just ([1, 2, 3])) (S.Just ([4, 5, 6]))
+  //. Just ([1, 2, 3, 4, 5, 6])
   //.
-  //. > S.concat(S.Nothing, S.Just([1, 2, 3]))
-  //. Just([1, 2, 3])
+  //. > S.concat (S.Nothing) (S.Just ([1, 2, 3]))
+  //. Just ([1, 2, 3])
   //.
-  //. > S.concat(S.Just([1, 2, 3]), S.Nothing)
-  //. Just([1, 2, 3])
+  //. > S.concat (S.Just ([1, 2, 3])) (S.Nothing)
+  //. Just ([1, 2, 3])
   //. ```
   function Maybe$prototype$concat(other) {
     return this.isNothing ?
@@ -1941,14 +1929,14 @@
   //. directly.
   //.
   //. ```javascript
-  //. > S.filter(S.odd, S.Nothing)
+  //. > S.filter (S.odd) (S.Nothing)
   //. Nothing
   //.
-  //. > S.filter(S.odd, S.Just(0))
+  //. > S.filter (S.odd) (S.Just (0))
   //. Nothing
   //.
-  //. > S.filter(S.odd, S.Just(1))
-  //. Just(1)
+  //. > S.filter (S.odd) (S.Just (1))
+  //. Just (1)
   //. ```
   Maybe.prototype['fantasy-land/filter'] = function(pred) {
     return this.isJust && pred (this.value) ? this : Nothing;
@@ -1964,11 +1952,11 @@
   //. directly.
   //.
   //. ```javascript
-  //. > S.map(Math.sqrt, S.Nothing)
+  //. > S.map (Math.sqrt) (S.Nothing)
   //. Nothing
   //.
-  //. > S.map(Math.sqrt, S.Just(9))
-  //. Just(3)
+  //. > S.map (Math.sqrt) (S.Just (9))
+  //. Just (3)
   //. ```
   Maybe.prototype['fantasy-land/map'] = function(f) {
     return this.isJust ? Just (f (this.value)) : this;
@@ -1983,17 +1971,17 @@
   //. It is idiomatic to use [`ap`](#ap) rather than use this method directly.
   //.
   //. ```javascript
-  //. > S.ap(S.Nothing, S.Nothing)
+  //. > S.ap (S.Nothing) (S.Nothing)
   //. Nothing
   //.
-  //. > S.ap(S.Nothing, S.Just(9))
+  //. > S.ap (S.Nothing) (S.Just (9))
   //. Nothing
   //.
-  //. > S.ap(S.Just(Math.sqrt), S.Nothing)
+  //. > S.ap (S.Just (Math.sqrt)) (S.Nothing)
   //. Nothing
   //.
-  //. > S.ap(S.Just(Math.sqrt), S.Just(9))
-  //. Just(3)
+  //. > S.ap (S.Just (Math.sqrt)) (S.Just (9))
+  //. Just (3)
   //. ```
   Maybe.prototype['fantasy-land/ap'] = function(other) {
     return other.isJust ? Z.map (other.value, this) : other;
@@ -2008,14 +1996,14 @@
   //. directly.
   //.
   //. ```javascript
-  //. > S.chain(S.parseFloat, S.Nothing)
+  //. > S.chain (S.parseFloat) (S.Nothing)
   //. Nothing
   //.
-  //. > S.chain(S.parseFloat, S.Just('xxx'))
+  //. > S.chain (S.parseFloat) (S.Just ('xxx'))
   //. Nothing
   //.
-  //. > S.chain(S.parseFloat, S.Just('12.34'))
-  //. Just(12.34)
+  //. > S.chain (S.parseFloat) (S.Just ('12.34'))
+  //. Just (12.34)
   //. ```
   Maybe.prototype['fantasy-land/chain'] = function(f) {
     return this.isJust ? f (this.value) : this;
@@ -2030,17 +2018,17 @@
   //. directly.
   //.
   //. ```javascript
-  //. > S.alt(S.Nothing, S.Nothing)
+  //. > S.alt (S.Nothing) (S.Nothing)
   //. Nothing
   //.
-  //. > S.alt(S.Nothing, S.Just(1))
-  //. Just(1)
+  //. > S.alt (S.Nothing) (S.Just (1))
+  //. Just (1)
   //.
-  //. > S.alt(S.Just(2), S.Nothing)
-  //. Just(2)
+  //. > S.alt (S.Just (2)) (S.Nothing)
+  //. Just (2)
   //.
-  //. > S.alt(S.Just(3), S.Just(4))
-  //. Just(3)
+  //. > S.alt (S.Just (3)) (S.Just (4))
+  //. Just (3)
   //. ```
   Maybe.prototype['fantasy-land/alt'] = function(other) {
     return this.isJust ? this : other;
@@ -2059,10 +2047,10 @@
   //. directly.
   //.
   //. ```javascript
-  //. > S.reduce(S.curry2(Math.pow), 10, S.Nothing)
+  //. > S.reduce (S.curry2 (Math.pow)) (10) (S.Nothing)
   //. 10
   //.
-  //. > S.reduce(S.curry2(Math.pow), 10, S.Just(3))
+  //. > S.reduce (S.curry2 (Math.pow)) (10) (S.Just (3))
   //. 1000
   //. ```
   Maybe.prototype['fantasy-land/reduce'] = function(f, x) {
@@ -2084,11 +2072,11 @@
   //. method directly.
   //.
   //. ```javascript
-  //. > S.traverse(Array, S.words, S.Nothing)
+  //. > S.traverse (Array) (S.words) (S.Nothing)
   //. [Nothing]
   //.
-  //. > S.traverse(Array, S.words, S.Just('foo bar baz'))
-  //. [Just('foo'), Just('bar'), Just('baz')]
+  //. > S.traverse (Array) (S.words) (S.Just ('foo bar baz'))
+  //. [Just ('foo'), Just ('bar'), Just ('baz')]
   //. ```
   Maybe.prototype['fantasy-land/traverse'] = function(typeRep, f) {
     return this.isJust ? Z.map (Just, f (this.value)) : Z.of (typeRep, this);
@@ -2104,11 +2092,11 @@
   //. directly.
   //.
   //. ```javascript
-  //. > S.extend(x => x.value + 1, S.Nothing)
+  //. > S.extend (x => x.value + 1) (S.Nothing)
   //. Nothing
   //.
-  //. > S.extend(x => x.value + 1, S.Just(42))
-  //. Just(43)
+  //. > S.extend (x => x.value + 1) (S.Just (42))
+  //. Just (43)
   //. ```
   Maybe.prototype['fantasy-land/extend'] = function(f) {
     return this.isJust ? Just (f (this)) : this;
@@ -2119,10 +2107,10 @@
   //. Returns `true` if the given Maybe is Nothing; `false` if it is a Just.
   //.
   //. ```javascript
-  //. > S.isNothing(S.Nothing)
+  //. > S.isNothing (S.Nothing)
   //. true
   //.
-  //. > S.isNothing(S.Just(42))
+  //. > S.isNothing (S.Just (42))
   //. false
   //. ```
   function isNothing(maybe) {
@@ -2135,10 +2123,10 @@
   //. Returns `true` if the given Maybe is a Just; `false` if it is Nothing.
   //.
   //. ```javascript
-  //. > S.isJust(S.Just(42))
+  //. > S.isJust (S.Just (42))
   //. true
   //.
-  //. > S.isJust(S.Nothing)
+  //. > S.isJust (S.Nothing)
   //. false
   //. ```
   function isJust(maybe) {
@@ -2155,10 +2143,10 @@
   //. [`maybeToNullable`](#maybeToNullable).
   //.
   //. ```javascript
-  //. > S.fromMaybe(0, S.Just(42))
+  //. > S.fromMaybe (0) (S.Just (42))
   //. 42
   //.
-  //. > S.fromMaybe(0, S.Nothing)
+  //. > S.fromMaybe (0) (S.Nothing)
   //. 0
   //. ```
   function fromMaybe(x) {
@@ -2174,12 +2162,12 @@
   //. value is only computed if required.
   //.
   //. ```javascript
-  //. > function fib(n) { return n <= 1 ? n : fib(n - 2) + fib(n - 1); }
+  //. > function fib(n) { return n <= 1 ? n : fib (n - 2) + fib (n - 1); }
   //.
-  //. > S.fromMaybe_(() => fib(30), S.Just(1000000))
+  //. > S.fromMaybe_ (() => fib (30)) (S.Just (1000000))
   //. 1000000
   //.
-  //. > S.fromMaybe_(() => fib(30), S.Nothing)
+  //. > S.fromMaybe_ (() => fib (30)) (S.Nothing)
   //. 832040
   //. ```
   function fromMaybe_(thunk) {
@@ -2201,10 +2189,10 @@
   //. See also [`fromMaybe`](#fromMaybe).
   //.
   //. ```javascript
-  //. > S.maybeToNullable(S.Just(42))
+  //. > S.maybeToNullable (S.Just (42))
   //. 42
   //.
-  //. > S.maybeToNullable(S.Nothing)
+  //. > S.maybeToNullable (S.Nothing)
   //. null
   //. ```
   function maybeToNullable(maybe) {
@@ -2222,11 +2210,11 @@
   //. Just the value otherwise.
   //.
   //. ```javascript
-  //. > S.toMaybe(null)
+  //. > S.toMaybe (null)
   //. Nothing
   //.
-  //. > S.toMaybe(42)
-  //. Just(42)
+  //. > S.toMaybe (42)
+  //. Just (42)
   //. ```
   function toMaybe(x) {
     return x == null ? Nothing : Just (x);
@@ -2242,10 +2230,10 @@
   //. See also [`maybe_`](#maybe_).
   //.
   //. ```javascript
-  //. > S.maybe(0, S.prop('length'), S.Just('refuge'))
+  //. > S.maybe (0) (S.prop ('length')) (S.Just ('refuge'))
   //. 6
   //.
-  //. > S.maybe(0, S.prop('length'), S.Nothing)
+  //. > S.maybe (0) (S.prop ('length')) (S.Nothing)
   //. 0
   //. ```
   function maybe(x) {
@@ -2263,12 +2251,12 @@
   //. is only computed if required.
   //.
   //. ```javascript
-  //. > function fib(n) { return n <= 1 ? n : fib(n - 2) + fib(n - 1); }
+  //. > function fib(n) { return n <= 1 ? n : fib (n - 2) + fib (n - 1); }
   //.
-  //. > S.maybe_(() => fib(30), Math.sqrt, S.Just(1000000))
+  //. > S.maybe_ (() => fib (30)) (Math.sqrt) (S.Just (1000000))
   //. 1000
   //.
-  //. > S.maybe_(() => fib(30), Math.sqrt, S.Nothing)
+  //. > S.maybe_ (() => fib (30)) (Math.sqrt) (S.Nothing)
   //. 832040
   //. ```
   function maybe_(thunk) {
@@ -2292,7 +2280,7 @@
   //. See also [`lefts`](#lefts) and [`rights`](#rights).
   //.
   //. ```javascript
-  //. > S.justs([S.Just('foo'), S.Nothing, S.Just('baz')])
+  //. > S.justs ([S.Just ('foo'), S.Nothing, S.Just ('baz')])
   //. ['foo', 'baz']
   //. ```
   function justs(maybes) {
@@ -2312,10 +2300,10 @@
   //. if the result is a Just, the Just's value is included.
   //.
   //. ```javascript
-  //. > S.mapMaybe(S.head, [[], [1, 2, 3], [], [4, 5, 6], []])
+  //. > S.mapMaybe (S.head) ([[], [1, 2, 3], [], [4, 5, 6], []])
   //. [1, 4]
   //.
-  //. > S.mapMaybe(S.head, {x: [1, 2, 3], y: [], z: [4, 5, 6]})
+  //. > S.mapMaybe (S.head) ({x: [1, 2, 3], y: [], z: [4, 5, 6]})
   //. {x: 1, z: 4}
   //. ```
   function mapMaybe(f) {
@@ -2339,10 +2327,10 @@
   //. See also [`encaseEither`](#encaseEither).
   //.
   //. ```javascript
-  //. > S.encase(eval, '1 + 1')
+  //. > S.encase (eval) ('1 + 1')
   //. Just(2)
   //.
-  //. > S.encase(eval, '1 +')
+  //. > S.encase (eval) ('1 +')
   //. Nothing
   //. ```
   function encase(f) {
@@ -2406,11 +2394,11 @@
   //. See also [`eitherToMaybe`](#eitherToMaybe).
   //.
   //. ```javascript
-  //. > S.maybeToEither('Expecting an integer', S.parseInt(10, 'xyz'))
-  //. Left('Expecting an integer')
+  //. > S.maybeToEither ('Expecting an integer') (S.parseInt (10) ('xyz'))
+  //. Left ('Expecting an integer')
   //.
-  //. > S.maybeToEither('Expecting an integer', S.parseInt(10, '42'))
-  //. Right(42)
+  //. > S.maybeToEither ('Expecting an integer') (S.parseInt (10) ('42'))
+  //. Right (42)
   //. ```
   function maybeToEither(x) {
     return function(maybe) {
@@ -2470,8 +2458,8 @@
   //. Takes a value of any type and returns a Left with the given value.
   //.
   //. ```javascript
-  //. > S.Left('Cannot divide by zero')
-  //. Left('Cannot divide by zero')
+  //. > S.Left ('Cannot divide by zero')
+  //. Left ('Cannot divide by zero')
   //. ```
   function Left(x) {
     return new _Either ('Left', x);
@@ -2483,8 +2471,8 @@
   //. Takes a value of any type and returns a Right with the given value.
   //.
   //. ```javascript
-  //. > S.Right(42)
-  //. Right(42)
+  //. > S.Right (42)
+  //. Right (42)
   //. ```
   function Right(x) {
     return new _Either ('Right', x);
@@ -2504,8 +2492,8 @@
   //. directly.
   //.
   //. ```javascript
-  //. > S.of(S.Either, 42)
-  //. Right(42)
+  //. > S.of (S.Either) (42)
+  //. Right (42)
   //. ```
   Either['fantasy-land/of'] = Right;
 
@@ -2514,10 +2502,10 @@
   //. `true` if `this` is a Left; `false` if `this` is a Right.
   //.
   //. ```javascript
-  //. > S.Left('Cannot divide by zero').isLeft
+  //. > (S.Left ('Cannot divide by zero')).isLeft
   //. true
   //.
-  //. > S.Right(42).isLeft
+  //. > (S.Right (42)).isLeft
   //. false
   //. ```
 
@@ -2526,10 +2514,10 @@
   //. `true` if `this` is a Right; `false` if `this` is a Left.
   //.
   //. ```javascript
-  //. > S.Right(42).isRight
+  //. > (S.Right (42)).isRight
   //. true
   //.
-  //. > S.Left('Cannot divide by zero').isRight
+  //. > (S.Left ('Cannot divide by zero')).isRight
   //. false
   //. ```
 
@@ -2538,10 +2526,10 @@
   //. Returns the string representation of the Either.
   //.
   //. ```javascript
-  //. > S.toString(S.Left('Cannot divide by zero'))
+  //. > S.toString (S.Left ('Cannot divide by zero'))
   //. 'Left("Cannot divide by zero")'
   //.
-  //. > S.toString(S.Right([1, 2, 3]))
+  //. > S.toString (S.Right ([1, 2, 3]))
   //. 'Right([1, 2, 3])'
   //. ```
   Either.prototype.toString = function() {
@@ -2557,10 +2545,10 @@
   //. See also [`Either#toString`][].
   //.
   //. ```javascript
-  //. > S.Left('Cannot divide by zero').inspect()
+  //. > (S.Left ('Cannot divide by zero')).inspect ()
   //. 'Left("Cannot divide by zero")'
   //.
-  //. > S.Right([1, 2, 3]).inspect()
+  //. > (S.Right ([1, 2, 3])).inspect ()
   //. 'Right([1, 2, 3])'
   //. ```
   Either.prototype.inspect = function() { return this.toString (); };
@@ -2576,10 +2564,10 @@
   //. directly.
   //.
   //. ```javascript
-  //. > S.equals(S.Right([1, 2, 3]), S.Right([1, 2, 3]))
+  //. > S.equals (S.Right ([1, 2, 3])) (S.Right ([1, 2, 3]))
   //. true
   //.
-  //. > S.equals(S.Right([1, 2, 3]), S.Left([1, 2, 3]))
+  //. > S.equals (S.Right ([1, 2, 3])) (S.Left ([1, 2, 3]))
   //. false
   //. ```
   function Either$prototype$equals(other) {
@@ -2599,16 +2587,16 @@
   //. this method directly.
   //.
   //. ```javascript
-  //. > S.lte_(S.Left(10), S.Right(0))
+  //. > S.lte_ (S.Left (10)) (S.Right (0))
   //. true
   //.
-  //. > S.lte_(S.Right(0), S.Left(10))
+  //. > S.lte_ (S.Right (0)) (S.Left (10))
   //. false
   //.
-  //. > S.lte_(S.Right(0), S.Right(1))
+  //. > S.lte_ (S.Right (0)) (S.Right (1))
   //. true
   //.
-  //. > S.lte_(S.Right(1), S.Right(0))
+  //. > S.lte_ (S.Right (1)) (S.Right (0))
   //. false
   //. ```
   function Either$prototype$lte(other) {
@@ -2636,17 +2624,17 @@
   //. directly.
   //.
   //. ```javascript
-  //. > S.concat(S.Left('abc'), S.Left('def'))
-  //. Left('abcdef')
+  //. > S.concat (S.Left ('abc')) (S.Left ('def'))
+  //. Left ('abcdef')
   //.
-  //. > S.concat(S.Right([1, 2, 3]), S.Right([4, 5, 6]))
-  //. Right([1, 2, 3, 4, 5, 6])
+  //. > S.concat (S.Right ([1, 2, 3])) (S.Right ([4, 5, 6]))
+  //. Right ([1, 2, 3, 4, 5, 6])
   //.
-  //. > S.concat(S.Left('abc'), S.Right([1, 2, 3]))
-  //. Right([1, 2, 3])
+  //. > S.concat (S.Left ('abc')) (S.Right ([1, 2, 3]))
+  //. Right ([1, 2, 3])
   //.
-  //. > S.concat(S.Right([1, 2, 3]), S.Left('abc'))
-  //. Right([1, 2, 3])
+  //. > S.concat (S.Right ([1, 2, 3])) (S.Left ('abc'))
+  //. Right ([1, 2, 3])
   //. ```
   function Either$prototype$concat(other) {
     return this.isLeft ?
@@ -2666,11 +2654,11 @@
   //. See also [`Either#fantasy-land/bimap`][].
   //.
   //. ```javascript
-  //. > S.map(Math.sqrt, S.Left('Cannot divide by zero'))
-  //. Left('Cannot divide by zero')
+  //. > S.map (Math.sqrt) (S.Left ('Cannot divide by zero'))
+  //. Left ('Cannot divide by zero')
   //.
-  //. > S.map(Math.sqrt, S.Right(9))
-  //. Right(3)
+  //. > S.map (Math.sqrt) (S.Right (9))
+  //. Right (3)
   //. ```
   Either.prototype['fantasy-land/map'] = function(f) {
     return this.isRight ? Right (f (this.value)) : this;
@@ -2693,11 +2681,11 @@
   //. directly.
   //.
   //. ```javascript
-  //. > S.bimap(S.toUpper, S.add(1), S.Left('abc'))
-  //. Left('ABC')
+  //. > S.bimap (S.toUpper) (S.add (1)) (S.Left ('abc'))
+  //. Left ('ABC')
   //.
-  //. > S.bimap(S.toUpper, S.add(1), S.Right(42))
-  //. Right(43)
+  //. > S.bimap (S.toUpper) (S.add (1)) (S.Right (42))
+  //. Right (43)
   //. ```
   Either.prototype['fantasy-land/bimap'] = function(f, g) {
     return this.isLeft ? Left (f (this.value)) : Right (g (this.value));
@@ -2712,17 +2700,17 @@
   //. It is idiomatic to use [`ap`](#ap) rather than use this method directly.
   //.
   //. ```javascript
-  //. > S.ap(S.Left('No such function'), S.Left('Cannot divide by zero'))
-  //. Left('No such function')
+  //. > S.ap (S.Left ('No such function')) (S.Left ('Cannot divide by zero'))
+  //. Left ('No such function')
   //.
-  //. > S.ap(S.Left('No such function'), S.Right(9))
-  //. Left('No such function')
+  //. > S.ap (S.Left ('No such function')) (S.Right (9))
+  //. Left ('No such function')
   //.
-  //. > S.ap(S.Right(Math.sqrt), S.Left('Cannot divide by zero'))
-  //. Left('Cannot divide by zero')
+  //. > S.ap (S.Right (Math.sqrt)) (S.Left ('Cannot divide by zero'))
+  //. Left ('Cannot divide by zero')
   //.
-  //. > S.ap(S.Right(Math.sqrt), S.Right(9))
-  //. Right(3)
+  //. > S.ap (S.Right (Math.sqrt)) (S.Right (9))
+  //. Right (3)
   //. ```
   Either.prototype['fantasy-land/ap'] = function(other) {
     return other.isRight ? Z.map (other.value, this) : other;
@@ -2738,18 +2726,18 @@
   //.
   //. ```javascript
   //. > global.sqrt = n =>
-  //. .   n < 0 ? S.Left('Cannot represent square root of negative number')
-  //. .         : S.Right(Math.sqrt(n))
+  //. .   n < 0 ? S.Left ('Cannot represent square root of negative number')
+  //. .         : S.Right (Math.sqrt (n))
   //. sqrt
   //.
-  //. > S.chain(sqrt, S.Left('Cannot divide by zero'))
-  //. Left('Cannot divide by zero')
+  //. > S.chain (sqrt) (S.Left ('Cannot divide by zero'))
+  //. Left ('Cannot divide by zero')
   //.
-  //. > S.chain(sqrt, S.Right(-1))
-  //. Left('Cannot represent square root of negative number')
+  //. > S.chain (sqrt) (S.Right (-1))
+  //. Left ('Cannot represent square root of negative number')
   //.
-  //. > S.chain(sqrt, S.Right(25))
-  //. Right(5)
+  //. > S.chain (sqrt) (S.Right (25))
+  //. Right (5)
   //. ```
   Either.prototype['fantasy-land/chain'] = function(f) {
     return this.isRight ? f (this.value) : this;
@@ -2764,17 +2752,17 @@
   //. directly.
   //.
   //. ```javascript
-  //. > S.alt(S.Left('A'), S.Left('B'))
-  //. Left('B')
+  //. > S.alt (S.Left ('A')) (S.Left ('B'))
+  //. Left ('B')
   //.
-  //. > S.alt(S.Left('C'), S.Right(1))
-  //. Right(1)
+  //. > S.alt (S.Left ('C')) (S.Right (1))
+  //. Right (1)
   //.
-  //. > S.alt(S.Right(2), S.Left('D'))
-  //. Right(2)
+  //. > S.alt (S.Right (2)) (S.Left ('D'))
+  //. Right (2)
   //.
-  //. > S.alt(S.Right(3), S.Right(4))
-  //. Right(3)
+  //. > S.alt (S.Right (3)) (S.Right (4))
+  //. Right (3)
   //. ```
   Either.prototype['fantasy-land/alt'] = function(other) {
     return this.isRight ? this : other;
@@ -2793,10 +2781,10 @@
   //. directly.
   //.
   //. ```javascript
-  //. > S.reduce(S.curry2(Math.pow), 10, S.Left('Cannot divide by zero'))
+  //. > S.reduce (S.curry2 (Math.pow)) (10) (S.Left ('Cannot divide by zero'))
   //. 10
   //.
-  //. > S.reduce(S.curry2(Math.pow), 10, S.Right(3))
+  //. > S.reduce (S.curry2 (Math.pow)) (10) (S.Right (3))
   //. 1000
   //. ```
   Either.prototype['fantasy-land/reduce'] = function(f, x) {
@@ -2818,11 +2806,11 @@
   //. method directly.
   //.
   //. ```javascript
-  //. > S.traverse(Array, S.words, S.Left('Request failed'))
-  //. [Left('Request failed')]
+  //. > S.traverse (Array) (S.words) (S.Left ('Request failed'))
+  //. [Left ('Request failed')]
   //.
-  //. > S.traverse(Array, S.words, S.Right('foo bar baz'))
-  //. [Right('foo'), Right('bar'), Right('baz')]
+  //. > S.traverse (Array) (S.words) (S.Right ('foo bar baz'))
+  //. [Right ('foo'), Right ('bar'), Right ('baz')]
   //. ```
   Either.prototype['fantasy-land/traverse'] = function(typeRep, f) {
     return this.isRight ? Z.map (Right, f (this.value)) : Z.of (typeRep, this);
@@ -2838,11 +2826,11 @@
   //. directly.
   //.
   //. ```javascript
-  //. > S.extend(x => x.value + 1, S.Left('Cannot divide by zero'))
-  //. Left('Cannot divide by zero')
+  //. > S.extend (x => x.value + 1) (S.Left ('Cannot divide by zero'))
+  //. Left ('Cannot divide by zero')
   //.
-  //. > S.extend(x => x.value + 1, S.Right(42))
-  //. Right(43)
+  //. > S.extend (x => x.value + 1) (S.Right (42))
+  //. Right (43)
   //. ```
   Either.prototype['fantasy-land/extend'] = function(f) {
     return this.isLeft ? this : Right (f (this));
@@ -2853,10 +2841,10 @@
   //. Returns `true` if the given Either is a Left; `false` if it is a Right.
   //.
   //. ```javascript
-  //. > S.isLeft(S.Left('Cannot divide by zero'))
+  //. > S.isLeft (S.Left ('Cannot divide by zero'))
   //. true
   //.
-  //. > S.isLeft(S.Right(42))
+  //. > S.isLeft (S.Right (42))
   //. false
   //. ```
   function isLeft(either) {
@@ -2869,10 +2857,10 @@
   //. Returns `true` if the given Either is a Right; `false` if it is a Left.
   //.
   //. ```javascript
-  //. > S.isRight(S.Right(42))
+  //. > S.isRight (S.Right (42))
   //. true
   //.
-  //. > S.isRight(S.Left('Cannot divide by zero'))
+  //. > S.isRight (S.Left ('Cannot divide by zero'))
   //. false
   //. ```
   function isRight(either) {
@@ -2886,10 +2874,10 @@
   //. if the Either is a Right; the default value otherwise.
   //.
   //. ```javascript
-  //. > S.fromEither(0, S.Right(42))
+  //. > S.fromEither (0) (S.Right (42))
   //. 42
   //.
-  //. > S.fromEither(0, S.Left(42))
+  //. > S.fromEither (0) (S.Left (42))
   //. 0
   //. ```
   function fromEither(x) {
@@ -2910,17 +2898,17 @@
   //. value of the Left in the "failure" case.
   //.
   //. ```javascript
-  //. > S.toEither('XYZ', null)
-  //. Left('XYZ')
+  //. > S.toEither ('XYZ') (null)
+  //. Left ('XYZ')
   //.
-  //. > S.toEither('XYZ', 'ABC')
-  //. Right('ABC')
+  //. > S.toEither ('XYZ') ('ABC')
+  //. Right ('ABC')
   //.
-  //. > S.map(S.prop('0'), S.toEither('Invalid protocol', 'ftp://example.com/'.match(/^https?:/)))
-  //. Left('Invalid protocol')
+  //. > S.map (S.prop ('0')) (S.toEither ('Invalid protocol') ('ftp://example.com/'.match (/^https?:/)))
+  //. Left ('Invalid protocol')
   //.
-  //. > S.map(S.prop('0'), S.toEither('Invalid protocol', 'https://example.com/'.match(/^https?:/)))
-  //. Right('https:')
+  //. > S.map (S.prop ('0')) (S.toEither ('Invalid protocol') ('https://example.com/'.match(/^https?:/)))
+  //. Right ('https:')
   //. ```
   function toEither(x) {
     return function(y) {
@@ -2937,10 +2925,10 @@
   //. Right's value, if the Either is a Right.
   //.
   //. ```javascript
-  //. > S.either(S.toUpper, S.toString, S.Left('Cannot divide by zero'))
+  //. > S.either (S.toUpper) (S.toString) (S.Left ('Cannot divide by zero'))
   //. 'CANNOT DIVIDE BY ZERO'
   //.
-  //. > S.either(S.toUpper, S.toString, S.Right(42))
+  //. > S.either (S.toUpper) (S.toString) (S.Right (42))
   //. '42'
   //. ```
   function either(l) {
@@ -2964,7 +2952,7 @@
   //. See also [`rights`](#rights).
   //.
   //. ```javascript
-  //. > S.lefts([S.Right(20), S.Left('foo'), S.Right(10), S.Left('bar')])
+  //. > S.lefts ([S.Right (20), S.Left ('foo'), S.Right (10), S.Left ('bar')])
   //. ['foo', 'bar']
   //. ```
   function lefts(eithers) {
@@ -2984,7 +2972,7 @@
   //. See also [`lefts`](#lefts).
   //.
   //. ```javascript
-  //. > S.rights([S.Right(20), S.Left('foo'), S.Right(10), S.Left('bar')])
+  //. > S.rights ([S.Right (20), S.Left ('foo'), S.Right (10), S.Left ('bar')])
   //. [20, 10]
   //. ```
   function rights(eithers) {
@@ -3002,11 +2990,11 @@
   //. satisfies the predicate; a Left of the value otherwise.
   //.
   //. ```javascript
-  //. > S.tagBy(S.odd, 0)
-  //. Left(0)
+  //. > S.tagBy (S.odd) (0)
+  //. Left (0)
   //
-  //. > S.tagBy(S.odd, 1)
-  //. Right(1)
+  //. > S.tagBy (S.odd) (1)
+  //. Right (1)
   //. ```
   function tagBy(pred) {
     return function(a) {
@@ -3026,14 +3014,14 @@
   //. See also [`encase`](#encase).
   //.
   //. ```javascript
-  //. > S.encaseEither(S.I, JSON.parse, '["foo","bar","baz"]')
-  //. Right(['foo', 'bar', 'baz'])
+  //. > S.encaseEither (S.I) (JSON.parse) ('["foo","bar","baz"]')
+  //. Right (['foo', 'bar', 'baz'])
   //.
-  //. > S.encaseEither(S.I, JSON.parse, '[')
-  //. Left(new SyntaxError('Unexpected end of JSON input'))
+  //. > S.encaseEither (S.I) (JSON.parse) ('[')
+  //. Left (new SyntaxError ('Unexpected end of JSON input'))
   //.
-  //. > S.encaseEither(S.prop('message'), JSON.parse, '[')
-  //. Left('Unexpected end of JSON input')
+  //. > S.encaseEither (S.prop ('message')) (JSON.parse) ('[')
+  //. Left ('Unexpected end of JSON input')
   //. ```
   function encaseEither(f) {
     return function(g) {
@@ -3111,11 +3099,11 @@
   //. See also [`maybeToEither`](#maybeToEither).
   //.
   //. ```javascript
-  //. > S.eitherToMaybe(S.Left('Cannot divide by zero'))
+  //. > S.eitherToMaybe (S.Left ('Cannot divide by zero'))
   //. Nothing
   //.
-  //. > S.eitherToMaybe(S.Right(42))
-  //. Just(42)
+  //. > S.eitherToMaybe (S.Right (42))
+  //. Just (42)
   //. ```
   function eitherToMaybe(either) {
     return either.isLeft ? Nothing : Just (either.value);
@@ -3130,16 +3118,16 @@
   //. Boolean "and".
   //.
   //. ```javascript
-  //. > S.and(false, false)
+  //. > S.and (false) (false)
   //. false
   //.
-  //. > S.and(false, true)
+  //. > S.and (false) (true)
   //. false
   //.
-  //. > S.and(true, false)
+  //. > S.and (true) (false)
   //. false
   //.
-  //. > S.and(true, true)
+  //. > S.and (true) (true)
   //. true
   //. ```
   function and(x) {
@@ -3154,16 +3142,16 @@
   //. Boolean "or".
   //.
   //. ```javascript
-  //. > S.or(false, false)
+  //. > S.or (false) (false)
   //. false
   //.
-  //. > S.or(false, true)
+  //. > S.or (false) (true)
   //. true
   //.
-  //. > S.or(true, false)
+  //. > S.or (true) (false)
   //. true
   //.
-  //. > S.or(true, true)
+  //. > S.or (true) (true)
   //. true
   //. ```
   function or(x) {
@@ -3180,10 +3168,10 @@
   //. See also [`complement`](#complement).
   //.
   //. ```javascript
-  //. > S.not(false)
+  //. > S.not (false)
   //. true
   //.
-  //. > S.not(true)
+  //. > S.not (true)
   //. false
   //. ```
   function not(x) {
@@ -3199,10 +3187,10 @@
   //. See also [`not`](#not).
   //.
   //. ```javascript
-  //. > Number.isInteger(42)
+  //. > Number.isInteger (42)
   //. true
   //.
-  //. > S.complement(Number.isInteger, 42)
+  //. > S.complement (Number.isInteger) (42)
   //. false
   //. ```
   function complement(pred) {
@@ -3224,10 +3212,10 @@
   //. See also [`when`](#when) and [`unless`](#unless).
   //.
   //. ```javascript
-  //. > S.ifElse(x => x < 0, Math.abs, Math.sqrt, -1)
+  //. > S.ifElse (x => x < 0) (Math.abs) (Math.sqrt) (-1)
   //. 1
   //.
-  //. > S.ifElse(x => x < 0, Math.abs, Math.sqrt, 16)
+  //. > S.ifElse (x => x < 0) (Math.abs) (Math.sqrt) (16)
   //. 4
   //. ```
   function ifElse(pred) {
@@ -3254,10 +3242,10 @@
   //. See also [`unless`](#unless) and [`ifElse`](#ifElse).
   //.
   //. ```javascript
-  //. > S.when(x => x >= 0, Math.sqrt, 16)
+  //. > S.when (x => x >= 0) (Math.sqrt) (16)
   //. 4
   //.
-  //. > S.when(x => x >= 0, Math.sqrt, -1)
+  //. > S.when (x => x >= 0) (Math.sqrt) (-1)
   //. -1
   //. ```
   function when(pred) {
@@ -3276,10 +3264,10 @@
   //. See also [`when`](#when) and [`ifElse`](#ifElse).
   //.
   //. ```javascript
-  //. > S.unless(x => x < 0, Math.sqrt, 16)
+  //. > S.unless (x => x < 0) (Math.sqrt) (16)
   //. 4
   //.
-  //. > S.unless(x => x < 0, Math.sqrt, -1)
+  //. > S.unless (x => x < 0) (Math.sqrt) (-1)
   //. -1
   //. ```
   function unless(pred) {
@@ -3299,10 +3287,10 @@
   //. the first predicate not satisfied.
   //.
   //. ```javascript
-  //. > S.allPass([S.test(/q/), S.test(/u/), S.test(/i/)], 'quiessence')
+  //. > S.allPass ([S.test (/q/), S.test (/u/), S.test (/i/)]) ('quiessence')
   //. true
   //.
-  //. > S.allPass([S.test(/q/), S.test(/u/), S.test(/i/)], 'fissiparous')
+  //. > S.allPass ([S.test (/q/), S.test (/u/), S.test (/i/)]) ('fissiparous')
   //. false
   //. ```
   function allPass(preds) {
@@ -3324,10 +3312,10 @@
   //. the first predicate satisfied.
   //.
   //. ```javascript
-  //. > S.anyPass([S.test(/q/), S.test(/u/), S.test(/i/)], 'incandescent')
+  //. > S.anyPass ([S.test (/q/), S.test (/u/), S.test (/i/)]) ('incandescent')
   //. true
   //.
-  //. > S.anyPass([S.test(/q/), S.test(/u/), S.test(/i/)], 'empathy')
+  //. > S.anyPass ([S.test (/q/), S.test (/u/), S.test (/i/)]) ('empathy')
   //. false
   //. ```
   function anyPass(preds) {
@@ -3369,17 +3357,17 @@
   //. and [`dropLast`](#dropLast).
   //.
   //. ```javascript
-  //. > S.slice(1, 3, ['a', 'b', 'c', 'd', 'e'])
-  //. Just(['b', 'c'])
+  //. > S.slice (1) (3) (['a', 'b', 'c', 'd', 'e'])
+  //. Just (['b', 'c'])
   //.
-  //. > S.slice(-3, -1, ['a', 'b', 'c', 'd', 'e'])
-  //. Just(['c', 'd'])
+  //. > S.slice (-3) (-1) (['a', 'b', 'c', 'd', 'e'])
+  //. Just (['c', 'd'])
   //.
-  //. > S.slice(1, 6, ['a', 'b', 'c', 'd', 'e'])
+  //. > S.slice (1) (6) (['a', 'b', 'c', 'd', 'e'])
   //. Nothing
   //.
-  //. > S.slice(2, 6, 'banana')
-  //. Just('nana')
+  //. > S.slice (2) (6) ('banana')
+  //. Just ('nana')
   //. ```
   function slice(start) {
     return function(end) {
@@ -3409,14 +3397,14 @@
   //. A negative index represents an offset from the length of the list.
   //.
   //. ```javascript
-  //. > S.at(2, ['a', 'b', 'c', 'd', 'e'])
-  //. Just('c')
+  //. > S.at (2) (['a', 'b', 'c', 'd', 'e'])
+  //. Just ('c')
   //.
-  //. > S.at(5, ['a', 'b', 'c', 'd', 'e'])
+  //. > S.at (5) (['a', 'b', 'c', 'd', 'e'])
   //. Nothing
   //.
-  //. > S.at(-2, ['a', 'b', 'c', 'd', 'e'])
-  //. Just('d')
+  //. > S.at (-2) (['a', 'b', 'c', 'd', 'e'])
+  //. Just ('d')
   //. ```
   function at(n) {
     return function(xs) {
@@ -3432,10 +3420,10 @@
   //. list contains at least one element; Nothing if the list is empty.
   //.
   //. ```javascript
-  //. > S.head([1, 2, 3])
-  //. Just(1)
+  //. > S.head ([1, 2, 3])
+  //. Just (1)
   //.
-  //. > S.head([])
+  //. > S.head ([])
   //. Nothing
   //. ```
   function head(xs) {
@@ -3449,10 +3437,10 @@
   //. list contains at least one element; Nothing if the list is empty.
   //.
   //. ```javascript
-  //. > S.last([1, 2, 3])
-  //. Just(3)
+  //. > S.last ([1, 2, 3])
+  //. Just (3)
   //.
-  //. > S.last([])
+  //. > S.last ([])
   //. Nothing
   //. ```
   function last(xs) {
@@ -3467,10 +3455,10 @@
   //. Nothing if the list is empty.
   //.
   //. ```javascript
-  //. > S.tail([1, 2, 3])
-  //. Just([2, 3])
+  //. > S.tail ([1, 2, 3])
+  //. Just ([2, 3])
   //.
-  //. > S.tail([])
+  //. > S.tail ([])
   //. Nothing
   //. ```
   function tail(xs) {
@@ -3485,10 +3473,10 @@
   //. Nothing if the list is empty.
   //.
   //. ```javascript
-  //. > S.init([1, 2, 3])
-  //. Just([1, 2])
+  //. > S.init ([1, 2, 3])
+  //. Just ([1, 2])
   //.
-  //. > S.init([])
+  //. > S.init ([])
   //. Nothing
   //. ```
   function init(xs) {
@@ -3503,13 +3491,13 @@
   //. of the collection; Nothing otherwise.
   //.
   //. ```javascript
-  //. > S.take(2, ['a', 'b', 'c', 'd', 'e'])
-  //. Just(['a', 'b'])
+  //. > S.take (2) (['a', 'b', 'c', 'd', 'e'])
+  //. Just (['a', 'b'])
   //.
-  //. > S.take(4, 'abcdefg')
-  //. Just('abcd')
+  //. > S.take (4) ('abcdefg')
+  //. Just ('abcd')
   //.
-  //. > S.take(4, ['a', 'b', 'c'])
+  //. > S.take (4) (['a', 'b', 'c'])
   //. Nothing
   //. ```
   function take(n) {
@@ -3526,13 +3514,13 @@
   //. of the collection; Nothing otherwise.
   //.
   //. ```javascript
-  //. > S.takeLast(2, ['a', 'b', 'c', 'd', 'e'])
-  //. Just(['d', 'e'])
+  //. > S.takeLast (2) (['a', 'b', 'c', 'd', 'e'])
+  //. Just (['d', 'e'])
   //.
-  //. > S.takeLast(4, 'abcdefg')
-  //. Just('defg')
+  //. > S.takeLast (4) ('abcdefg')
+  //. Just ('defg')
   //.
-  //. > S.takeLast(4, ['a', 'b', 'c'])
+  //. > S.takeLast (4) (['a', 'b', 'c'])
   //. Nothing
   //. ```
   function takeLast(n) {
@@ -3551,13 +3539,13 @@
   //. length of the collection; Nothing otherwise.
   //.
   //. ```javascript
-  //. > S.drop(2, ['a', 'b', 'c', 'd', 'e'])
-  //. Just(['c', 'd', 'e'])
+  //. > S.drop (2) (['a', 'b', 'c', 'd', 'e'])
+  //. Just (['c', 'd', 'e'])
   //.
-  //. > S.drop(4, 'abcdefg')
-  //. Just('efg')
+  //. > S.drop (4) ('abcdefg')
+  //. Just ('efg')
   //.
-  //. > S.drop(4, 'abc')
+  //. > S.drop (4) ('abc')
   //. Nothing
   //. ```
   function drop(n) {
@@ -3574,13 +3562,13 @@
   //. length of the collection; Nothing otherwise.
   //.
   //. ```javascript
-  //. > S.dropLast(2, ['a', 'b', 'c', 'd', 'e'])
-  //. Just(['a', 'b', 'c'])
+  //. > S.dropLast (2) (['a', 'b', 'c', 'd', 'e'])
+  //. Just (['a', 'b', 'c'])
   //.
-  //. > S.dropLast(4, 'abcdefg')
-  //. Just('abc')
+  //. > S.dropLast (4) ('abcdefg')
+  //. Just ('abc')
   //.
-  //. > S.dropLast(4, 'abc')
+  //. > S.dropLast (4) ('abc')
   //. Nothing
   //. ```
   function dropLast(n) {
@@ -3599,22 +3587,22 @@
   //. Returns the number of elements of the given structure.
   //.
   //. ```javascript
-  //. > S.size([])
+  //. > S.size ([])
   //. 0
   //.
-  //. > S.size(['foo', 'bar', 'baz'])
+  //. > S.size (['foo', 'bar', 'baz'])
   //. 3
   //.
-  //. > S.size(Nil)
+  //. > S.size (Nil)
   //. 0
   //.
-  //. > S.size(Cons('foo', Cons('bar', Cons('baz', Nil))))
+  //. > S.size (Cons ('foo', Cons ('bar', Cons ('baz', Nil))))
   //. 3
   //.
-  //. > S.size(S.Nothing)
+  //. > S.size (S.Nothing)
   //. 0
   //.
-  //. > S.size(S.Just('quux'))
+  //. > S.size (S.Just ('quux'))
   //. 1
   //. ```
   S.size = def ('size') ({f: [Z.Foldable]}) ([f (a), $.Integer]) (Z.size);
@@ -3626,17 +3614,17 @@
   //. See also [`prepend`](#prepend).
   //.
   //. ```javascript
-  //. > S.append(3, [1, 2])
+  //. > S.append (3) ([1, 2])
   //. [1, 2, 3]
   //.
-  //. > S.append(3, Cons(1, Cons(2, Nil)))
-  //. Cons(1, Cons(2, Cons(3, Nil)))
+  //. > S.append (3) (Cons (1, Cons (2, Nil)))
+  //. Cons (1, Cons (2, Cons (3, Nil)))
   //.
-  //. > S.append([1], S.Nothing)
-  //. Just([1])
+  //. > S.append ([1]) (S.Nothing)
+  //. Just ([1])
   //.
-  //. > S.append([3], S.Just([1, 2]))
-  //. Just([1, 2, 3])
+  //. > S.append ([3]) (S.Just ([1, 2]))
+  //. Just ([1, 2, 3])
   //. ```
   S.append =
   def ('append')
@@ -3651,17 +3639,17 @@
   //. See also [`append`](#append).
   //.
   //. ```javascript
-  //. > S.prepend(1, [2, 3])
+  //. > S.prepend (1) ([2, 3])
   //. [1, 2, 3]
   //.
-  //. > S.prepend(1, Cons(2, Cons(3, Nil)))
-  //. Cons(1, Cons(2, Cons(3, Nil)))
+  //. > S.prepend (1) (Cons (2, Cons (3, Nil)))
+  //. Cons (1, Cons (2, Cons (3, Nil)))
   //.
-  //. > S.prepend([1], S.Nothing)
-  //. Just([1])
+  //. > S.prepend ([1]) (S.Nothing)
+  //. Just ([1])
   //.
-  //. > S.prepend([1], S.Just([2, 3]))
-  //. Just([1, 2, 3])
+  //. > S.prepend ([1]) (S.Just ([2, 3]))
+  //. Just ([1, 2, 3])
   //. ```
   S.prepend =
   def ('prepend')
@@ -3680,7 +3668,7 @@
   //. See also [`splitOn`](#splitOn).
   //.
   //. ```javascript
-  //. > S.joinWith(':', ['foo', 'bar', 'baz'])
+  //. > S.joinWith (':') (['foo', 'bar', 'baz'])
   //. 'foo:bar:baz'
   //. ```
   function joinWith(separator) {
@@ -3699,25 +3687,25 @@
   //. See also [`find`](#find).
   //.
   //. ```javascript
-  //. > S.elem('c', ['a', 'b', 'c'])
+  //. > S.elem ('c') (['a', 'b', 'c'])
   //. true
   //.
-  //. > S.elem('x', ['a', 'b', 'c'])
+  //. > S.elem ('x') (['a', 'b', 'c'])
   //. false
   //.
-  //. > S.elem(3, {x: 1, y: 2, z: 3})
+  //. > S.elem (3) ({x: 1, y: 2, z: 3})
   //. true
   //.
-  //. > S.elem(8, {x: 1, y: 2, z: 3})
+  //. > S.elem (8) ({x: 1, y: 2, z: 3})
   //. false
   //.
-  //. > S.elem(0, S.Just(0))
+  //. > S.elem (0) (S.Just (0))
   //. true
   //.
-  //. > S.elem(0, S.Just(1))
+  //. > S.elem (0) (S.Just (1))
   //. false
   //.
-  //. > S.elem(0, S.Nothing)
+  //. > S.elem (0) (S.Nothing)
   //. false
   //. ```
   S.elem =
@@ -3735,10 +3723,10 @@
   //. See also [`elem`](#elem).
   //.
   //. ```javascript
-  //. > S.find(n => n < 0, [1, -2, 3, -4, 5])
+  //. > S.find (S.lt (0)) ([1, -2, 3, -4, 5])
   //. Just(-2)
   //.
-  //. > S.find(n => n < 0, [1, 2, 3, 4, 5])
+  //. > S.find (S.lt (0)) ([1, 2, 3, 4, 5])
   //. Nothing
   //. ```
   function find(pred) {
@@ -3771,7 +3759,7 @@
   //.     the array and the function is applied to the second element.
   //.
   //. ```javascript
-  //. > S.unfoldr(n => n < 5 ? S.Just([n, n + 1]) : S.Nothing, 1)
+  //. > S.unfoldr (n => n < 5 ? S.Just ([n, n + 1]) : S.Nothing) (1)
   //. [1, 2, 3, 4]
   //. ```
   function unfoldr(f) {
@@ -3796,13 +3784,13 @@
   //. argument is less than or equal to the first argument.
   //.
   //. ```javascript
-  //. > S.range(0, 10)
+  //. > S.range (0) (10)
   //. [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
   //.
-  //. > S.range(-5, 0)
+  //. > S.range (-5) (0)
   //. [-5, -4, -3, -2, -1]
   //.
-  //. > S.range(0, -5)
+  //. > S.range (0) (-5)
   //. []
   //. ```
   function range(from) {
@@ -3829,10 +3817,10 @@
   //.      S.join(S.groupBy(f, xs)) = xs`
   //.
   //. ```javascript
-  //. > S.groupBy(S.equals, [1, 1, 2, 1, 1])
+  //. > S.groupBy (S.equals) ([1, 1, 2, 1, 1])
   //. [[1, 1], [2], [1, 1]]
   //.
-  //. > S.groupBy(x => y => x + y === 0, [2, -3, 3, 3, 3, 4, -4, 4])
+  //. > S.groupBy (x => y => x + y === 0) ([2, -3, 3, 3, 3, 4, -4, 4])
   //. [[2], [-3, 3, 3, 3], [4, -4], [4]]
   //. ```
   function groupBy(f) {
@@ -3859,13 +3847,13 @@
   //. Reverses the elements of the given structure.
   //.
   //. ```javascript
-  //. > S.reverse([1, 2, 3])
+  //. > S.reverse ([1, 2, 3])
   //. [3, 2, 1]
   //.
-  //. > S.reverse(Cons(1, Cons(2, Cons(3, Nil))))
-  //. Cons(3, Cons(2, Cons(1, Nil)))
+  //. > S.reverse (Cons (1, Cons (2, Cons (3, Nil))))
+  //. Cons (3, Cons (2, Cons (1, Nil)))
   //.
-  //. > S.pipe([S.splitOn(''), S.reverse, S.joinWith('')], 'abc')
+  //. > S.pipe ([S.splitOn (''), S.reverse, S.joinWith ('')]) ('abc')
   //. 'cba'
   //. ```
   S.reverse =
@@ -3886,11 +3874,11 @@
   //. See also [`sortBy`](#sortBy).
   //.
   //. ```javascript
-  //. > S.sort(['foo', 'bar', 'baz'])
+  //. > S.sort (['foo', 'bar', 'baz'])
   //. ['bar', 'baz', 'foo']
   //.
-  //. > S.sort([S.Left(4), S.Right(3), S.Left(2), S.Right(1)])
-  //. [Left(2), Left(4), Right(1), Right(3)]
+  //. > S.sort ([S.Left (4), S.Right (3), S.Left (2), S.Right (1)])
+  //. [Left (2), Left (4), Right (1), Right (3)]
   //. ```
   S.sort =
   def ('sort')
@@ -3911,7 +3899,7 @@
   //. See also [`sort`](#sort).
   //.
   //. ```javascript
-  //. > S.sortBy(S.prop('rank'), [
+  //. > S.sortBy (S.prop ('rank')) ([
   //. .   {rank: 7, suit: 'spades'},
   //. .   {rank: 5, suit: 'hearts'},
   //. .   {rank: 2, suit: 'hearts'},
@@ -3922,7 +3910,7 @@
   //. . {rank: 5, suit: 'spades'},
   //. . {rank: 7, suit: 'spades'} ]
   //.
-  //. > S.sortBy(S.prop('suit'), [
+  //. > S.sortBy (S.prop ('suit')) ([
   //. .   {rank: 7, suit: 'spades'},
   //. .   {rank: 5, suit: 'hearts'},
   //. .   {rank: 2, suit: 'hearts'},
@@ -3950,7 +3938,7 @@
   //. For accessing properties of uncertain objects, use [`get`](#get) instead.
   //.
   //. ```javascript
-  //. > S.prop('a', {a: 1, b: 2})
+  //. > S.prop ('a') ({a: 1, b: 2})
   //. 1
   //. ```
   function prop(key) {
@@ -3973,7 +3961,7 @@
   //. instead.
   //.
   //. ```javascript
-  //. > S.props(['a', 'b', 'c'], {a: {b: {c: 1}}})
+  //. > S.props (['a', 'b', 'c']) ({a: {b: {c: 1}}})
   //. 1
   //. ```
   function props(path) {
@@ -3998,19 +3986,19 @@
   //. See also [`gets`](#gets) and [`prop`](#prop).
   //.
   //. ```javascript
-  //. > S.get(S.is(Number), 'x', {x: 1, y: 2})
-  //. Just(1)
+  //. > S.get (S.is (Number)) ('x') ({x: 1, y: 2})
+  //. Just (1)
   //.
-  //. > S.get(S.is(Number), 'x', {x: '1', y: '2'})
+  //. > S.get (S.is (Number)) ('x') ({x: '1', y: '2'})
   //. Nothing
   //.
-  //. > S.get(S.is(Number), 'x', {})
+  //. > S.get (S.is (Number)) ('x') ({})
   //. Nothing
   //.
-  //. > S.get($.test([], $.Array($.Number)), 'x', {x: [1, 2, 3]})
-  //. Just([1, 2, 3])
+  //. > S.get ($.test ([]) ($.Array ($.Number))) ('x') ({x: [1, 2, 3]})
+  //. Just ([1, 2, 3])
   //.
-  //. > S.get($.test([], $.Array($.Number)), 'x', {x: [1, 2, 3, null]})
+  //. > S.get ($.test ([]) ($.Array ($.Number))) ('x') ({x: [1, 2, 3, null]})
   //. Nothing
   //. ```
   function get(pred) {
@@ -4040,13 +4028,13 @@
   //. See also [`get`](#get).
   //.
   //. ```javascript
-  //. > S.gets(S.is(Number), ['a', 'b', 'c'], {a: {b: {c: 42}}})
+  //. > S.gets (S.is (Number)) (['a', 'b', 'c']) ({a: {b: {c: 42}}})
   //. Just(42)
   //.
-  //. > S.gets(S.is(Number), ['a', 'b', 'c'], {a: {b: {c: '42'}}})
+  //. > S.gets (S.is (Number)) (['a', 'b', 'c']) ({a: {b: {c: '42'}}})
   //. Nothing
   //.
-  //. > S.gets(S.is(Number), ['a', 'b', 'c'], {})
+  //. > S.gets (S.is (Number)) (['a', 'b', 'c']) ({})
   //. Nothing
   //. ```
   function gets(pred) {
@@ -4081,7 +4069,7 @@
   //. a single entry (mapping the key to the value).
   //.
   //. ```javascript
-  //. > S.singleton('foo', 42)
+  //. > S.singleton ('foo') (42)
   //. {foo: 42}
   //. ```
   function singleton(key) {
@@ -4107,10 +4095,10 @@
   //. function.
   //.
   //. ```javascript
-  //. > S.insert('c', 3, {a: 1, b: 2})
+  //. > S.insert ('c') (3) ({a: 1, b: 2})
   //. {a: 1, b: 2, c: 3}
   //.
-  //. > S.insert('a', 4, {a: 1, b: 2})
+  //. > S.insert ('a') (4) ({a: 1, b: 2})
   //. {a: 4, b: 2}
   //. ```
   function insert(key) {
@@ -4133,10 +4121,10 @@
   //. function.
   //.
   //. ```javascript
-  //. > S.remove('c', {a: 1, b: 2, c: 3})
+  //. > S.remove ('c') ({a: 1, b: 2, c: 3})
   //. {a: 1, b: 2}
   //.
-  //. > S.remove('c', {})
+  //. > S.remove ('c') ({})
   //. {}
   //. ```
   function remove(key) {
@@ -4157,7 +4145,7 @@
   //. Returns the keys of the given string map, in arbitrary order.
   //.
   //. ```javascript
-  //. > S.sort(S.keys({b: 2, c: 3, a: 1}))
+  //. > S.sort (S.keys ({b: 2, c: 3, a: 1}))
   //. ['a', 'b', 'c']
   //. ```
   S.keys =
@@ -4171,7 +4159,7 @@
   //. Returns the values of the given string map, in arbitrary order.
   //.
   //. ```javascript
-  //. > S.sort(S.values({a: 1, c: 3, b: 2}))
+  //. > S.sort (S.values ({a: 1, c: 3, b: 2}))
   //. [1, 2, 3]
   //. ```
   function values(strMap) {
@@ -4184,7 +4172,7 @@
   //. Returns the key–value pairs of the given string map, in arbitrary order.
   //.
   //. ```javascript
-  //. > S.sort(S.pairs({b: 2, a: 1, c: 3}))
+  //. > S.sort (S.pairs ({b: 2, a: 1, c: 3}))
   //. [['a', 1], ['b', 2], ['c', 3]]
   //. ```
   function pairs(strMap) {
@@ -4201,10 +4189,10 @@
   //. pair takes precedence.
   //.
   //. ```javascript
-  //. > S.fromPairs([['a', 1], ['b', 2], ['c', 3]])
+  //. > S.fromPairs ([['a', 1], ['b', 2], ['c', 3]])
   //. {a: 1, b: 2, c: 3}
   //.
-  //. > S.fromPairs([['x', 1], ['x', 2]])
+  //. > S.fromPairs ([['x', 1], ['x', 2]])
   //. {x: 2}
   //. ```
   function fromPairs(pairs) {
@@ -4226,10 +4214,10 @@
   //. Negates its argument.
   //.
   //. ```javascript
-  //. > S.negate(12.5)
+  //. > S.negate (12.5)
   //. -12.5
   //.
-  //. > S.negate(-42)
+  //. > S.negate (-42)
   //. 42
   //. ```
   function negate(n) {
@@ -4242,7 +4230,7 @@
   //. Returns the sum of two (finite) numbers.
   //.
   //. ```javascript
-  //. > S.add(1, 1)
+  //. > S.add (1) (1)
   //. 2
   //. ```
   function add(x) {
@@ -4258,16 +4246,16 @@
   //. Returns the sum of the given array of (finite) numbers.
   //.
   //. ```javascript
-  //. > S.sum([1, 2, 3, 4, 5])
+  //. > S.sum ([1, 2, 3, 4, 5])
   //. 15
   //.
-  //. > S.sum([])
+  //. > S.sum ([])
   //. 0
   //.
-  //. > S.sum(S.Just(42))
+  //. > S.sum (S.Just (42))
   //. 42
   //.
-  //. > S.sum(S.Nothing)
+  //. > S.sum (S.Nothing)
   //. 0
   //. ```
   S.sum =
@@ -4283,7 +4271,7 @@
   //. See also [`sub_`](#sub_).
   //.
   //. ```javascript
-  //. > S.map(S.sub(1), [1, 2, 3])
+  //. > S.map (S.sub (1)) ([1, 2, 3])
   //. [0, 1, 2]
   //. ```
   S.sub =
@@ -4299,7 +4287,7 @@
   //. See also [`sub`](#sub).
   //.
   //. ```javascript
-  //. > S.sub_(4, 2)
+  //. > S.sub_ (4) (2)
   //. 2
   //. ```
   function sub_(x) {
@@ -4315,7 +4303,7 @@
   //. Returns the product of two (finite) numbers.
   //.
   //. ```javascript
-  //. > S.mult(4, 2)
+  //. > S.mult (4) (2)
   //. 8
   //. ```
   function mult(x) {
@@ -4331,16 +4319,16 @@
   //. Returns the product of the given array of (finite) numbers.
   //.
   //. ```javascript
-  //. > S.product([1, 2, 3, 4, 5])
+  //. > S.product ([1, 2, 3, 4, 5])
   //. 120
   //.
-  //. > S.product([])
+  //. > S.product ([])
   //. 1
   //.
-  //. > S.product(S.Just(42))
+  //. > S.product (S.Just (42))
   //. 42
   //.
-  //. > S.product(S.Nothing)
+  //. > S.product (S.Nothing)
   //. 1
   //. ```
   S.product =
@@ -4357,7 +4345,7 @@
   //. See also [`div_`](#div_).
   //.
   //. ```javascript
-  //. > S.map(S.div(2), [0, 1, 2, 3])
+  //. > S.map (S.div (2)) ([0, 1, 2, 3])
   //. [0, 0.5, 1, 1.5]
   //. ```
   S.div =
@@ -4374,10 +4362,10 @@
   //. See also [`div`](#div).
   //.
   //. ```javascript
-  //. > S.div_(7, 2)
+  //. > S.div_ (7) (2)
   //. 3.5
   //.
-  //. > S.map(S.div_(24), [1, 2, 3, 4])
+  //. > S.map (S.div_ (24)) ([1, 2, 3, 4])
   //. [24, 12, 8, 6]
   //. ```
   function div_(x) {
@@ -4398,10 +4386,10 @@
   //. See also [`pow_`](#pow_).
   //.
   //. ```javascript
-  //. > S.map(S.pow(2), [-3, -2, -1, 0, 1, 2, 3])
+  //. > S.map (S.pow (2)) ([-3, -2, -1, 0, 1, 2, 3])
   //. [9, 4, 1, 0, 1, 4, 9]
   //.
-  //. > S.map(S.pow(0.5), [1, 4, 9, 16, 25])
+  //. > S.map (S.pow (0.5)) ([1, 4, 9, 16, 25])
   //. [1, 2, 3, 4, 5]
   //. ```
   function pow(exp) {
@@ -4422,7 +4410,7 @@
   //. See also [`pow`](#pow).
   //.
   //. ```javascript
-  //. > S.map(S.pow_(10), [-3, -2, -1, 0, 1, 2, 3])
+  //. > S.map (S.pow_ (10)) ([-3, -2, -1, 0, 1, 2, 3])
   //. [0.001, 0.01, 0.1, 1, 10, 100, 1000]
   //. ```
   S.pow_ =
@@ -4436,16 +4424,16 @@
   //. Returns the mean of the given array of (finite) numbers.
   //.
   //. ```javascript
-  //. > S.mean([1, 2, 3, 4, 5])
-  //. Just(3)
+  //. > S.mean ([1, 2, 3, 4, 5])
+  //. Just (3)
   //.
-  //. > S.mean([])
+  //. > S.mean ([])
   //. Nothing
   //.
-  //. > S.mean(S.Just(42))
-  //. Just(42)
+  //. > S.mean (S.Just (42))
+  //. Just (42)
   //.
-  //. > S.mean(S.Nothing)
+  //. > S.mean (S.Nothing)
   //. Nothing
   //. ```
   function mean(foldable) {
@@ -4473,10 +4461,10 @@
   //. Returns `true` if the given integer is even; `false` if it is odd.
   //.
   //. ```javascript
-  //. > S.even(42)
+  //. > S.even (42)
   //. true
   //.
-  //. > S.even(99)
+  //. > S.even (99)
   //. false
   //. ```
   function even(n) {
@@ -4489,10 +4477,10 @@
   //. Returns `true` if the given integer is odd; `false` if it is even.
   //.
   //. ```javascript
-  //. > S.odd(99)
+  //. > S.odd (99)
   //. true
   //.
-  //. > S.odd(42)
+  //. > S.odd (42)
   //. false
   //. ```
   function odd(n) {
@@ -4508,10 +4496,10 @@
   //. if it does in fact represent a date; Nothing otherwise.
   //.
   //. ```javascript
-  //. > S.parseDate('2011-01-19T17:40:00Z')
-  //. Just(new Date('2011-01-19T17:40:00.000Z'))
+  //. > S.parseDate ('2011-01-19T17:40:00Z')
+  //. Just (new Date ('2011-01-19T17:40:00.000Z'))
   //.
-  //. > S.parseDate('today')
+  //. > S.parseDate ('today')
   //. Nothing
   //. ```
   function parseDate(s) {
@@ -4561,10 +4549,10 @@
   //. if it does in fact represent a number; Nothing otherwise.
   //.
   //. ```javascript
-  //. > S.parseFloat('-123.45')
-  //. Just(-123.45)
+  //. > S.parseFloat ('-123.45')
+  //. Just (-123.45)
   //.
-  //. > S.parseFloat('foo.bar')
+  //. > S.parseFloat ('foo.bar')
   //. Nothing
   //. ```
   function parseFloat_(s) {
@@ -4591,13 +4579,13 @@
   //. characters are members of the character set specified by the radix.
   //.
   //. ```javascript
-  //. > S.parseInt(10, '-42')
-  //. Just(-42)
+  //. > S.parseInt (10) ('-42')
+  //. Just (-42)
   //.
-  //. > S.parseInt(16, '0xFF')
-  //. Just(255)
+  //. > S.parseInt (16) ('0xFF')
+  //. Just (255)
   //.
-  //. > S.parseInt(16, '0xGG')
+  //. > S.parseInt (16) ('0xGG')
   //. Nothing
   //. ```
   function parseInt_(radix) {
@@ -4623,17 +4611,17 @@
   //. result satisfies the predicate; Nothing otherwise.
   //.
   //. ```javascript
-  //. > S.parseJson($.test([], $.Array($.Integer)), '[')
+  //. > S.parseJson ($.test ([]) ($.Array ($.Integer))) ('[')
   //. Nothing
   //.
-  //. > S.parseJson($.test([], $.Array($.Integer)), '["1","2","3"]')
+  //. > S.parseJson ($.test ([]) ($.Array ($.Integer))) ('["1","2","3"]')
   //. Nothing
   //.
-  //. > S.parseJson($.test([], $.Array($.Integer)), '[0,1.5,3,4.5]')
+  //. > S.parseJson ($.test ([]) ($.Array ($.Integer))) ('[0,1.5,3,4.5]')
   //. Nothing
   //.
-  //. > S.parseJson($.test([], $.Array($.Integer)), '[1,2,3]')
-  //. Just([1, 2, 3])
+  //. > S.parseJson ($.test ([]) ($.Array ($.Integer))) ('[1,2,3]')
+  //. Just ([1, 2, 3])
   //. ```
   function parseJson(pred, s) {
     return Z.filter (pred, encase (JSON.parse) (s));
@@ -4670,7 +4658,7 @@
   //. Takes a [RegexFlags][] and a pattern, and returns a RegExp.
   //.
   //. ```javascript
-  //. > S.regex('g', ':\\d+:')
+  //. > S.regex ('g') (':\\d+:')
   //. /:\d+:/g
   //. ```
   function regex(flags, source) {
@@ -4692,7 +4680,7 @@
   //.   - `forall s :: String. S.test(S.regex('', S.regexEscape(s)), s) = true`
   //.
   //. ```javascript
-  //. > S.regexEscape('-=*{XYZ}*=-')
+  //. > S.regexEscape ('-=*{XYZ}*=-')
   //. '\\-=\\*\\{XYZ\\}\\*=\\-'
   //. ```
   function regexEscape(s) {
@@ -4710,10 +4698,10 @@
   //. matches the string.
   //.
   //. ```javascript
-  //. > S.test(/^a/, 'abacus')
+  //. > S.test (/^a/) ('abacus')
   //. true
   //.
-  //. > S.test(/^a/, 'banana')
+  //. > S.test (/^a/) ('banana')
   //. false
   //. ```
   function test(pattern, s) {
@@ -4737,11 +4725,11 @@
   //. See also [`matchAll`](#matchAll).
   //.
   //. ```javascript
-  //. > S.match(/(good)?bye/, 'goodbye')
-  //. Just({match: 'goodbye', groups: [Just('good')]})
+  //. > S.match (/(good)?bye/) ('goodbye')
+  //. Just ({match: 'goodbye', groups: [Just ('good')]})
   //.
-  //. > S.match(/(good)?bye/, 'bye')
-  //. Just({match: 'bye', groups: [Nothing]})
+  //. > S.match (/(good)?bye/) ('bye')
+  //. Just ({match: 'bye', groups: [Nothing]})
   //. ```
   function match(pattern, s) {
     return Z.map (toMatch, toMaybe (s.match (pattern)));
@@ -4762,13 +4750,13 @@
   //. See also [`match`](#match).
   //.
   //. ```javascript
-  //. > S.matchAll(/@([a-z]+)/g, 'Hello, world!')
+  //. > S.matchAll (/@([a-z]+)/g) ('Hello, world!')
   //. []
   //.
-  //. > S.matchAll(/@([a-z]+)/g, 'Hello, @foo! Hello, @bar! Hello, @baz!')
-  //. [ {match: '@foo', groups: [Just('foo')]},
-  //. . {match: '@bar', groups: [Just('bar')]},
-  //. . {match: '@baz', groups: [Just('baz')]} ]
+  //. > S.matchAll (/@([a-z]+)/g) ('Hello, @foo! Hello, @bar! Hello, @baz!')
+  //. [ {match: '@foo', groups: [Just ('foo')]},
+  //. . {match: '@bar', groups: [Just ('bar')]},
+  //. . {match: '@baz', groups: [Just ('baz')]} ]
   //. ```
   function matchAll(pattern) {
     return function(s) {
@@ -4796,7 +4784,7 @@
   //. See also [`toLower`](#toLower).
   //.
   //. ```javascript
-  //. > S.toUpper('ABC def 123')
+  //. > S.toUpper ('ABC def 123')
   //. 'ABC DEF 123'
   //. ```
   function toUpper(s) {
@@ -4811,7 +4799,7 @@
   //. See also [`toUpper`](#toUpper).
   //.
   //. ```javascript
-  //. > S.toLower('ABC def 123')
+  //. > S.toLower ('ABC def 123')
   //. 'abc def 123'
   //. ```
   function toLower(s) {
@@ -4824,7 +4812,7 @@
   //. Strips leading and trailing whitespace characters.
   //.
   //. ```javascript
-  //. > S.trim('\t\t foo bar \n')
+  //. > S.trim ('\t\t foo bar \n')
   //. 'foo bar'
   //. ```
   function trim(s) {
@@ -4841,10 +4829,10 @@
   //. See also [`stripSuffix`](#stripSuffix).
   //.
   //. ```javascript
-  //. > S.stripPrefix('https://', 'https://sanctuary.js.org')
-  //. Just('sanctuary.js.org')
+  //. > S.stripPrefix ('https://') ('https://sanctuary.js.org')
+  //. Just ('sanctuary.js.org')
   //.
-  //. > S.stripPrefix('https://', 'http://sanctuary.js.org')
+  //. > S.stripPrefix ('https://') ('http://sanctuary.js.org')
   //. Nothing
   //. ```
   function stripPrefix(prefix) {
@@ -4868,10 +4856,10 @@
   //. See also [`stripPrefix`](#stripPrefix).
   //.
   //. ```javascript
-  //. > S.stripSuffix('.md', 'README.md')
-  //. Just('README')
+  //. > S.stripSuffix ('.md') ('README.md')
+  //. Just ('README')
   //.
-  //. > S.stripSuffix('.md', 'README')
+  //. > S.stripSuffix ('.md') ('README')
   //. Nothing
   //. ```
   function stripSuffix(suffix) {
@@ -4894,7 +4882,7 @@
   //. See also [`unwords`](#unwords).
   //.
   //. ```javascript
-  //. > S.words(' foo bar baz ')
+  //. > S.words (' foo bar baz ')
   //. ['foo', 'bar', 'baz']
   //. ```
   function words(s) {
@@ -4912,7 +4900,7 @@
   //. See also [`words`](#words).
   //.
   //. ```javascript
-  //. > S.unwords(['foo', 'bar', 'baz'])
+  //. > S.unwords (['foo', 'bar', 'baz'])
   //. 'foo bar baz'
   //. ```
   function unwords(xs) {
@@ -4929,7 +4917,7 @@
   //. See also [`unlines`](#unlines).
   //.
   //. ```javascript
-  //. > S.lines('foo\nbar\nbaz\n')
+  //. > S.lines ('foo\nbar\nbaz\n')
   //. ['foo', 'bar', 'baz']
   //. ```
   function lines(s) {
@@ -4946,7 +4934,7 @@
   //. See also [`lines`](#lines).
   //.
   //. ```javascript
-  //. > S.unlines(['foo', 'bar', 'baz'])
+  //. > S.unlines (['foo', 'bar', 'baz'])
   //. 'foo\nbar\nbaz\n'
   //. ```
   function unlines(xs) {
@@ -4962,7 +4950,7 @@
   //. See also [`joinWith`](#joinWith) and [`splitOnRegex`](#splitOnRegex).
   //.
   //. ```javascript
-  //. > S.splitOn('::', 'foo::bar::baz')
+  //. > S.splitOn ('::') ('foo::bar::baz')
   //. ['foo', 'bar', 'baz']
   //. ```
   function splitOn(separator) {
@@ -4987,10 +4975,10 @@
   //. See also [`splitOn`](#splitOn).
   //.
   //. ```javascript
-  //. > S.splitOnRegex(/[,;][ ]*/g, 'foo, bar, baz')
+  //. > S.splitOnRegex (/[,;][ ]*/g) ('foo, bar, baz')
   //. ['foo', 'bar', 'baz']
   //.
-  //. > S.splitOnRegex(/[,;][ ]*/g, 'foo;bar;baz')
+  //. > S.splitOnRegex (/[,;][ ]*/g) ('foo;bar;baz')
   //. ['foo', 'bar', 'baz']
   //. ```
   function splitOnRegex(pattern) {
