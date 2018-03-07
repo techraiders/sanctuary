@@ -1,11 +1,11 @@
 'use strict';
 
-var eq = require('./test/internal/eq');
+var eq = require ('./test/internal/eq');
 
 
 //  depMain :: String -> String
 function depMain(name) {
-  var pkg = require(name + '/package.json');
+  var pkg = require (name + '/package.json');
   var main = 'main' in pkg ? pkg.main : 'index.js';
   return './node_modules/' + name + '/' + main;
 }
@@ -17,8 +17,8 @@ var dependencies = [
   'sanctuary-def'
 ];
 
-eq(dependencies.slice().sort(),
-   Object.keys(require('./package.json').dependencies).sort());
+eq (dependencies.slice ().sort (),
+    Object.keys (require ('./package.json').dependencies).sort ());
 
 //  https://saucelabs.com/platforms
 var customLaunchers = {
@@ -75,9 +75,9 @@ var options = {
   },
 
   plugins: [
-    require('karma-browserify'),
-    require('karma-mocha'),
-    require('karma-sauce-launcher')
+    require ('karma-browserify'),
+    require ('karma-mocha'),
+    require ('karma-sauce-launcher')
   ],
 
   frameworks: [
@@ -85,7 +85,7 @@ var options = {
     'mocha'
   ],
 
-  files: dependencies.map(depMain).concat(['index.js', 'test/**/*.js']),
+  files: dependencies.map (depMain).concat (['index.js', 'test/**/*.js']),
 
   preprocessors: {
     'test/**/*.js': ['browserify']
@@ -100,9 +100,9 @@ var options = {
 
   browserify: {
     configure: function(bundle) {
-      bundle.on('prebundle', function() {
-        dependencies.forEach(function(name) {
-          bundle.require(depMain(name), {expose: name});
+      bundle.on ('prebundle', function() {
+        dependencies.forEach (function(name) {
+          bundle.require (depMain (name), {expose: name});
         });
       });
     }
@@ -118,8 +118,8 @@ var options = {
 
   customLaunchers: customLaunchers,
 
-  browsers: Object.keys(customLaunchers)
+  browsers: Object.keys (customLaunchers)
 
 };
 
-module.exports = function(config) { config.set(options); };
+module.exports = function(config) { config.set (options); };

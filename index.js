@@ -195,40 +195,40 @@
 
   /* istanbul ignore else */
   if (typeof module === 'object' && typeof module.exports === 'object') {
-    module.exports = f(require('sanctuary-def'),
-                       require('sanctuary-type-classes'),
-                       require('sanctuary-type-identifiers'));
+    module.exports = f (require ('sanctuary-def'),
+                        require ('sanctuary-type-classes'),
+                        require ('sanctuary-type-identifiers'));
   } else if (typeof define === 'function' && define.amd != null) {
-    define(['sanctuary-def',
-            'sanctuary-type-classes',
-            'sanctuary-type-identifiers'],
-           f);
+    define (['sanctuary-def',
+             'sanctuary-type-classes',
+             'sanctuary-type-identifiers'],
+            f);
   } else {
-    self.sanctuary = f(self.sanctuaryDef,
-                       self.sanctuaryTypeClasses,
-                       self.sanctuaryTypeIdentifiers);
+    self.sanctuary = f (self.sanctuaryDef,
+                        self.sanctuaryTypeClasses,
+                        self.sanctuaryTypeIdentifiers);
   }
 
-}(function($, Z, type) {
+} (function($, Z, type) {
 
   'use strict';
 
   //  Fn :: Type -> Type -> Type
   function Fn(x) {
     return function(y) {
-      return $.Function([x, y]);
+      return $.Function ([x, y]);
     };
   }
 
   //  toObject :: a -> Object
   function toObject(x) {
-    return x == null ? Object.create(null) : Object(x);
+    return x == null ? Object.create (null) : Object (x);
   }
 
   //  typeEq :: String -> a -> Boolean
   function typeEq(typeIdent) {
     return function(x) {
-      return type(x) === typeIdent;
+      return type (x) === typeIdent;
     };
   }
 
@@ -245,24 +245,24 @@
   }
 
   //  :: Type
-  var a = $.TypeVariable('a');
-  var b = $.TypeVariable('b');
-  var c = $.TypeVariable('c');
-  var d = $.TypeVariable('d');
-  var e = $.TypeVariable('e');
-  var g = $.TypeVariable('g');
-  var l = $.TypeVariable('l');
-  var r = $.TypeVariable('r');
+  var a = $.TypeVariable ('a');
+  var b = $.TypeVariable ('b');
+  var c = $.TypeVariable ('c');
+  var d = $.TypeVariable ('d');
+  var e = $.TypeVariable ('e');
+  var g = $.TypeVariable ('g');
+  var l = $.TypeVariable ('l');
+  var r = $.TypeVariable ('r');
 
   //  :: Type -> Type
-  var f = $.UnaryTypeVariable('f');
-  var m = $.UnaryTypeVariable('m');
-  var t = $.UnaryTypeVariable('t');
-  var w = $.UnaryTypeVariable('w');
+  var f = $.UnaryTypeVariable ('f');
+  var m = $.UnaryTypeVariable ('m');
+  var t = $.UnaryTypeVariable ('t');
+  var w = $.UnaryTypeVariable ('w');
 
   //  :: Type -> Type -> Type
-  var p = $.BinaryTypeVariable('p');
-  var s = $.BinaryTypeVariable('s');
+  var p = $.BinaryTypeVariable ('p');
+  var s = $.BinaryTypeVariable ('s');
 
   //  eitherTypeIdent :: String
   var eitherTypeIdent = 'sanctuary/Either';
@@ -270,17 +270,17 @@
   //  $Either :: Type -> Type -> Type
   var $Either = $.BinaryType
     (eitherTypeIdent)
-    (readmeUrl('EitherType'))
-    (typeEq(eitherTypeIdent))
+    (readmeUrl ('EitherType'))
+    (typeEq (eitherTypeIdent))
     (function(either) { return either.isLeft ? [either.value] : []; })
     (function(either) { return either.isRight ? [either.value] : []; });
 
   //  List :: Type -> Type
   var List = $.UnaryType
     ('sanctuary/List')
-    (readmeUrl('list'))
-    (function(x) { return $.String._test(x) || Array.isArray(x); })
-    (function(list) { return $.String._test(list) ? [] : list; });
+    (readmeUrl ('list'))
+    (function(x) { return $.String._test (x) || Array.isArray (x); })
+    (function(list) { return $.String._test (list) ? [] : list; });
 
   //  maybeTypeIdent :: String
   var maybeTypeIdent = 'sanctuary/Maybe';
@@ -288,39 +288,39 @@
   //  $Maybe :: Type -> Type
   var $Maybe = $.UnaryType
     (maybeTypeIdent)
-    (readmeUrl('MaybeType'))
-    (typeEq(maybeTypeIdent))
+    (readmeUrl ('MaybeType'))
+    (typeEq (maybeTypeIdent))
     (function(maybe) { return maybe.isJust ? [maybe.value] : []; });
 
   //  TypeRep :: Type -> Type
   var TypeRep = $.UnaryType
     ('sanctuary/TypeRep')
-    (readmeUrl('type-representatives'))
+    (readmeUrl ('type-representatives'))
     (function(x) {
-       return $.AnyFunction._test(x) ||
-              x != null && $.String._test(x['@@type']);
+       return $.AnyFunction._test (x) ||
+              x != null && $.String._test (x['@@type']);
      })
     (function(typeRep) { return []; });
 
   //  defaultEnv :: Array Type
-  var defaultEnv = Z.concat($.env, [
+  var defaultEnv = Z.concat ($.env, [
     $.FiniteNumber,
     $.NonZeroFiniteNumber,
-    $Either($.Unknown)($.Unknown),
-    Fn($.Unknown)($.Unknown),
+    $Either ($.Unknown) ($.Unknown),
+    Fn ($.Unknown) ($.Unknown),
     $.GlobalRegExp,
     $.NonGlobalRegExp,
     $.Integer,
     $.NonNegativeInteger,
-    $Maybe($.Unknown),
-    $.Pair($.Unknown)($.Unknown),
+    $Maybe ($.Unknown),
+    $.Pair ($.Unknown) ($.Unknown),
     $.RegexFlags,
     $.ValidDate,
     $.ValidNumber
   ]);
 
   //  Options :: Type
-  var Options = $.RecordType({checkTypes: $.Boolean, env: $.Array($.Any)});
+  var Options = $.RecordType ({checkTypes: $.Boolean, env: $.Array ($.Any)});
 
   //  createSanctuary :: Options -> Module
   function createSanctuary(opts) {
@@ -384,11 +384,11 @@
   //.
   //. See also [`env`](#env).
   S.create =
-  $.create({checkTypes: checkTypes, env: defaultEnv})
-          ('create')
-          ({})
-          ([Options, $.Object])
-          (createSanctuary);
+  $.create ({checkTypes: checkTypes, env: defaultEnv})
+           ('create')
+           ({})
+           ([Options, $.Object])
+           (createSanctuary);
 
   //# env :: Array Type
   //.
@@ -400,15 +400,15 @@
   if (typeof __doctest !== 'undefined') {
     /* global __doctest:false */
     /* eslint-disable no-unused-vars */
-    var _List = __doctest.require('./test/internal/List');
+    var _List = __doctest.require ('./test/internal/List');
     var Cons = _List.Cons;
     var Nil = _List.Nil;
-    var Sum = __doctest.require('./test/internal/Sum');
+    var Sum = __doctest.require ('./test/internal/Sum');
     /* eslint-enable no-unused-vars */
-    env = Z.concat(env, [_List.Type($.Unknown), Sum.Type]);
+    env = Z.concat (env, [_List.Type ($.Unknown), Sum.Type]);
   }
 
-  var def = $.create({checkTypes: checkTypes, env: env});
+  var def = $.create ({checkTypes: checkTypes, env: env});
 
   //. ### Classify
 
@@ -424,17 +424,17 @@
   //. {namespace: Nothing, name: 'Array', version: 0}
   //. ```
   S.type =
-  def('type')
-     ({})
-     ([$.Any,
-       $.RecordType({namespace: $Maybe($.String),
-                     name: $.String,
-                     version: $.NonNegativeInteger})])
-     (function(x) {
-        var r = type.parse(type(x));
-        r.namespace = toMaybe(r.namespace);
-        return r;
-      });
+  def ('type')
+      ({})
+      ([$.Any,
+        $.RecordType ({namespace: $Maybe ($.String),
+                       name: $.String,
+                       version: $.NonNegativeInteger})])
+      (function(x) {
+         var r = type.parse (type (x));
+         r.namespace = toMaybe (r.namespace);
+         return r;
+       });
 
   //# is :: TypeRep a -> Any -> Boolean
   //.
@@ -454,16 +454,16 @@
   //. ```
   function is(typeRep) {
     return function(x) {
-      var xType = type(x);
-      if ($.String._test(typeRep['@@type'])) {
+      var xType = type (x);
+      if ($.String._test (typeRep['@@type'])) {
         return xType === typeRep['@@type'];
       } else {
-        var match = /function (\w*)/.exec(typeRep);
+        var match = /function (\w*)/.exec (typeRep);
         return match != null && match[1] === xType;
       }
     };
   }
-  S.is = def('is')({})([TypeRep(a), $.Any, $.Boolean])(is);
+  S.is = def ('is') ({}) ([TypeRep (a), $.Any, $.Boolean]) (is);
 
   //. ### Showable
 
@@ -484,7 +484,7 @@
   //. > S.toString(S.Left(S.Right(S.Just(S.Nothing))))
   //. 'Left(Right(Just(Nothing)))'
   //. ```
-  S.toString = def('toString')({})([$.Any, $.String])(Z.toString);
+  S.toString = def ('toString') ({}) ([$.Any, $.String]) (Z.toString);
 
   //. ### Fantasy Land
   //.
@@ -512,7 +512,11 @@
   //. > S.equals(S.Just([1, 2, 3]), S.Just([1, 2, 4]))
   //. false
   //. ```
-  S.equals = def('equals')({a: [Z.Setoid]})([a, a, $.Boolean])(curry2(Z.equals));
+  S.equals =
+  def ('equals')
+      ({a: [Z.Setoid]})
+      ([a, a, $.Boolean])
+      (curry2 (Z.equals));
 
   //# lt :: Ord a => a -> (a -> Boolean)
   //.
@@ -527,10 +531,10 @@
   //. ```
   function lt(y) {
     return function(x) {
-      return Z.lt(x, y);
+      return Z.lt (x, y);
     };
   }
-  S.lt = def('lt')({a: [Z.Ord]})([a, $.Predicate(a)])(lt);
+  S.lt = def ('lt') ({a: [Z.Ord]}) ([a, $.Predicate (a)]) (lt);
 
   //# lt_ :: Ord a => a -> a -> Boolean
   //.
@@ -549,7 +553,7 @@
   //. > S.lt_([1, 2, 3], [1, 2])
   //. false
   //. ```
-  S.lt_ = def('lt_')({a: [Z.Ord]})([a, a, $.Boolean])(curry2(Z.lt));
+  S.lt_ = def ('lt_') ({a: [Z.Ord]}) ([a, a, $.Boolean]) (curry2 (Z.lt));
 
   //# lte :: Ord a => a -> (a -> Boolean)
   //.
@@ -565,10 +569,10 @@
   //. ```
   function lte(y) {
     return function(x) {
-      return Z.lte(x, y);
+      return Z.lte (x, y);
     };
   }
-  S.lte = def('lte')({a: [Z.Ord]})([a, $.Predicate(a)])(lte);
+  S.lte = def ('lte') ({a: [Z.Ord]}) ([a, $.Predicate (a)]) (lte);
 
   //# lte_ :: Ord a => a -> a -> Boolean
   //.
@@ -587,7 +591,7 @@
   //. > S.lte_([1, 2, 3], [1, 2])
   //. false
   //. ```
-  S.lte_ = def('lte_')({a: [Z.Ord]})([a, a, $.Boolean])(curry2(Z.lte));
+  S.lte_ = def ('lte_') ({a: [Z.Ord]}) ([a, a, $.Boolean]) (curry2 (Z.lte));
 
   //# gt :: Ord a => a -> (a -> Boolean)
   //.
@@ -602,10 +606,10 @@
   //. ```
   function gt(y) {
     return function(x) {
-      return Z.gt(x, y);
+      return Z.gt (x, y);
     };
   }
-  S.gt = def('gt')({a: [Z.Ord]})([a, $.Predicate(a)])(gt);
+  S.gt = def ('gt') ({a: [Z.Ord]}) ([a, $.Predicate (a)]) (gt);
 
   //# gt_ :: Ord a => a -> a -> Boolean
   //.
@@ -624,7 +628,7 @@
   //. > S.gt_([1, 2, 3], [1, 2])
   //. true
   //. ```
-  S.gt_ = def('gt_')({a: [Z.Ord]})([a, a, $.Boolean])(curry2(Z.gt));
+  S.gt_ = def ('gt_') ({a: [Z.Ord]}) ([a, a, $.Boolean]) (curry2 (Z.gt));
 
   //# gte :: Ord a => a -> (a -> Boolean)
   //.
@@ -640,10 +644,10 @@
   //. ```
   function gte(y) {
     return function(x) {
-      return Z.gte(x, y);
+      return Z.gte (x, y);
     };
   }
-  S.gte = def('gte')({a: [Z.Ord]})([a, $.Predicate(a)])(gte);
+  S.gte = def ('gte') ({a: [Z.Ord]}) ([a, $.Predicate (a)]) (gte);
 
   //# gte_ :: Ord a => a -> a -> Boolean
   //.
@@ -662,7 +666,7 @@
   //. > S.gte_([1, 2, 3], [1, 2])
   //. true
   //. ```
-  S.gte_ = def('gte_')({a: [Z.Ord]})([a, a, $.Boolean])(curry2(Z.gte));
+  S.gte_ = def ('gte_') ({a: [Z.Ord]}) ([a, a, $.Boolean]) (curry2 (Z.gte));
 
   //# min :: Ord a => a -> a -> a
   //.
@@ -680,7 +684,7 @@
   //. > S.min('10', '2')
   //. '10'
   //. ```
-  S.min = def('min')({a: [Z.Ord]})([a, a, a])(curry2(Z.min));
+  S.min = def ('min') ({a: [Z.Ord]}) ([a, a, a]) (curry2 (Z.min));
 
   //# max :: Ord a => a -> a -> a
   //.
@@ -698,7 +702,7 @@
   //. > S.max('10', '2')
   //. '2'
   //. ```
-  S.max = def('max')({a: [Z.Ord]})([a, a, a])(curry2(Z.max));
+  S.max = def ('max') ({a: [Z.Ord]}) ([a, a, a]) (curry2 (Z.max));
 
   //# id :: Category c => TypeRep c -> c
   //.
@@ -708,7 +712,7 @@
   //. > S.id(Function)(42)
   //. 42
   //. ```
-  S.id = def('id')({c: [Z.Category]})([TypeRep(c), c])(Z.id);
+  S.id = def ('id') ({c: [Z.Category]}) ([TypeRep (c), c]) (Z.id);
 
   //# concat :: Semigroup a => a -> a -> a
   //.
@@ -730,7 +734,11 @@
   //. > S.concat(Sum(18), Sum(24))
   //. Sum(42)
   //. ```
-  S.concat = def('concat')({a: [Z.Semigroup]})([a, a, a])(curry2(Z.concat));
+  S.concat =
+  def ('concat')
+      ({a: [Z.Semigroup]})
+      ([a, a, a])
+      (curry2 (Z.concat));
 
   //# empty :: Monoid a => TypeRep a -> a
   //.
@@ -749,7 +757,7 @@
   //. > S.empty(Sum)
   //. Sum(0)
   //. ```
-  S.empty = def('empty')({a: [Z.Monoid]})([TypeRep(a), a])(Z.empty);
+  S.empty = def ('empty') ({a: [Z.Monoid]}) ([TypeRep (a), a]) (Z.empty);
 
   //# invert :: Group g => g -> g
   //.
@@ -759,7 +767,7 @@
   //. > S.invert(Sum(5))
   //. Sum(-5)
   //. ```
-  S.invert = def('invert')({g: [Z.Group]})([g, g])(Z.invert);
+  S.invert = def ('invert') ({g: [Z.Group]}) ([g, g]) (Z.invert);
 
   //# filter :: Filterable f => (a -> Boolean) -> f a -> f a
   //.
@@ -785,7 +793,10 @@
   //. Just(1)
   //. ```
   S.filter =
-  def('filter')({f: [Z.Filterable]})([$.Predicate(a), f(a), f(a)])(curry2(Z.filter));
+  def ('filter')
+      ({f: [Z.Filterable]})
+      ([$.Predicate (a), f (a), f (a)])
+      (curry2 (Z.filter));
 
   //# reject :: Filterable f => (a -> Boolean) -> f a -> f a
   //.
@@ -811,7 +822,10 @@
   //. Nothing
   //. ```
   S.reject =
-  def('reject')({f: [Z.Filterable]})([$.Predicate(a), f(a), f(a)])(curry2(Z.reject));
+  def ('reject')
+      ({f: [Z.Filterable]})
+      ([$.Predicate (a), f (a), f (a)])
+      (curry2 (Z.reject));
 
   //# takeWhile :: Filterable f => (a -> Boolean) -> f a -> f a
   //.
@@ -828,10 +842,10 @@
   //. []
   //. ```
   S.takeWhile =
-  def('takeWhile')
-     ({f: [Z.Filterable]})
-     ([$.Predicate(a), f(a), f(a)])
-     (curry2(Z.takeWhile));
+  def ('takeWhile')
+      ({f: [Z.Filterable]})
+      ([$.Predicate (a), f (a), f (a)])
+      (curry2 (Z.takeWhile));
 
   //# dropWhile :: Filterable f => (a -> Boolean) -> f a -> f a
   //.
@@ -848,10 +862,10 @@
   //. [3, 3, 3, 7, 6, 3, 5, 4]
   //. ```
   S.dropWhile =
-  def('dropWhile')
-     ({f: [Z.Filterable]})
-     ([$.Predicate(a), f(a), f(a)])
-     (curry2(Z.dropWhile));
+  def ('dropWhile')
+      ({f: [Z.Filterable]})
+      ([$.Predicate (a), f (a), f (a)])
+      (curry2 (Z.dropWhile));
 
   //# map :: Functor f => (a -> b) -> f a -> f b
   //.
@@ -885,7 +899,11 @@
   //. > S.map(Math.sqrt, S.add(1))(99)
   //. 10
   //. ```
-  S.map = def('map')({f: [Z.Functor]})([Fn(a)(b), f(a), f(b)])(curry2(Z.map));
+  S.map =
+  def ('map')
+      ({f: [Z.Functor]})
+      ([Fn (a) (b), f (a), f (b)])
+      (curry2 (Z.map));
 
   //# bimap :: Bifunctor f => (a -> b) -> (c -> d) -> f a c -> f b d
   //.
@@ -899,10 +917,10 @@
   //. Right(8)
   //. ```
   S.bimap =
-  def('bimap')
-     ({p: [Z.Bifunctor]})
-     ([Fn(a)(b), Fn(c)(d), p(a)(c), p(b)(d)])
-     (curry3(Z.bimap));
+  def ('bimap')
+      ({p: [Z.Bifunctor]})
+      ([Fn (a) (b), Fn (c) (d), p (a) (c), p (b) (d)])
+      (curry3 (Z.bimap));
 
   //# mapLeft :: Bifunctor f => (a -> b) -> f a c -> f b c
   //.
@@ -917,7 +935,10 @@
   //. Right(64)
   //. ```
   S.mapLeft =
-  def('mapLeft')({p: [Z.Bifunctor]})([Fn(a)(b), p(a)(c), p(b)(c)])(curry2(Z.mapLeft));
+  def ('mapLeft')
+      ({p: [Z.Bifunctor]})
+      ([Fn (a) (b), p (a) (c), p (b) (c)])
+      (curry2 (Z.mapLeft));
 
   //# promap :: Profunctor p => (a -> b) -> (c -> d) -> p b c -> p a d
   //.
@@ -928,10 +949,10 @@
   //. 11
   //. ```
   S.promap =
-  def('promap')
-     ({p: [Z.Profunctor]})
-     ([Fn(a)(b), Fn(c)(d), p(b)(c), p(a)(d)])
-     (curry3(Z.promap));
+  def ('promap')
+      ({p: [Z.Profunctor]})
+      ([Fn (a) (b), Fn (c) (d), p (b) (c), p (a) (d)])
+      (curry3 (Z.promap));
 
   //# alt :: Alt f => f a -> f a -> f a
   //.
@@ -950,7 +971,7 @@
   //. > S.alt(S.Right(2), S.Right(3))
   //. Right(2)
   //. ```
-  S.alt = def('alt')({f: [Z.Alt]})([f(a), f(a), f(a)])(curry2(Z.alt));
+  S.alt = def ('alt') ({f: [Z.Alt]}) ([f (a), f (a), f (a)]) (curry2 (Z.alt));
 
   //# zero :: Plus f => TypeRep f -> f a
   //.
@@ -967,7 +988,10 @@
   //. Nothing
   //. ```
   S.zero =
-  def('zero')({f: [Z.Plus]})([TypeRep($.TypeVariable('f')), f(a)])(Z.zero);
+  def ('zero')
+      ({f: [Z.Plus]})
+      ([TypeRep ($.TypeVariable ('f')), f (a)])
+      (Z.zero);
 
   //# reduce :: Foldable f => (b -> a -> b) -> b -> f a -> b
   //.
@@ -989,12 +1013,17 @@
   function reduce(f) {
     return function(initial) {
       return function(foldable) {
-        return Z.reduce(function(y, x) { return f(y)(x); }, initial, foldable);
+        return Z.reduce (function(y, x) { return f (y) (x); },
+                         initial,
+                         foldable);
       };
     };
   }
   S.reduce =
-  def('reduce')({f: [Z.Foldable]})([Fn(a)(Fn(b)(a)), a, f(b), a])(reduce);
+  def ('reduce')
+      ({f: [Z.Foldable]})
+      ([Fn (a) (Fn (b) (a)), a, f (b), a])
+      (reduce);
 
   //# traverse :: (Applicative f, Traversable t) => TypeRep f -> (a -> f b) -> t a -> f (t b)
   //.
@@ -1020,10 +1049,10 @@
   //. Nothing
   //. ```
   S.traverse =
-  def('traverse')
-     ({f: [Z.Applicative], t: [Z.Traversable]})
-     ([TypeRep($.TypeVariable('f')), Fn(a)(f(b)), t(a), f(t(b))])
-     (curry3(Z.traverse));
+  def ('traverse')
+      ({f: [Z.Applicative], t: [Z.Traversable]})
+      ([TypeRep ($.TypeVariable ('f')), Fn (a) (f (b)), t (a), f (t (b))])
+      (curry3 (Z.traverse));
 
   //# sequence :: (Applicative f, Traversable t) => TypeRep f -> t (f a) -> f (t a)
   //.
@@ -1047,10 +1076,10 @@
   //. Nothing
   //. ```
   S.sequence =
-  def('sequence')
-     ({f: [Z.Applicative], t: [Z.Traversable]})
-     ([TypeRep($.TypeVariable('f')), t(f(a)), f(t(a))])
-     (curry2(Z.sequence));
+  def ('sequence')
+      ({f: [Z.Applicative], t: [Z.Traversable]})
+      ([TypeRep ($.TypeVariable ('f')), t (f (a)), f (t (a))])
+      (curry2 (Z.sequence));
 
   //# ap :: Apply f => f (a -> b) -> f a -> f b
   //.
@@ -1082,10 +1111,10 @@
   //. 'Hask'
   //. ```
   S.ap =
-  def('ap')
-     ({f: [Z.Apply]})
-     ([f(Fn(a)(b)), f(a), f(b)])
-     (curry2(Z.ap));
+  def ('ap')
+      ({f: [Z.Apply]})
+      ([f (Fn (a) (b)), f (a), f (b)])
+      (curry2 (Z.ap));
 
   //# lift2 :: Apply f => (a -> b -> c) -> f a -> f b -> f c
   //.
@@ -1106,7 +1135,10 @@
   //. Just(false)
   //. ```
   S.lift2 =
-  def('lift2')({f: [Z.Apply]})([Fn(a)(Fn(b)(c)), f(a), f(b), f(c)])(curry3(Z.lift2));
+  def ('lift2')
+      ({f: [Z.Apply]})
+      ([Fn (a) (Fn (b) (c)), f (a), f (b), f (c)])
+      (curry3 (Z.lift2));
 
   //# lift3 :: Apply f => (a -> b -> c -> d) -> f a -> f b -> f c -> f d
   //.
@@ -1121,10 +1153,10 @@
   //. Nothing
   //. ```
   S.lift3 =
-  def('lift3')
-     ({f: [Z.Apply]})
-     ([Fn(a)(Fn(b)(Fn(c)(d))), f(a), f(b), f(c), f(d)])
-     (curry4(Z.lift3));
+  def ('lift3')
+      ({f: [Z.Apply]})
+      ([Fn (a) (Fn (b) (Fn (c) (d))), f (a), f (b), f (c), f (d)])
+      (curry4 (Z.lift3));
 
   //# apFirst :: Apply f => f a -> f b -> f a
   //.
@@ -1141,7 +1173,11 @@
   //. > S.apFirst(S.Just(1), S.Just(2))
   //. Just(1)
   //. ```
-  S.apFirst = def('apFirst')({f: [Z.Apply]})([f(a), f(b), f(a)])(curry2(Z.apFirst));
+  S.apFirst =
+  def ('apFirst')
+      ({f: [Z.Apply]})
+      ([f (a), f (b), f (a)])
+      (curry2 (Z.apFirst));
 
   //# apSecond :: Apply f => f a -> f b -> f b
   //.
@@ -1158,7 +1194,11 @@
   //. > S.apSecond(S.Just(1), S.Just(2))
   //. Just(2)
   //. ```
-  S.apSecond = def('apSecond')({f: [Z.Apply]})([f(a), f(b), f(b)])(curry2(Z.apSecond));
+  S.apSecond =
+  def ('apSecond')
+      ({f: [Z.Apply]})
+      ([f (a), f (b), f (b)])
+      (curry2 (Z.apSecond));
 
   //# of :: Applicative f => TypeRep f -> a -> f a
   //.
@@ -1178,10 +1218,10 @@
   //. Right(42)
   //. ```
   S.of =
-  def('of')
-     ({f: [Z.Applicative]})
-     ([TypeRep($.TypeVariable('f')), a, f(a)])
-     (curry2(Z.of));
+  def ('of')
+      ({f: [Z.Applicative]})
+      ([TypeRep ($.TypeVariable ('f')), a, f (a)])
+      (curry2 (Z.of));
 
   //# chain :: Chain m => (a -> m b) -> m a -> m b
   //.
@@ -1202,10 +1242,14 @@
   //. ```
   function chain(f) {
     return function(chain_) {
-      return Z.chain(f, chain_);
+      return Z.chain (f, chain_);
     };
   }
-  S.chain = def('chain')({m: [Z.Chain]})([Fn(a)(m(b)), m(a), m(b)])(chain);
+  S.chain =
+  def ('chain')
+      ({m: [Z.Chain]})
+      ([Fn (a) (m (b)), m (a), m (b)])
+      (chain);
 
   //# join :: Chain m => m (m a) -> m a
   //.
@@ -1234,7 +1278,7 @@
   //. > S.join(S.concat)('abc')
   //. 'abcabc'
   //. ```
-  S.join = def('join')({m: [Z.Chain]})([m(m(a)), m(a)])(Z.join);
+  S.join = def ('join') ({m: [Z.Chain]}) ([m (m (a)), m (a)]) (Z.join);
 
   //# chainRec :: ChainRec m => TypeRep m -> (a -> m (Either a b)) -> a -> m b
   //.
@@ -1252,19 +1296,24 @@
   function chainRec(typeRep) {
     return function(f) {
       return function(x) {
-        return Z.chainRec(
+        return Z.chainRec (
           typeRep,
-          function(next, done, x) { return Z.map(either(next)(done), f(x)); },
+          function(next, done, x) {
+            return Z.map (either (next) (done), f (x));
+          },
           x
         );
       };
     };
   }
   S.chainRec =
-  def('chainRec')
-     ({m: [Z.ChainRec]})
-     ([TypeRep($.TypeVariable('m')), Fn(a)(m($Either(a)(b))), a, m(b)])
-     (chainRec);
+  def ('chainRec')
+      ({m: [Z.ChainRec]})
+      ([TypeRep ($.TypeVariable ('m')),
+        Fn (a) (m ($Either (a) (b))),
+        a,
+        m (b)])
+      (chainRec);
 
   //# extend :: Extend w => (w a -> b) -> w a -> w b
   //.
@@ -1278,7 +1327,10 @@
   //. [4, 3, 2, 1]
   //. ```
   S.extend =
-  def('extend')({w: [Z.Extend]})([Fn(w(a))(b), w(a), w(b)])(curry2(Z.extend));
+  def ('extend')
+      ({w: [Z.Extend]})
+      ([Fn (w (a)) (b), w (a), w (b)])
+      (curry2 (Z.extend));
 
   //# duplicate :: Extend w => w a -> w (w a)
   //.
@@ -1299,13 +1351,13 @@
   //. [4, 3, 2, 1]
   //. ```
   S.duplicate =
-  def('duplicate')({w: [Z.Extend]})([w(a), w(w(a))])(Z.duplicate);
+  def ('duplicate') ({w: [Z.Extend]}) ([w (a), w (w (a))]) (Z.duplicate);
 
   //# extract :: Comonad w => w a -> a
   //.
   //. [Type-safe][sanctuary-def] version of [`Z.extract`][].
   S.extract =
-  def('extract')({w: [Z.Comonad]})([w(a), a])(Z.extract);
+  def ('extract') ({w: [Z.Comonad]}) ([w (a), a]) (Z.extract);
 
   //# contramap :: Contravariant f => (b -> a) -> f a -> f b
   //.
@@ -1316,10 +1368,10 @@
   //. 3
   //. ```
   S.contramap =
-  def('contramap')
-     ({f: [Z.Contravariant]})
-     ([Fn(b)(a), f(a), f(b)])
-     (curry2(Z.contramap));
+  def ('contramap')
+      ({f: [Z.Contravariant]})
+      ([Fn (b) (a), f (a), f (b)])
+      (curry2 (Z.contramap));
 
   //. ### Combinator
 
@@ -1335,7 +1387,7 @@
   function I(x) {
     return x;
   }
-  S.I = def('I')({})([a, a])(I);
+  S.I = def ('I') ({}) ([a, a]) (I);
 
   //# K :: a -> b -> a
   //.
@@ -1354,7 +1406,7 @@
       return x;
     };
   }
-  S.K = def('K')({})([a, b, a])(K);
+  S.K = def ('K') ({}) ([a, b, a]) (K);
 
   //# T :: a -> (a -> b) -> b
   //.
@@ -1371,10 +1423,10 @@
   //. ```
   function T(x) {
     return function(f) {
-      return f(x);
+      return f (x);
     };
   }
-  S.T = def('T')({})([a, Fn(a)(b), b])(T);
+  S.T = def ('T') ({}) ([a, Fn (a) (b), b]) (T);
 
   //. ### Function
 
@@ -1392,15 +1444,15 @@
   function curry2(f) {
     return function(x) {
       return function(y) {
-        return f(x, y);
+        return f (x, y);
       };
     };
   }
   S.curry2 =
-  def('curry2')
-     ({})
-     ([$.Function([a, b, c]), a, b, c])
-     (curry2);
+  def ('curry2')
+      ({})
+      ([$.Function ([a, b, c]), a, b, c])
+      (curry2);
 
   //# curry3 :: ((a, b, c) -> d) -> a -> b -> c -> d
   //.
@@ -1422,16 +1474,16 @@
     return function(x) {
       return function(y) {
         return function(z) {
-          return f(x, y, z);
+          return f (x, y, z);
         };
       };
     };
   }
   S.curry3 =
-  def('curry3')
-     ({})
-     ([$.Function([a, b, c, d]), a, b, c, d])
-     (curry3);
+  def ('curry3')
+      ({})
+      ([$.Function ([a, b, c, d]), a, b, c, d])
+      (curry3);
 
   //# curry4 :: ((a, b, c, d) -> e) -> a -> b -> c -> d -> e
   //.
@@ -1454,17 +1506,17 @@
       return function(x) {
         return function(y) {
           return function(z) {
-            return f(w, x, y, z);
+            return f (w, x, y, z);
           };
         };
       };
     };
   }
   S.curry4 =
-  def('curry4')
-     ({})
-     ([$.Function([a, b, c, d, e]), a, b, c, d, e])
-     (curry4);
+  def ('curry4')
+      ({})
+      ([$.Function ([a, b, c, d, e]), a, b, c, d, e])
+      (curry4);
 
   //# curry5 :: ((a, b, c, d, e) -> f) -> a -> b -> c -> d -> e -> f
   //.
@@ -1492,7 +1544,7 @@
         return function(x) {
           return function(y) {
             return function(z) {
-              return f(v, w, x, y, z);
+              return f (v, w, x, y, z);
             };
           };
         };
@@ -1500,10 +1552,10 @@
     };
   }
   S.curry5 =
-  def('curry5')
-     ({})
-     ([$.Function([a, b, c, d, e, r]), a, b, c, d, e, r])
-     (curry5);
+  def ('curry5')
+      ({})
+      ([$.Function ([a, b, c, d, e, r]), a, b, c, d, e, r])
+      (curry5);
 
   //# flip :: (a -> b -> c) -> b -> a -> c
   //.
@@ -1519,11 +1571,11 @@
   function flip(f) {
     return function(x) {
       return function(y) {
-        return f(y)(x);
+        return f (y) (x);
       };
     };
   }
-  S.flip = def('flip')({})([Fn(a)(Fn(b)(c)), b, a, c])(flip);
+  S.flip = def ('flip') ({}) ([Fn (a) (Fn (b) (c)), b, a, c]) (flip);
 
   //. ### Composition
 
@@ -1544,10 +1596,10 @@
   //. 10
   //. ```
   S.compose =
-  def('compose')
-     ({s: [Z.Semigroupoid]})
-     ([s(b)(c), s(a)(b), s(a)(c)])
-     (curry2(Z.compose));
+  def ('compose')
+      ({s: [Z.Semigroupoid]})
+      ([s (b) (c), s (a) (b), s (a) (c)])
+      (curry2 (Z.compose));
 
   //# pipe :: Foldable f => f (Any -> Any) -> a -> b
   //.
@@ -1564,10 +1616,14 @@
   //. ```
   function pipe(fs) {
     return function(x) {
-      return reduce(T)(x)(fs);
+      return reduce (T) (x) (fs);
     };
   }
-  S.pipe = def('pipe')({f: [Z.Foldable]})([f(Fn($.Any)($.Any)), a, b])(pipe);
+  S.pipe =
+  def ('pipe')
+      ({f: [Z.Foldable]})
+      ([f (Fn ($.Any) ($.Any)), a, b])
+      (pipe);
 
   //# pipeK :: (Foldable f, Chain m) => f (Any -> m Any) -> m a -> m b
   //.
@@ -1585,14 +1641,14 @@
   //. ```
   function pipeK(fs) {
     return function(x) {
-      return reduce(flip(chain))(x)(fs);
+      return reduce (flip (chain)) (x) (fs);
     };
   }
   S.pipeK =
-  def('pipeK')
-     ({f: [Z.Foldable], m: [Z.Chain]})
-     ([f(Fn($.Any)(m($.Any))), m(a), m(b)])
-     (pipeK);
+  def ('pipeK')
+      ({f: [Z.Foldable], m: [Z.Chain]})
+      ([f (Fn ($.Any) (m ($.Any))), m (a), m (b)])
+      (pipeK);
 
   //# on :: (b -> b -> c) -> (a -> b) -> a -> a -> c
   //.
@@ -1609,12 +1665,12 @@
     return function(g) {
       return function(x) {
         return function(y) {
-          return f(g(x))(g(y));
+          return f (g (x)) (g (y));
         };
       };
     };
   }
-  S.on = def('on')({})([Fn(b)(Fn(b)(c)), Fn(a)(b), a, a, c])(on);
+  S.on = def ('on') ({}) ([Fn (b) (Fn (b) (c)), Fn (a) (b), a, a, c]) (on);
 
   //. ### Maybe type
   //.
@@ -1643,15 +1699,15 @@
 
     //  Add "fantasy-land/concat" method conditionally so that Just('abc')
     //  satisfies the requirements of Semigroup but Just(123) does not.
-    if (this.isNothing || Z.Semigroup.test(this.value)) {
+    if (this.isNothing || Z.Semigroup.test (this.value)) {
       this['fantasy-land/concat'] = Maybe$prototype$concat;
     }
 
-    if (this.isNothing || Z.Setoid.test(this.value)) {
+    if (this.isNothing || Z.Setoid.test (this.value)) {
       this['fantasy-land/equals'] = Maybe$prototype$equals;
     }
 
-    if (this.isNothing || Z.Ord.test(this.value)) {
+    if (this.isNothing || Z.Ord.test (this.value)) {
       this['fantasy-land/lte'] = Maybe$prototype$lte;
     }
   }
@@ -1664,7 +1720,7 @@
   //. > S.Nothing
   //. Nothing
   //. ```
-  var Nothing = S.Nothing = new _Maybe('Nothing');
+  var Nothing = S.Nothing = new _Maybe ('Nothing');
 
   //# Just :: a -> Maybe a
   //.
@@ -1675,9 +1731,9 @@
   //. Just(42)
   //. ```
   function Just(x) {
-    return new _Maybe('Just', x);
+    return new _Maybe ('Just', x);
   }
-  S.Just = def('Just')({})([a, $Maybe(a)])(Just);
+  S.Just = def ('Just') ({}) ([a, $Maybe (a)]) (Just);
 
   //# Maybe.@@type :: String
   //.
@@ -1759,7 +1815,7 @@
   //. 'Just([1, 2, 3])'
   //. ```
   Maybe.prototype.toString = function() {
-    return this.isJust ? 'Just(' + Z.toString(this.value) + ')' : 'Nothing';
+    return this.isJust ? 'Just(' + Z.toString (this.value) + ')' : 'Nothing';
   };
 
   //# Maybe#inspect :: Maybe a ~> () -> String
@@ -1776,7 +1832,7 @@
   //. > S.Just([1, 2, 3]).inspect()
   //. 'Just([1, 2, 3])'
   //. ```
-  Maybe.prototype.inspect = function() { return this.toString(); };
+  Maybe.prototype.inspect = function() { return this.toString (); };
 
   //# Maybe#fantasy-land/equals :: Setoid a => Maybe a ~> Maybe a -> Boolean
   //.
@@ -1805,7 +1861,7 @@
   //. ```
   function Maybe$prototype$equals(other) {
     return this.isNothing ? other.isNothing
-                          : other.isJust && Z.equals(this.value, other.value);
+                          : other.isJust && Z.equals (this.value, other.value);
   }
 
   //# Maybe#fantasy-land/lte :: Ord a => Maybe a ~> Maybe a -> Boolean
@@ -1837,7 +1893,7 @@
   //. false
   //. ```
   function Maybe$prototype$lte(other) {
-    return this.isNothing || other.isJust && Z.lte(this.value, other.value);
+    return this.isNothing || other.isJust && Z.lte (this.value, other.value);
   }
 
   //# Maybe#fantasy-land/concat :: Semigroup a => Maybe a ~> Maybe a -> Maybe a
@@ -1873,7 +1929,7 @@
   function Maybe$prototype$concat(other) {
     return this.isNothing ?
       other :
-      other.isNothing ? this : Just(Z.concat(this.value, other.value));
+      other.isNothing ? this : Just (Z.concat (this.value, other.value));
   }
 
   //# Maybe#fantasy-land/filter :: Maybe a ~> (a -> Boolean) -> Maybe a
@@ -1895,7 +1951,7 @@
   //. Just(1)
   //. ```
   Maybe.prototype['fantasy-land/filter'] = function(pred) {
-    return this.isJust && pred(this.value) ? this : Nothing;
+    return this.isJust && pred (this.value) ? this : Nothing;
   };
 
   //# Maybe#fantasy-land/map :: Maybe a ~> (a -> b) -> Maybe b
@@ -1915,7 +1971,7 @@
   //. Just(3)
   //. ```
   Maybe.prototype['fantasy-land/map'] = function(f) {
-    return this.isJust ? Just(f(this.value)) : this;
+    return this.isJust ? Just (f (this.value)) : this;
   };
 
   //# Maybe#fantasy-land/ap :: Maybe a ~> Maybe (a -> b) -> Maybe b
@@ -1940,7 +1996,7 @@
   //. Just(3)
   //. ```
   Maybe.prototype['fantasy-land/ap'] = function(other) {
-    return other.isJust ? Z.map(other.value, this) : other;
+    return other.isJust ? Z.map (other.value, this) : other;
   };
 
   //# Maybe#fantasy-land/chain :: Maybe a ~> (a -> Maybe b) -> Maybe b
@@ -1962,7 +2018,7 @@
   //. Just(12.34)
   //. ```
   Maybe.prototype['fantasy-land/chain'] = function(f) {
-    return this.isJust ? f(this.value) : this;
+    return this.isJust ? f (this.value) : this;
   };
 
   //# Maybe#fantasy-land/alt :: Maybe a ~> Maybe a -> Maybe a
@@ -2010,7 +2066,7 @@
   //. 1000
   //. ```
   Maybe.prototype['fantasy-land/reduce'] = function(f, x) {
-    return this.isJust ? f(x, this.value) : x;
+    return this.isJust ? f (x, this.value) : x;
   };
 
   //# Maybe#fantasy-land/traverse :: Applicative f => Maybe a ~> (TypeRep f, a -> f b) -> f (Maybe b)
@@ -2035,7 +2091,7 @@
   //. [Just('foo'), Just('bar'), Just('baz')]
   //. ```
   Maybe.prototype['fantasy-land/traverse'] = function(typeRep, f) {
-    return this.isJust ? Z.map(Just, f(this.value)) : Z.of(typeRep, this);
+    return this.isJust ? Z.map (Just, f (this.value)) : Z.of (typeRep, this);
   };
 
   //# Maybe#fantasy-land/extend :: Maybe a ~> (Maybe a -> b) -> Maybe b
@@ -2055,7 +2111,7 @@
   //. Just(43)
   //. ```
   Maybe.prototype['fantasy-land/extend'] = function(f) {
-    return this.isJust ? Just(f(this)) : this;
+    return this.isJust ? Just (f (this)) : this;
   };
 
   //# isNothing :: Maybe a -> Boolean
@@ -2072,7 +2128,7 @@
   function isNothing(maybe) {
     return maybe.isNothing;
   }
-  S.isNothing = def('isNothing')({})([$Maybe(a), $.Boolean])(isNothing);
+  S.isNothing = def ('isNothing') ({}) ([$Maybe (a), $.Boolean]) (isNothing);
 
   //# isJust :: Maybe a -> Boolean
   //.
@@ -2088,7 +2144,7 @@
   function isJust(maybe) {
     return maybe.isJust;
   }
-  S.isJust = def('isJust')({})([$Maybe(a), $.Boolean])(isJust);
+  S.isJust = def ('isJust') ({}) ([$Maybe (a), $.Boolean]) (isJust);
 
   //# fromMaybe :: a -> Maybe a -> a
   //.
@@ -2110,7 +2166,7 @@
       return maybe.isJust ? maybe.value : x;
     };
   }
-  S.fromMaybe = def('fromMaybe')({})([a, $Maybe(a), a])(fromMaybe);
+  S.fromMaybe = def ('fromMaybe') ({}) ([a, $Maybe (a), a]) (fromMaybe);
 
   //# fromMaybe_ :: (() -> a) -> Maybe a -> a
   //.
@@ -2128,10 +2184,14 @@
   //. ```
   function fromMaybe_(thunk) {
     return function(maybe) {
-      return maybe.isJust ? maybe.value : thunk();
+      return maybe.isJust ? maybe.value : thunk ();
     };
   }
-  S.fromMaybe_ = def('fromMaybe_')({})([$.Thunk(a), $Maybe(a), a])(fromMaybe_);
+  S.fromMaybe_ =
+  def ('fromMaybe_')
+      ({})
+      ([$.Thunk (a), $Maybe (a), a])
+      (fromMaybe_);
 
   //# maybeToNullable :: Maybe a -> Nullable a
   //.
@@ -2151,7 +2211,10 @@
     return maybe.isJust ? maybe.value : null;
   }
   S.maybeToNullable =
-  def('maybeToNullable')({})([$Maybe(a), $.Nullable(a)])(maybeToNullable);
+  def ('maybeToNullable')
+      ({})
+      ([$Maybe (a), $.Nullable (a)])
+      (maybeToNullable);
 
   //# toMaybe :: a? -> Maybe a
   //.
@@ -2166,9 +2229,9 @@
   //. Just(42)
   //. ```
   function toMaybe(x) {
-    return x == null ? Nothing : Just(x);
+    return x == null ? Nothing : Just (x);
   }
-  S.toMaybe = def('toMaybe')({})([a, $Maybe(a)])(toMaybe);
+  S.toMaybe = def ('toMaybe') ({}) ([a, $Maybe (a)]) (toMaybe);
 
   //# maybe :: b -> (a -> b) -> Maybe a -> b
   //.
@@ -2188,11 +2251,11 @@
   function maybe(x) {
     return function(f) {
       return function(maybe) {
-        return fromMaybe(x)(Z.map(f, maybe));
+        return fromMaybe (x) (Z.map (f, maybe));
       };
     };
   }
-  S.maybe = def('maybe')({})([b, Fn(a)(b), $Maybe(a), b])(maybe);
+  S.maybe = def ('maybe') ({}) ([b, Fn (a) (b), $Maybe (a), b]) (maybe);
 
   //# maybe_ :: (() -> b) -> (a -> b) -> Maybe a -> b
   //.
@@ -2211,11 +2274,15 @@
   function maybe_(thunk) {
     return function(f) {
       return function(maybe) {
-        return maybe.isJust ? f(maybe.value) : thunk();
+        return maybe.isJust ? f (maybe.value) : thunk ();
       };
     };
   }
-  S.maybe_ = def('maybe_')({})([$.Thunk(b), Fn(a)(b), $Maybe(a), b])(maybe_);
+  S.maybe_ =
+  def ('maybe_')
+      ({})
+      ([$.Thunk (b), Fn (a) (b), $Maybe (a), b])
+      (maybe_);
 
   //# justs :: (Filterable f, Functor f) => f (Maybe a) -> f a
   //.
@@ -2229,10 +2296,13 @@
   //. ['foo', 'baz']
   //. ```
   function justs(maybes) {
-    return Z.map(value, Z.filter(isJust, maybes));
+    return Z.map (value, Z.filter (isJust, maybes));
   }
   S.justs =
-  def('justs')({f: [Z.Filterable, Z.Functor]})([f($Maybe(a)), f(a)])(justs);
+  def ('justs')
+      ({f: [Z.Filterable, Z.Functor]})
+      ([f ($Maybe (a)), f (a)])
+      (justs);
 
   //# mapMaybe :: (Filterable f, Functor f) => (a -> Maybe b) -> f a -> f b
   //.
@@ -2250,14 +2320,14 @@
   //. ```
   function mapMaybe(f) {
     return function(filterable) {
-      return justs(Z.map(f, filterable));
+      return justs (Z.map (f, filterable));
     };
   }
   S.mapMaybe =
-  def('mapMaybe')
-     ({f: [Z.Filterable, Z.Functor]})
-     ([Fn(a)($Maybe(b)), f(a), f(b)])
-     (mapMaybe);
+  def ('mapMaybe')
+      ({f: [Z.Filterable, Z.Functor]})
+      ([Fn (a) ($Maybe (b)), f (a), f (b)])
+      (mapMaybe);
 
   //# encase :: (a -> b) -> a -> Maybe b
   //.
@@ -2278,13 +2348,13 @@
   function encase(f) {
     return function(x) {
       try {
-        return Just(f(x));
+        return Just (f (x));
       } catch (err) {
         return Nothing;
       }
     };
   }
-  S.encase = def('encase')({})([Fn(a)(b), a, $Maybe(b)])(encase);
+  S.encase = def ('encase') ({}) ([Fn (a) (b), a, $Maybe (b)]) (encase);
 
   //# encase2 :: (a -> b -> c) -> a -> b -> Maybe c
   //.
@@ -2293,14 +2363,18 @@
     return function(x) {
       return function(y) {
         try {
-          return Just(f(x)(y));
+          return Just (f (x) (y));
         } catch (err) {
           return Nothing;
         }
       };
     };
   }
-  S.encase2 = def('encase2')({})([Fn(a)(Fn(b)(c)), a, b, $Maybe(c)])(encase2);
+  S.encase2 =
+  def ('encase2')
+      ({})
+      ([Fn (a) (Fn (b) (c)), a, b, $Maybe (c)])
+      (encase2);
 
   //# encase3 :: (a -> b -> c -> d) -> a -> b -> c -> Maybe d
   //.
@@ -2310,7 +2384,7 @@
       return function(y) {
         return function(z) {
           try {
-            return Just(f(x)(y)(z));
+            return Just (f (x) (y) (z));
           } catch (err) {
             return Nothing;
           }
@@ -2319,7 +2393,10 @@
     };
   }
   S.encase3 =
-  def('encase3')({})([Fn(a)(Fn(b)(Fn(c)(d))), a, b, c, $Maybe(d)])(encase3);
+  def ('encase3')
+      ({})
+      ([Fn (a) (Fn (b) (Fn (c) (d))), a, b, c, $Maybe (d)])
+      (encase3);
 
   //# maybeToEither :: a -> Maybe b -> Either a b
   //.
@@ -2337,11 +2414,14 @@
   //. ```
   function maybeToEither(x) {
     return function(maybe) {
-      return maybe.isNothing ? Left(x) : Right(maybe.value);
+      return maybe.isNothing ? Left (x) : Right (maybe.value);
     };
   }
   S.maybeToEither =
-  def('maybeToEither')({})([a, $Maybe(b), $Either(a)(b)])(maybeToEither);
+  def ('maybeToEither')
+      ({})
+      ([a, $Maybe (b), $Either (a) (b)])
+      (maybeToEither);
 
   //. ### Either type
   //.
@@ -2372,15 +2452,15 @@
     //  Add "fantasy-land/concat" method conditionally so that Left('abc')
     //  and Right('abc') satisfy the requirements of Semigroup but Left(123)
     //  and Right(123) do not.
-    if (Z.Semigroup.test(this.value)) {
+    if (Z.Semigroup.test (this.value)) {
       this['fantasy-land/concat'] = Either$prototype$concat;
     }
 
-    if (Z.Setoid.test(this.value)) {
+    if (Z.Setoid.test (this.value)) {
       this['fantasy-land/equals'] = Either$prototype$equals;
     }
 
-    if (Z.Ord.test(this.value)) {
+    if (Z.Ord.test (this.value)) {
       this['fantasy-land/lte'] = Either$prototype$lte;
     }
   }
@@ -2394,9 +2474,9 @@
   //. Left('Cannot divide by zero')
   //. ```
   function Left(x) {
-    return new _Either('Left', x);
+    return new _Either ('Left', x);
   }
-  S.Left = def('Left')({})([a, $Either(a)(b)])(Left);
+  S.Left = def ('Left') ({}) ([a, $Either (a) (b)]) (Left);
 
   //# Right :: b -> Either a b
   //.
@@ -2407,9 +2487,9 @@
   //. Right(42)
   //. ```
   function Right(x) {
-    return new _Either('Right', x);
+    return new _Either ('Right', x);
   }
-  S.Right = def('Right')({})([b, $Either(a)(b)])(Right);
+  S.Right = def ('Right') ({}) ([b, $Either (a) (b)]) (Right);
 
   //# Either.@@type :: String
   //.
@@ -2466,7 +2546,7 @@
   //. ```
   Either.prototype.toString = function() {
     return (this.isLeft ? 'Left' : 'Right') +
-           '(' + Z.toString(this.value) + ')';
+           '(' + Z.toString (this.value) + ')';
   };
 
   //# Either#inspect :: Either a b ~> () -> String
@@ -2483,7 +2563,7 @@
   //. > S.Right([1, 2, 3]).inspect()
   //. 'Right([1, 2, 3])'
   //. ```
-  Either.prototype.inspect = function() { return this.toString(); };
+  Either.prototype.inspect = function() { return this.toString (); };
 
   //# Either#fantasy-land/equals :: (Setoid a, Setoid b) => Either a b ~> Either a b -> Boolean
   //.
@@ -2503,7 +2583,7 @@
   //. false
   //. ```
   function Either$prototype$equals(other) {
-    return this.isLeft === other.isLeft && Z.equals(this.value, other.value);
+    return this.isLeft === other.isLeft && Z.equals (this.value, other.value);
   }
 
   //# Either#fantasy-land/lte :: (Ord a, Ord b) => Either a b ~> Either a b -> Boolean
@@ -2533,7 +2613,7 @@
   //. ```
   function Either$prototype$lte(other) {
     return this.isLeft === other.isLeft ?
-      Z.lte(this.value, other.value) :
+      Z.lte (this.value, other.value) :
       this.isLeft;
   }
 
@@ -2570,8 +2650,8 @@
   //. ```
   function Either$prototype$concat(other) {
     return this.isLeft ?
-      other.isLeft ? Left(Z.concat(this.value, other.value)) : other :
-      other.isLeft ? this : Right(Z.concat(this.value, other.value));
+      other.isLeft ? Left (Z.concat (this.value, other.value)) : other :
+      other.isLeft ? this : Right (Z.concat (this.value, other.value));
   }
 
   //# Either#fantasy-land/map :: Either a b ~> (b -> c) -> Either a c
@@ -2593,7 +2673,7 @@
   //. Right(3)
   //. ```
   Either.prototype['fantasy-land/map'] = function(f) {
-    return this.isRight ? Right(f(this.value)) : this;
+    return this.isRight ? Right (f (this.value)) : this;
   };
 
   //# Either#fantasy-land/bimap :: Either a b ~> (a -> c, b -> d) -> Either c d
@@ -2620,7 +2700,7 @@
   //. Right(43)
   //. ```
   Either.prototype['fantasy-land/bimap'] = function(f, g) {
-    return this.isLeft ? Left(f(this.value)) : Right(g(this.value));
+    return this.isLeft ? Left (f (this.value)) : Right (g (this.value));
   };
 
   //# Either#fantasy-land/ap :: Either a b ~> Either a (b -> c) -> Either a c
@@ -2645,7 +2725,7 @@
   //. Right(3)
   //. ```
   Either.prototype['fantasy-land/ap'] = function(other) {
-    return other.isRight ? Z.map(other.value, this) : other;
+    return other.isRight ? Z.map (other.value, this) : other;
   };
 
   //# Either#fantasy-land/chain :: Either a b ~> (b -> Either a c) -> Either a c
@@ -2672,7 +2752,7 @@
   //. Right(5)
   //. ```
   Either.prototype['fantasy-land/chain'] = function(f) {
-    return this.isRight ? f(this.value) : this;
+    return this.isRight ? f (this.value) : this;
   };
 
   //# Either#fantasy-land/alt :: Either a b ~> Either a b -> Either a b
@@ -2720,7 +2800,7 @@
   //. 1000
   //. ```
   Either.prototype['fantasy-land/reduce'] = function(f, x) {
-    return this.isRight ? f(x, this.value) : x;
+    return this.isRight ? f (x, this.value) : x;
   };
 
   //# Either#fantasy-land/traverse :: Applicative f => Either a b ~> (TypeRep f, b -> f c) -> f (Either a c)
@@ -2745,7 +2825,7 @@
   //. [Right('foo'), Right('bar'), Right('baz')]
   //. ```
   Either.prototype['fantasy-land/traverse'] = function(typeRep, f) {
-    return this.isRight ? Z.map(Right, f(this.value)) : Z.of(typeRep, this);
+    return this.isRight ? Z.map (Right, f (this.value)) : Z.of (typeRep, this);
   };
 
   //# Either#fantasy-land/extend :: Either a b ~> (Either a b -> c) -> Either a c
@@ -2765,7 +2845,7 @@
   //. Right(43)
   //. ```
   Either.prototype['fantasy-land/extend'] = function(f) {
-    return this.isLeft ? this : Right(f(this));
+    return this.isLeft ? this : Right (f (this));
   };
 
   //# isLeft :: Either a b -> Boolean
@@ -2782,7 +2862,7 @@
   function isLeft(either) {
     return either.isLeft;
   }
-  S.isLeft = def('isLeft')({})([$Either(a)(b), $.Boolean])(isLeft);
+  S.isLeft = def ('isLeft') ({}) ([$Either (a) (b), $.Boolean]) (isLeft);
 
   //# isRight :: Either a b -> Boolean
   //.
@@ -2798,7 +2878,7 @@
   function isRight(either) {
     return either.isRight;
   }
-  S.isRight = def('isRight')({})([$Either(a)(b), $.Boolean])(isRight);
+  S.isRight = def ('isRight') ({}) ([$Either (a) (b), $.Boolean]) (isRight);
 
   //# fromEither :: b -> Either a b -> b
   //.
@@ -2817,7 +2897,11 @@
       return either.isRight ? either.value : x;
     };
   }
-  S.fromEither = def('fromEither')({})([b, $Either(a)(b), b])(fromEither);
+  S.fromEither =
+  def ('fromEither')
+      ({})
+      ([b, $Either (a) (b), b])
+      (fromEither);
 
   //# toEither :: a -> b? -> Either a b
   //.
@@ -2840,10 +2924,10 @@
   //. ```
   function toEither(x) {
     return function(y) {
-      return y == null ? Left(x) : Right(y);
+      return y == null ? Left (x) : Right (y);
     };
   }
-  S.toEither = def('toEither')({})([a, b, $Either(a)(b)])(toEither);
+  S.toEither = def ('toEither') ({}) ([a, b, $Either (a) (b)]) (toEither);
 
   //# either :: (a -> c) -> (b -> c) -> Either a b -> c
   //.
@@ -2862,11 +2946,15 @@
   function either(l) {
     return function(r) {
       return function(either) {
-        return either.isLeft ? l(either.value) : r(either.value);
+        return either.isLeft ? l (either.value) : r (either.value);
       };
     };
   }
-  S.either = def('either')({})([Fn(a)(c), Fn(b)(c), $Either(a)(b), c])(either);
+  S.either =
+  def ('either')
+      ({})
+      ([Fn (a) (c), Fn (b) (c), $Either (a) (b), c])
+      (either);
 
   //# lefts :: (Filterable f, Functor f) => f (Either a b) -> f a
   //.
@@ -2880,13 +2968,13 @@
   //. ['foo', 'bar']
   //. ```
   function lefts(eithers) {
-    return Z.map(value, Z.filter(isLeft, eithers));
+    return Z.map (value, Z.filter (isLeft, eithers));
   }
   S.lefts =
-  def('lefts')
-     ({f: [Z.Filterable, Z.Functor]})
-     ([f($Either(a)(b)), f(a)])
-     (lefts);
+  def ('lefts')
+      ({f: [Z.Filterable, Z.Functor]})
+      ([f ($Either (a) (b)), f (a)])
+      (lefts);
 
   //# rights :: (Filterable f, Functor f) => f (Either a b) -> f b
   //.
@@ -2900,13 +2988,13 @@
   //. [20, 10]
   //. ```
   function rights(eithers) {
-    return Z.map(value, Z.filter(isRight, eithers));
+    return Z.map (value, Z.filter (isRight, eithers));
   }
   S.rights =
-  def('rights')
-     ({f: [Z.Filterable, Z.Functor]})
-     ([f($Either(a)(b)), f(b)])
-     (rights);
+  def ('rights')
+      ({f: [Z.Filterable, Z.Functor]})
+      ([f ($Either (a) (b)), f (b)])
+      (rights);
 
   //# tagBy :: (a -> Boolean) -> a -> Either a a
   //.
@@ -2922,10 +3010,10 @@
   //. ```
   function tagBy(pred) {
     return function(a) {
-      return pred(a) ? Right(a) : Left(a);
+      return pred (a) ? Right (a) : Left (a);
     };
   }
-  S.tagBy = def('tagBy')({})([$.Predicate(a), a, $Either(a)(a)])(tagBy);
+  S.tagBy = def ('tagBy') ({}) ([$.Predicate (a), a, $Either (a) (a)]) (tagBy);
 
   //# encaseEither :: (Error -> l) -> (a -> r) -> a -> Either l r
   //.
@@ -2951,18 +3039,18 @@
     return function(g) {
       return function(x) {
         try {
-          return Right(g(x));
+          return Right (g (x));
         } catch (err) {
-          return Left(f(err));
+          return Left (f (err));
         }
       };
     };
   }
   S.encaseEither =
-  def('encaseEither')
-     ({})
-     ([Fn($.Error)(l), Fn(a)(r), a, $Either(l)(r)])
-     (encaseEither);
+  def ('encaseEither')
+      ({})
+      ([Fn ($.Error) (l), Fn (a) (r), a, $Either (l) (r)])
+      (encaseEither);
 
   //# encaseEither2 :: (Error -> l) -> (a -> b -> r) -> a -> b -> Either l r
   //.
@@ -2972,19 +3060,19 @@
       return function(x) {
         return function(y) {
           try {
-            return Right(g(x)(y));
+            return Right (g (x) (y));
           } catch (err) {
-            return Left(f(err));
+            return Left (f (err));
           }
         };
       };
     };
   }
   S.encaseEither2 =
-  def('encaseEither2')
-     ({})
-     ([Fn($.Error)(l), Fn(a)(Fn(b)(r)), a, b, $Either(l)(r)])
-     (encaseEither2);
+  def ('encaseEither2')
+      ({})
+      ([Fn ($.Error) (l), Fn (a) (Fn (b) (r)), a, b, $Either (l) (r)])
+      (encaseEither2);
 
   //# encaseEither3 :: (Error -> l) -> (a -> b -> c -> r) -> a -> b -> c -> Either l r
   //.
@@ -2995,9 +3083,9 @@
         return function(y) {
           return function(z) {
             try {
-              return Right(g(x)(y)(z));
+              return Right (g (x) (y) (z));
             } catch (err) {
-              return Left(f(err));
+              return Left (f (err));
             }
           };
         };
@@ -3005,10 +3093,15 @@
     };
   }
   S.encaseEither3 =
-  def('encaseEither3')
-     ({})
-     ([Fn($.Error)(l), Fn(a)(Fn(b)(Fn(c)(r))), a, b, c, $Either(l)(r)])
-     (encaseEither3);
+  def ('encaseEither3')
+      ({})
+      ([Fn ($.Error) (l),
+        Fn (a) (Fn (b) (Fn (c) (r))),
+        a,
+        b,
+        c,
+        $Either (l) (r)])
+      (encaseEither3);
 
   //# eitherToMaybe :: Either a b -> Maybe b
   //.
@@ -3025,10 +3118,10 @@
   //. Just(42)
   //. ```
   function eitherToMaybe(either) {
-    return either.isLeft ? Nothing : Just(either.value);
+    return either.isLeft ? Nothing : Just (either.value);
   }
   S.eitherToMaybe =
-  def('eitherToMaybe')({})([$Either(a)(b), $Maybe(b)])(eitherToMaybe);
+  def ('eitherToMaybe') ({}) ([$Either (a) (b), $Maybe (b)]) (eitherToMaybe);
 
   //. ### Logic
 
@@ -3054,7 +3147,7 @@
       return x && y;
     };
   }
-  S.and = def('and')({})([$.Boolean, $.Boolean, $.Boolean])(and);
+  S.and = def ('and') ({}) ([$.Boolean, $.Boolean, $.Boolean]) (and);
 
   //# or :: Boolean -> Boolean -> Boolean
   //.
@@ -3078,7 +3171,7 @@
       return x || y;
     };
   }
-  S.or = def('or')({})([$.Boolean, $.Boolean, $.Boolean])(or);
+  S.or = def ('or') ({}) ([$.Boolean, $.Boolean, $.Boolean]) (or);
 
   //# not :: Boolean -> Boolean
   //.
@@ -3096,7 +3189,7 @@
   function not(x) {
     return !x;
   }
-  S.not = def('not')({})([$.Boolean, $.Boolean])(not);
+  S.not = def ('not') ({}) ([$.Boolean, $.Boolean]) (not);
 
   //# complement :: (a -> Boolean) -> a -> Boolean
   //.
@@ -3114,11 +3207,11 @@
   //. ```
   function complement(pred) {
     return function(x) {
-      return !pred(x);
+      return !pred (x);
     };
   }
   S.complement =
-  def('complement')({})([$.Predicate(a), a, $.Boolean])(complement);
+  def ('complement') ({}) ([$.Predicate (a), a, $.Boolean]) (complement);
 
   //# ifElse :: (a -> Boolean) -> (a -> b) -> (a -> b) -> a -> b
   //.
@@ -3141,13 +3234,16 @@
     return function(f) {
       return function(g) {
         return function(x) {
-          return pred(x) ? f(x) : g(x);
+          return pred (x) ? f (x) : g (x);
         };
       };
     };
   }
   S.ifElse =
-  def('ifElse')({})([$.Predicate(a), Fn(a)(b), Fn(a)(b), a, b])(ifElse);
+  def ('ifElse')
+      ({})
+      ([$.Predicate (a), Fn (a) (b), Fn (a) (b), a, b])
+      (ifElse);
 
   //# when :: (a -> Boolean) -> (a -> a) -> a -> a
   //.
@@ -3166,10 +3262,10 @@
   //. ```
   function when(pred) {
     return function(f) {
-      return ifElse(pred)(f)(I);
+      return ifElse (pred) (f) (I);
     };
   }
-  S.when = def('when')({})([$.Predicate(a), Fn(a)(a), a, a])(when);
+  S.when = def ('when') ({}) ([$.Predicate (a), Fn (a) (a), a, a]) (when);
 
   //# unless :: (a -> Boolean) -> (a -> a) -> a -> a
   //.
@@ -3187,9 +3283,13 @@
   //. -1
   //. ```
   function unless(pred) {
-    return ifElse(pred)(I);
+    return ifElse (pred) (I);
   }
-  S.unless = def('unless')({})([$.Predicate(a), Fn(a)(a), a, a])(unless);
+  S.unless =
+  def ('unless')
+      ({})
+      ([$.Predicate (a), Fn (a) (a), a, a])
+      (unless);
 
   //# allPass :: Foldable f => f (a -> Boolean) -> a -> Boolean
   //.
@@ -3207,14 +3307,14 @@
   //. ```
   function allPass(preds) {
     return function(x) {
-      return Z.reduce(function(b, p) { return b && p(x); }, true, preds);
+      return Z.reduce (function(b, p) { return b && p (x); }, true, preds);
     };
   }
   S.allPass =
-  def('allPass')
-     ({f: [Z.Foldable]})
-     ([f($.Predicate(a)), a, $.Boolean])
-     (allPass);
+  def ('allPass')
+      ({f: [Z.Foldable]})
+      ([f ($.Predicate (a)), a, $.Boolean])
+      (allPass);
 
   //# anyPass :: Foldable f => f (a -> Boolean) -> a -> Boolean
   //.
@@ -3232,14 +3332,14 @@
   //. ```
   function anyPass(preds) {
     return function(x) {
-      return Z.reduce(function(b, p) { return b || p(x); }, false, preds);
+      return Z.reduce (function(b, p) { return b || p (x); }, false, preds);
     };
   }
   S.anyPass =
-  def('anyPass')
-     ({f: [Z.Foldable]})
-     ([f($.Predicate(a)), a, $.Boolean])
-     (anyPass);
+  def ('anyPass')
+      ({f: [Z.Foldable]})
+      ([f ($.Predicate (a)), a, $.Boolean])
+      (anyPass);
 
   //. ### List
   //.
@@ -3288,14 +3388,19 @@
         var fromIdx = start < 0 ? start + len : start;
         var toIdx = end < 0 ? end + len : end;
 
-        return Math.abs(start) <= len && Math.abs(end) <= len && fromIdx <= toIdx ?
-          Just(xs.slice(fromIdx, toIdx)) :
-          Nothing;
+        return Math.abs (start) <= len &&
+               Math.abs (end) <= len &&
+               fromIdx <= toIdx ?
+                 Just (xs.slice (fromIdx, toIdx)) :
+                 Nothing;
       };
     };
   }
   S.slice =
-  def('slice')({})([$.Integer, $.Integer, List(a), $Maybe(List(a))])(slice);
+  def ('slice')
+      ({})
+      ([$.Integer, $.Integer, List (a), $Maybe (List (a))])
+      (slice);
 
   //# at :: Integer -> List a -> Maybe a
   //.
@@ -3316,10 +3421,10 @@
   function at(n) {
     return function(xs) {
       var idx = n < 0 ? xs.length + n : n;
-      return idx < 0 || idx >= xs.length ? Nothing : Just(xs[idx]);
+      return idx < 0 || idx >= xs.length ? Nothing : Just (xs[idx]);
     };
   }
-  S.at = def('at')({})([$.Integer, List(a), $Maybe(a)])(at);
+  S.at = def ('at') ({}) ([$.Integer, List (a), $Maybe (a)]) (at);
 
   //# head :: List a -> Maybe a
   //.
@@ -3334,9 +3439,9 @@
   //. Nothing
   //. ```
   function head(xs) {
-    return at(0)(xs);
+    return at (0) (xs);
   }
-  S.head = def('head')({})([List(a), $Maybe(a)])(head);
+  S.head = def ('head') ({}) ([List (a), $Maybe (a)]) (head);
 
   //# last :: List a -> Maybe a
   //.
@@ -3351,9 +3456,9 @@
   //. Nothing
   //. ```
   function last(xs) {
-    return at(-1)(xs);
+    return at (-1) (xs);
   }
-  S.last = def('last')({})([List(a), $Maybe(a)])(last);
+  S.last = def ('last') ({}) ([List (a), $Maybe (a)]) (last);
 
   //# tail :: List a -> Maybe (List a)
   //.
@@ -3369,9 +3474,9 @@
   //. Nothing
   //. ```
   function tail(xs) {
-    return xs.length > 0 ? Just(xs.slice(1)) : Nothing;
+    return xs.length > 0 ? Just (xs.slice (1)) : Nothing;
   }
-  S.tail = def('tail')({})([List(a), $Maybe(List(a))])(tail);
+  S.tail = def ('tail') ({}) ([List (a), $Maybe (List (a))]) (tail);
 
   //# init :: List a -> Maybe (List a)
   //.
@@ -3387,9 +3492,9 @@
   //. Nothing
   //. ```
   function init(xs) {
-    return xs.length > 0 ? Just(xs.slice(0, -1)) : Nothing;
+    return xs.length > 0 ? Just (xs.slice (0, -1)) : Nothing;
   }
-  S.init = def('init')({})([List(a), $Maybe(List(a))])(init);
+  S.init = def ('init') ({}) ([List (a), $Maybe (List (a))]) (init);
 
   //# take :: Integer -> List a -> Maybe (List a)
   //.
@@ -3409,10 +3514,10 @@
   //. ```
   function take(n) {
     return function(xs) {
-      return n < 0 || n > xs.length ? Nothing : Just(xs.slice(0, n));
+      return n < 0 || n > xs.length ? Nothing : Just (xs.slice (0, n));
     };
   }
-  S.take = def('take')({})([$.Integer, List(a), $Maybe(List(a))])(take);
+  S.take = def ('take') ({}) ([$.Integer, List (a), $Maybe (List (a))]) (take);
 
   //# takeLast :: Integer -> List a -> Maybe (List a)
   //.
@@ -3432,11 +3537,12 @@
   //. ```
   function takeLast(n) {
     return function(xs) {
-      return n < 0 || n > xs.length ? Nothing : Just(xs.slice(xs.length - n));
+      return n < 0 || n > xs.length ? Nothing
+                                    : Just (xs.slice (xs.length - n));
     };
   }
   S.takeLast =
-  def('takeLast')({})([$.Integer, List(a), $Maybe(List(a))])(takeLast);
+  def ('takeLast') ({}) ([$.Integer, List (a), $Maybe (List (a))]) (takeLast);
 
   //# drop :: Integer -> List a -> Maybe (List a)
   //.
@@ -3456,10 +3562,10 @@
   //. ```
   function drop(n) {
     return function(xs) {
-      return n < 0 || n > xs.length ? Nothing : Just(xs.slice(n));
+      return n < 0 || n > xs.length ? Nothing : Just (xs.slice (n));
     };
   }
-  S.drop = def('drop')({})([$.Integer, List(a), $Maybe(List(a))])(drop);
+  S.drop = def ('drop') ({}) ([$.Integer, List (a), $Maybe (List (a))]) (drop);
 
   //# dropLast :: Integer -> List a -> Maybe (List a)
   //.
@@ -3479,11 +3585,12 @@
   //. ```
   function dropLast(n) {
     return function(xs) {
-      return n < 0 || n > xs.length ? Nothing : Just(xs.slice(0, xs.length - n));
+      return n < 0 || n > xs.length ? Nothing
+                                    : Just (xs.slice (0, xs.length - n));
     };
   }
   S.dropLast =
-  def('dropLast')({})([$.Integer, List(a), $Maybe(List(a))])(dropLast);
+  def ('dropLast') ({}) ([$.Integer, List (a), $Maybe (List (a))]) (dropLast);
 
   //. ### Array
 
@@ -3510,7 +3617,7 @@
   //. > S.size(S.Just('quux'))
   //. 1
   //. ```
-  S.size = def('size')({f: [Z.Foldable]})([f(a), $.Integer])(Z.size);
+  S.size = def ('size') ({f: [Z.Foldable]}) ([f (a), $.Integer]) (Z.size);
 
   //# append :: (Applicative f, Semigroup (f a)) => a -> f a -> f a
   //.
@@ -3532,10 +3639,10 @@
   //. Just([1, 2, 3])
   //. ```
   S.append =
-  def('append')
-     ({f: [Z.Applicative, Z.Semigroup]})
-     ([a, f(a), f(a)])
-     (curry2(Z.append));
+  def ('append')
+      ({f: [Z.Applicative, Z.Semigroup]})
+      ([a, f (a), f (a)])
+      (curry2 (Z.append));
 
   //# prepend :: (Applicative f, Semigroup (f a)) => a -> f a -> f a
   //.
@@ -3557,10 +3664,10 @@
   //. Just([1, 2, 3])
   //. ```
   S.prepend =
-  def('prepend')
-     ({f: [Z.Applicative, Z.Semigroup]})
-     ([a, f(a), f(a)])
-     (curry2(Z.prepend));
+  def ('prepend')
+      ({f: [Z.Applicative, Z.Semigroup]})
+      ([a, f (a), f (a)])
+      (curry2 (Z.prepend));
 
   //# joinWith :: String -> Array String -> String
   //.
@@ -3578,11 +3685,11 @@
   //. ```
   function joinWith(separator) {
     return function(ss) {
-      return ss.join(separator);
+      return ss.join (separator);
     };
   }
   S.joinWith =
-  def('joinWith')({})([$.String, $.Array($.String), $.String])(joinWith);
+  def ('joinWith') ({}) ([$.String, $.Array ($.String), $.String]) (joinWith);
 
   //# elem :: (Setoid a, Foldable f) => a -> f a -> Boolean
   //.
@@ -3614,7 +3721,10 @@
   //. false
   //. ```
   S.elem =
-  def('elem')({a: [Z.Setoid], f: [Z.Foldable]})([a, f(a), $.Boolean])(curry2(Z.elem));
+  def ('elem')
+      ({a: [Z.Setoid], f: [Z.Foldable]})
+      ([a, f (a), $.Boolean])
+      (curry2 (Z.elem));
 
   //# find :: Foldable f => (a -> Boolean) -> f a -> Maybe a
   //.
@@ -3633,15 +3743,20 @@
   //. ```
   function find(pred) {
     return function(xs) {
-      return Z.reduce(
-        function(m, x) { return m.isJust ? m : pred(x) ? Just(x) : Nothing; },
+      return Z.reduce (
+        function(m, x) {
+          return m.isJust ? m : pred (x) ? Just (x) : Nothing;
+        },
         Nothing,
         xs
       );
     };
   }
   S.find =
-  def('find')({f: [Z.Foldable]})([$.Predicate(a), f(a), $Maybe(a)])(find);
+  def ('find')
+      ({f: [Z.Foldable]})
+      ([$.Predicate (a), f (a), $Maybe (a)])
+      (find);
 
   //# unfoldr :: (b -> Maybe (Pair a b)) -> b -> Array a
   //.
@@ -3662,12 +3777,17 @@
   function unfoldr(f) {
     return function(x) {
       var result = [];
-      for (var m = f(x); m.isJust; m = f(m.value[1])) result.push(m.value[0]);
+      for (var m = f (x); m.isJust; m = f (m.value[1])) {
+        result.push (m.value[0]);
+      }
       return result;
     };
   }
   S.unfoldr =
-  def('unfoldr')({})([Fn(b)($Maybe($.Pair(a)(b))), b, $.Array(a)])(unfoldr);
+  def ('unfoldr')
+      ({})
+      ([Fn (b) ($Maybe ($.Pair (a) (b))), b, $.Array (a)])
+      (unfoldr);
 
   //# range :: Integer -> Integer -> Array Integer
   //.
@@ -3688,12 +3808,12 @@
   function range(from) {
     return function(to) {
       var result = [];
-      for (var n = from; n < to; n += 1) result.push(n);
+      for (var n = from; n < to; n += 1) result.push (n);
       return result;
     };
   }
   S.range =
-  def('range')({})([$.Integer, $.Integer, $.Array($.Integer)])(range);
+  def ('range') ({}) ([$.Integer, $.Integer, $.Array ($.Integer)]) (range);
 
   //# groupBy :: (a -> a -> Boolean) -> Array a -> Array (Array a)
   //.
@@ -3723,16 +3843,16 @@
       var result = [active];  // :: Array (Array a)
       for (var idx = 1; idx < xs.length; idx += 1) {
         var x = xs[idx];
-        if (f(x0)(x)) active.push(x); else result.push(active = [x0 = x]);
+        if (f (x0) (x)) active.push (x); else result.push (active = [x0 = x]);
       }
       return result;
     };
   }
   S.groupBy =
-  def('groupBy')
-     ({})
-     ([Fn(a)($.Predicate(a)), $.Array(a), $.Array($.Array(a))])
-     (groupBy);
+  def ('groupBy')
+      ({})
+      ([Fn (a) ($.Predicate (a)), $.Array (a), $.Array ($.Array (a))])
+      (groupBy);
 
   //# reverse :: (Applicative f, Foldable f, Monoid (f a)) => f a -> f a
   //.
@@ -3749,10 +3869,10 @@
   //. 'cba'
   //. ```
   S.reverse =
-  def('reverse')
-     ({f: [Z.Applicative, Z.Foldable, Z.Monoid]})
-     ([f(a), f(a)])
-     (Z.reverse);
+  def ('reverse')
+      ({f: [Z.Applicative, Z.Foldable, Z.Monoid]})
+      ([f (a), f (a)])
+      (Z.reverse);
 
   //# sort :: (Ord a, Applicative m, Foldable m, Monoid (m a)) => m a -> m a
   //.
@@ -3773,10 +3893,10 @@
   //. [Left(2), Left(4), Right(1), Right(3)]
   //. ```
   S.sort =
-  def('sort')
-     ({a: [Z.Ord], m: [Z.Applicative, Z.Foldable, Z.Monoid]})
-     ([m(a), m(a)])
-     (Z.sort);
+  def ('sort')
+      ({a: [Z.Ord], m: [Z.Applicative, Z.Foldable, Z.Monoid]})
+      ([m (a), m (a)])
+      (Z.sort);
 
   //# sortBy :: (Ord b, Applicative m, Foldable m, Monoid (m a)) => (a -> b) -> m a -> m a
   //.
@@ -3814,10 +3934,10 @@
   //. . {rank: 5, suit: 'spades'} ]
   //. ```
   S.sortBy =
-  def('sortBy')
-     ({b: [Z.Ord], m: [Z.Applicative, Z.Foldable, Z.Monoid]})
-     ([Fn(a)(b), m(a), m(a)])
-     (curry2(Z.sortBy));
+  def ('sortBy')
+      ({b: [Z.Ord], m: [Z.Applicative, Z.Foldable, Z.Monoid]})
+      ([Fn (a) (b), m (a), m (a)])
+      (curry2 (Z.sortBy));
 
   //. ### Object
 
@@ -3835,13 +3955,13 @@
   //. ```
   function prop(key) {
     return function(x) {
-      var obj = toObject(x);
+      var obj = toObject (x);
       if (key in obj) return obj[key];
-      throw new TypeError('‘prop’ expected object to have a property named ‘' +
-                          key + '’; ' + Z.toString(x) + ' does not');
+      throw new TypeError ('‘prop’ expected object to have a property named ' +
+                           '‘' + key + '’; ' + Z.toString (x) + ' does not');
     };
   }
-  S.prop = def('prop')({})([$.String, a, b])(prop);
+  S.prop = def ('prop') ({}) ([$.String, a, b]) (prop);
 
   //# props :: Array String -> a -> b
   //.
@@ -3858,16 +3978,16 @@
   //. ```
   function props(path) {
     return function(x) {
-      return path.reduce(function(x, key) {
-        var obj = toObject(x);
+      return path.reduce (function(x, key) {
+        var obj = toObject (x);
         if (key in obj) return obj[key];
-        throw new TypeError('‘props’ expected object to have a property at ' +
-                            Z.toString(path) + '; ' +
-                            Z.toString(x) + ' does not');
+        throw new TypeError ('‘props’ expected object to have a property at ' +
+                             Z.toString (path) + '; ' +
+                             Z.toString (x) + ' does not');
       }, x);
     };
   }
-  S.props = def('props')({})([$.Array($.String), a, b])(props);
+  S.props = def ('props') ({}) ([$.Array ($.String), a, b]) (props);
 
   //# get :: (Any -> Boolean) -> String -> a -> Maybe b
   //.
@@ -3896,16 +4016,20 @@
   function get(pred) {
     return function(key) {
       return function(x) {
-        var obj = toObject(x);
+        var obj = toObject (x);
         if (key in obj) {
           var val = obj[key];
-          if (pred(val)) return Just(val);
+          if (pred (val)) return Just (val);
         }
         return Nothing;
       };
     };
   }
-  S.get = def('get')({})([$.Predicate($.Any), $.String, a, $Maybe(b)])(get);
+  S.get =
+  def ('get')
+      ({})
+      ([$.Predicate ($.Any), $.String, a, $Maybe (b)])
+      (get);
 
   //# gets :: (Any -> Boolean) -> Array String -> a -> Maybe b
   //.
@@ -3928,17 +4052,20 @@
   function gets(pred) {
     return function(keys) {
       return function(x) {
-        return Z.filter(pred, Z.reduce(function(m, key) {
-          return Z.chain(function(x) {
-            var obj = toObject(x);
-            return key in obj ? Just(obj[key]) : Nothing;
+        return Z.filter (pred, Z.reduce (function(m, key) {
+          return Z.chain (function(x) {
+            var obj = toObject (x);
+            return key in obj ? Just (obj[key]) : Nothing;
           }, m);
-        }, Just(x), keys));
+        }, Just (x), keys));
       };
     };
   }
   S.gets =
-  def('gets')({})([$.Predicate($.Any), $.Array($.String), a, $Maybe(b)])(gets);
+  def ('gets')
+      ({})
+      ([$.Predicate ($.Any), $.Array ($.String), a, $Maybe (b)])
+      (gets);
 
   //. ### StrMap
   //.
@@ -3964,7 +4091,11 @@
       return strMap;
     };
   }
-  S.singleton = def('singleton')({})([$.String, a, $.StrMap(a)])(singleton);
+  S.singleton =
+  def ('singleton')
+      ({})
+      ([$.String, a, $.StrMap (a)])
+      (singleton);
 
   //# insert :: String -> a -> StrMap a -> StrMap a
   //.
@@ -3985,12 +4116,12 @@
   function insert(key) {
     return function(val) {
       return function(strMap) {
-        return Z.concat(strMap, singleton(key)(val));
+        return Z.concat (strMap, singleton (key) (val));
       };
     };
   }
   S.insert =
-  def('insert')({})([$.String, a, $.StrMap(a), $.StrMap(a)])(insert);
+  def ('insert') ({}) ([$.String, a, $.StrMap (a), $.StrMap (a)]) (insert);
 
   //# remove :: String -> StrMap a -> StrMap a
   //.
@@ -4010,12 +4141,16 @@
   //. ```
   function remove(key) {
     return function(strMap) {
-      var result = Z.concat(strMap, {});
+      var result = Z.concat (strMap, {});
       delete result[key];
       return result;
     };
   }
-  S.remove = def('remove')({})([$.String, $.StrMap(a), $.StrMap(a)])(remove);
+  S.remove =
+  def ('remove')
+      ({})
+      ([$.String, $.StrMap (a), $.StrMap (a)])
+      (remove);
 
   //# keys :: StrMap a -> Array String
   //.
@@ -4025,7 +4160,11 @@
   //. > S.sort(S.keys({b: 2, c: 3, a: 1}))
   //. ['a', 'b', 'c']
   //. ```
-  S.keys = def('keys')({})([$.StrMap(a), $.Array($.String)])(Object.keys);
+  S.keys =
+  def ('keys')
+      ({})
+      ([$.StrMap (a), $.Array ($.String)])
+      (Object.keys);
 
   //# values :: StrMap a -> Array a
   //.
@@ -4036,9 +4175,9 @@
   //. [1, 2, 3]
   //. ```
   function values(strMap) {
-    return Z.map(function(k) { return strMap[k]; }, Object.keys(strMap));
+    return Z.map (function(k) { return strMap[k]; }, Object.keys (strMap));
   }
-  S.values = def('values')({})([$.StrMap(a), $.Array(a)])(values);
+  S.values = def ('values') ({}) ([$.StrMap (a), $.Array (a)]) (values);
 
   //# pairs :: StrMap a -> Array (Pair String a)
   //.
@@ -4049,10 +4188,11 @@
   //. [['a', 1], ['b', 2], ['c', 3]]
   //. ```
   function pairs(strMap) {
-    return Z.map(function(k) { return [k, strMap[k]]; }, Object.keys(strMap));
+    return Z.map (function(k) { return [k, strMap[k]]; },
+                  Object.keys (strMap));
   }
   S.pairs =
-  def('pairs')({})([$.StrMap(a), $.Array($.Pair($.String)(a))])(pairs);
+  def ('pairs') ({}) ([$.StrMap (a), $.Array ($.Pair ($.String) (a))]) (pairs);
 
   //# fromPairs :: Foldable f => f (Pair String a) -> StrMap a
   //.
@@ -4068,16 +4208,16 @@
   //. {x: 2}
   //. ```
   function fromPairs(pairs) {
-    return Z.reduce(function(strMap, pair) {
+    return Z.reduce (function(strMap, pair) {
       strMap[pair[0]] = pair[1];
       return strMap;
     }, {}, pairs);
   }
   S.fromPairs =
-  def('fromPairs')
-     ({f: [Z.Foldable]})
-     ([f($.Pair($.String)(a)), $.StrMap(a)])
-     (fromPairs);
+  def ('fromPairs')
+      ({f: [Z.Foldable]})
+      ([f ($.Pair ($.String) (a)), $.StrMap (a)])
+      (fromPairs);
 
   //. ### Number
 
@@ -4095,7 +4235,7 @@
   function negate(n) {
     return -n;
   }
-  S.negate = def('negate')({})([$.ValidNumber, $.ValidNumber])(negate);
+  S.negate = def ('negate') ({}) ([$.ValidNumber, $.ValidNumber]) (negate);
 
   //# add :: FiniteNumber -> FiniteNumber -> FiniteNumber
   //.
@@ -4111,7 +4251,7 @@
     };
   }
   S.add =
-  def('add')({})([$.FiniteNumber, $.FiniteNumber, $.FiniteNumber])(add);
+  def ('add') ({}) ([$.FiniteNumber, $.FiniteNumber, $.FiniteNumber]) (add);
 
   //# sum :: Foldable f => f FiniteNumber -> FiniteNumber
   //.
@@ -4131,7 +4271,10 @@
   //. 0
   //. ```
   S.sum =
-  def('sum')({f: [Z.Foldable]})([f($.FiniteNumber), $.FiniteNumber])(reduce(add)(0));
+  def ('sum')
+      ({f: [Z.Foldable]})
+      ([f ($.FiniteNumber), $.FiniteNumber])
+      (reduce (add) (0));
 
   //# sub :: FiniteNumber -> (FiniteNumber -> FiniteNumber)
   //.
@@ -4144,10 +4287,10 @@
   //. [0, 1, 2]
   //. ```
   S.sub =
-  def('sub')
-     ({})
-     ([$.FiniteNumber, Fn($.FiniteNumber)($.FiniteNumber)])
-     (flip(sub_));
+  def ('sub')
+      ({})
+      ([$.FiniteNumber, Fn ($.FiniteNumber) ($.FiniteNumber)])
+      (flip (sub_));
 
   //# sub_ :: FiniteNumber -> FiniteNumber -> FiniteNumber
   //.
@@ -4165,7 +4308,7 @@
     };
   }
   S.sub_ =
-  def('sub_')({})([$.FiniteNumber, $.FiniteNumber, $.FiniteNumber])(sub_);
+  def ('sub_') ({}) ([$.FiniteNumber, $.FiniteNumber, $.FiniteNumber]) (sub_);
 
   //# mult :: FiniteNumber -> FiniteNumber -> FiniteNumber
   //.
@@ -4181,7 +4324,7 @@
     };
   }
   S.mult =
-  def('mult')({})([$.FiniteNumber, $.FiniteNumber, $.FiniteNumber])(mult);
+  def ('mult') ({}) ([$.FiniteNumber, $.FiniteNumber, $.FiniteNumber]) (mult);
 
   //# product :: Foldable f => f FiniteNumber -> FiniteNumber
   //.
@@ -4201,10 +4344,10 @@
   //. 1
   //. ```
   S.product =
-  def('product')
-     ({f: [Z.Foldable]})
-     ([f($.FiniteNumber), $.FiniteNumber])
-     (reduce(mult)(1));
+  def ('product')
+      ({f: [Z.Foldable]})
+      ([f ($.FiniteNumber), $.FiniteNumber])
+      (reduce (mult) (1));
 
   //# div :: NonZeroFiniteNumber -> (FiniteNumber -> FiniteNumber)
   //.
@@ -4218,10 +4361,10 @@
   //. [0, 0.5, 1, 1.5]
   //. ```
   S.div =
-  def('div')
-     ({})
-     ([$.NonZeroFiniteNumber, Fn($.FiniteNumber)($.FiniteNumber)])
-     (flip(div_));
+  def ('div')
+      ({})
+      ([$.NonZeroFiniteNumber, Fn ($.FiniteNumber) ($.FiniteNumber)])
+      (flip (div_));
 
   //# div_ :: FiniteNumber -> NonZeroFiniteNumber -> FiniteNumber
   //.
@@ -4243,10 +4386,10 @@
     };
   }
   S.div_ =
-  def('div_')
-     ({})
-     ([$.FiniteNumber, $.NonZeroFiniteNumber, $.FiniteNumber])
-     (div_);
+  def ('div_')
+      ({})
+      ([$.FiniteNumber, $.NonZeroFiniteNumber, $.FiniteNumber])
+      (div_);
 
   //# pow :: FiniteNumber -> (FiniteNumber -> FiniteNumber)
   //.
@@ -4263,14 +4406,14 @@
   //. ```
   function pow(exp) {
     return function(base) {
-      return Math.pow(base, exp);
+      return Math.pow (base, exp);
     };
   }
   S.pow =
-  def('pow')
-     ({})
-     ([$.FiniteNumber, Fn($.FiniteNumber)($.FiniteNumber)])
-     (pow);
+  def ('pow')
+      ({})
+      ([$.FiniteNumber, Fn ($.FiniteNumber) ($.FiniteNumber)])
+      (pow);
 
   //# pow_ :: FiniteNumber -> FiniteNumber -> FiniteNumber
   //.
@@ -4283,7 +4426,10 @@
   //. [0.001, 0.01, 0.1, 1, 10, 100, 1000]
   //. ```
   S.pow_ =
-  def('pow_')({})([$.FiniteNumber, $.FiniteNumber, $.FiniteNumber])(curry2(Math.pow));
+  def ('pow_')
+      ({})
+      ([$.FiniteNumber, $.FiniteNumber, $.FiniteNumber])
+      (curry2 (Math.pow));
 
   //# mean :: Foldable f => f FiniteNumber -> Maybe FiniteNumber
   //.
@@ -4303,7 +4449,7 @@
   //. Nothing
   //. ```
   function mean(foldable) {
-    var result = Z.reduce(
+    var result = Z.reduce (
       function(acc, n) {
         acc.total += n;
         acc.count += 1;
@@ -4312,13 +4458,13 @@
       {total: 0, count: 0},
       foldable
     );
-    return result.count > 0 ? Just(result.total / result.count) : Nothing;
+    return result.count > 0 ? Just (result.total / result.count) : Nothing;
   }
   S.mean =
-  def('mean')
-     ({f: [Z.Foldable]})
-     ([f($.FiniteNumber), $Maybe($.FiniteNumber)])
-     (mean);
+  def ('mean')
+      ({f: [Z.Foldable]})
+      ([f ($.FiniteNumber), $Maybe ($.FiniteNumber)])
+      (mean);
 
   //. ### Integer
 
@@ -4336,7 +4482,7 @@
   function even(n) {
     return n % 2 === 0;
   }
-  S.even = def('even')({})([$.Integer, $.Boolean])(even);
+  S.even = def ('even') ({}) ([$.Integer, $.Boolean]) (even);
 
   //# odd :: Integer -> Boolean
   //.
@@ -4352,7 +4498,7 @@
   function odd(n) {
     return n % 2 !== 0;
   }
-  S.odd = def('odd')({})([$.Integer, $.Boolean])(odd);
+  S.odd = def ('odd') ({}) ([$.Integer, $.Boolean]) (odd);
 
   //. ### Parse
 
@@ -4369,37 +4515,37 @@
   //. Nothing
   //. ```
   function parseDate(s) {
-    var date = new Date(s);
-    return isNaN(date.valueOf()) ? Nothing : Just(date);
+    var date = new Date (s);
+    return isNaN (date.valueOf ()) ? Nothing : Just (date);
   }
   S.parseDate =
-  def('parseDate')({})([$.String, $Maybe($.ValidDate)])(parseDate);
+  def ('parseDate') ({}) ([$.String, $Maybe ($.ValidDate)]) (parseDate);
 
   //  requiredNonCapturingGroup :: Array String -> String
   function requiredNonCapturingGroup(xs) {
-    return '(?:' + xs.join('|') + ')';
+    return '(?:' + xs.join ('|') + ')';
   }
 
   //  optionalNonCapturingGroup :: Array String -> String
   function optionalNonCapturingGroup(xs) {
-    return requiredNonCapturingGroup(xs) + '?';
+    return requiredNonCapturingGroup (xs) + '?';
   }
 
   //  validFloatRepr :: RegExp
-  var validFloatRepr = new RegExp(
+  var validFloatRepr = new RegExp (
     '^' +                     // start-of-string anchor
     '\\s*' +                  // any number of leading whitespace characters
     '[+-]?' +                 // optional sign
-    requiredNonCapturingGroup([
+    requiredNonCapturingGroup ([
       'Infinity',             // "Infinity"
       'NaN',                  // "NaN"
-      requiredNonCapturingGroup([
+      requiredNonCapturingGroup ([
         '[0-9]+',             // number
         '[0-9]+[.][0-9]+',    // number with interior decimal point
         '[0-9]+[.]',          // number with trailing decimal point
         '[.][0-9]+'           // number with leading decimal point
       ]) +
-      optionalNonCapturingGroup([
+      optionalNonCapturingGroup ([
         '[Ee]' +              // "E" or "e"
         '[+-]?' +             // optional sign
         '[0-9]+'              // exponent
@@ -4422,16 +4568,16 @@
   //. Nothing
   //. ```
   function parseFloat_(s) {
-    return validFloatRepr.test(s) ? Just(parseFloat(s)) : Nothing;
+    return validFloatRepr.test (s) ? Just (parseFloat (s)) : Nothing;
   }
   S.parseFloat =
-  def('parseFloat')({})([$.String, $Maybe($.Number)])(parseFloat_);
+  def ('parseFloat') ({}) ([$.String, $Maybe ($.Number)]) (parseFloat_);
 
   //  Radix :: Type
   var Radix = $.NullaryType
     ('sanctuary/Radix')
     ('')
-    (function(x) { return $.Integer._test(x) && x >= 2 && x <= 36; });
+    (function(x) { return $.Integer._test (x) && x >= 2 && x <= 36; });
 
   //# parseInt :: Radix -> String -> Maybe Integer
   //.
@@ -4456,19 +4602,19 @@
   //. ```
   function parseInt_(radix) {
     return function(s) {
-      var charset = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'.slice(0, radix);
-      var pattern = new RegExp('^[' + charset + ']+$', 'i');
+      var charset = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'.slice (0, radix);
+      var pattern = new RegExp ('^[' + charset + ']+$', 'i');
 
-      var t = s.replace(/^[+-]/, '');
-      if (pattern.test(radix === 16 ? t.replace(/^0x/i, '') : t)) {
-        var n = parseInt(s, radix);
-        if ($.Integer._test(n)) return Just(n);
+      var t = s.replace (/^[+-]/, '');
+      if (pattern.test (radix === 16 ? t.replace (/^0x/i, '') : t)) {
+        var n = parseInt (s, radix);
+        if ($.Integer._test (n)) return Just (n);
       }
       return Nothing;
     };
   }
   S.parseInt =
-  def('parseInt')({})([Radix, $.String, $Maybe($.Integer)])(parseInt_);
+  def ('parseInt') ({}) ([Radix, $.String, $Maybe ($.Integer)]) (parseInt_);
 
   //# parseJson :: (Any -> Boolean) -> String -> Maybe a
   //.
@@ -4490,28 +4636,31 @@
   //. Just([1, 2, 3])
   //. ```
   function parseJson(pred, s) {
-    return Z.filter(pred, encase(JSON.parse)(s));
+    return Z.filter (pred, encase (JSON.parse) (s));
   }
   S.parseJson =
-  def('parseJson')({})([$.Predicate($.Any), $.String, $Maybe(a)])(curry2(parseJson));
+  def ('parseJson')
+      ({})
+      ([$.Predicate ($.Any), $.String, $Maybe (a)])
+      (curry2 (parseJson));
 
   //. ### RegExp
 
   //  Match :: Type
-  var Match = $.RecordType({
+  var Match = $.RecordType ({
     match: $.String,
-    groups: $.Array($Maybe($.String))
+    groups: $.Array ($Maybe ($.String))
   });
 
   //  toMatch :: Array String? -> Match
   function toMatch(ss) {
-    return {match: ss[0], groups: ss.slice(1).map(toMaybe)};
+    return {match: ss[0], groups: ss.slice (1).map (toMaybe)};
   }
 
   //  withRegex :: (RegExp, () -> a) -> a
   function withRegex(pattern, thunk) {
     var lastIndex = pattern.lastIndex;
-    var result = thunk();
+    var result = thunk ();
     pattern.lastIndex = lastIndex;
     return result;
   }
@@ -4525,9 +4674,13 @@
   //. /:\d+:/g
   //. ```
   function regex(flags, source) {
-    return new RegExp(source, flags);
+    return new RegExp (source, flags);
   }
-  S.regex = def('regex')({})([$.RegexFlags, $.String, $.RegExp])(curry2(regex));
+  S.regex =
+  def ('regex')
+      ({})
+      ([$.RegexFlags, $.String, $.RegExp])
+      (curry2 (regex));
 
   //# regexEscape :: String -> String
   //.
@@ -4543,9 +4696,13 @@
   //. '\\-=\\*\\{XYZ\\}\\*=\\-'
   //. ```
   function regexEscape(s) {
-    return s.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+    return s.replace (/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
   }
-  S.regexEscape = def('regexEscape')({})([$.String, $.String])(regexEscape);
+  S.regexEscape =
+  def ('regexEscape')
+      ({})
+      ([$.String, $.String])
+      (regexEscape);
 
   //# test :: RegExp -> String -> Boolean
   //.
@@ -4560,9 +4717,9 @@
   //. false
   //. ```
   function test(pattern, s) {
-    return withRegex(pattern, function() { return pattern.test(s); });
+    return withRegex (pattern, function() { return pattern.test (s); });
   }
-  S.test = def('test')({})([$.RegExp, $.String, $.Boolean])(curry2(test));
+  S.test = def ('test') ({}) ([$.RegExp, $.String, $.Boolean]) (curry2 (test));
 
   //# match :: NonGlobalRegExp -> String -> Maybe { match :: String, groups :: Array (Maybe String) }
   //.
@@ -4587,10 +4744,13 @@
   //. Just({match: 'bye', groups: [Nothing]})
   //. ```
   function match(pattern, s) {
-    return Z.map(toMatch, toMaybe(s.match(pattern)));
+    return Z.map (toMatch, toMaybe (s.match (pattern)));
   }
   S.match =
-  def('match')({})([$.NonGlobalRegExp, $.String, $Maybe(Match)])(curry2(match));
+  def ('match')
+      ({})
+      ([$.NonGlobalRegExp, $.String, $Maybe (Match)])
+      (curry2 (match));
 
   //# matchAll :: GlobalRegExp -> String -> Array { match :: String, groups :: Array (Maybe String) }
   //.
@@ -4612,17 +4772,20 @@
   //. ```
   function matchAll(pattern) {
     return function(s) {
-      return withRegex(pattern, function() {
-        return unfoldr(function(_) {
-          return Z.map(function(ss) {
-            return [toMatch(ss), null];
-          }, toMaybe(pattern.exec(s)));
-        })([]);
+      return withRegex (pattern, function() {
+        return unfoldr (function(_) {
+          return Z.map (function(ss) {
+            return [toMatch (ss), null];
+          }, toMaybe (pattern.exec (s)));
+        }) ([]);
       });
     };
   }
   S.matchAll =
-  def('matchAll')({})([$.GlobalRegExp, $.String, $.Array(Match)])(matchAll);
+  def ('matchAll')
+      ({})
+      ([$.GlobalRegExp, $.String, $.Array (Match)])
+      (matchAll);
 
   //. ### String
 
@@ -4637,9 +4800,9 @@
   //. 'ABC DEF 123'
   //. ```
   function toUpper(s) {
-    return s.toUpperCase();
+    return s.toUpperCase ();
   }
-  S.toUpper = def('toUpper')({})([$.String, $.String])(toUpper);
+  S.toUpper = def ('toUpper') ({}) ([$.String, $.String]) (toUpper);
 
   //# toLower :: String -> String
   //.
@@ -4652,9 +4815,9 @@
   //. 'abc def 123'
   //. ```
   function toLower(s) {
-    return s.toLowerCase();
+    return s.toLowerCase ();
   }
-  S.toLower = def('toLower')({})([$.String, $.String])(toLower);
+  S.toLower = def ('toLower') ({}) ([$.String, $.String]) (toLower);
 
   //# trim :: String -> String
   //.
@@ -4665,9 +4828,9 @@
   //. 'foo bar'
   //. ```
   function trim(s) {
-    return s.trim();
+    return s.trim ();
   }
-  S.trim = def('trim')({})([$.String, $.String])(trim);
+  S.trim = def ('trim') ({}) ([$.String, $.String]) (trim);
 
   //# stripPrefix :: String -> String -> Maybe String
   //.
@@ -4687,11 +4850,14 @@
   function stripPrefix(prefix) {
     return function(s) {
       var idx = prefix.length;
-      return s.slice(0, idx) === prefix ? Just(s.slice(idx)) : Nothing;
+      return s.slice (0, idx) === prefix ? Just (s.slice (idx)) : Nothing;
     };
   }
   S.stripPrefix =
-  def('stripPrefix')({})([$.String, $.String, $Maybe($.String)])(stripPrefix);
+  def ('stripPrefix')
+      ({})
+      ([$.String, $.String, $Maybe ($.String)])
+      (stripPrefix);
 
   //# stripSuffix :: String -> String -> Maybe String
   //.
@@ -4711,11 +4877,14 @@
   function stripSuffix(suffix) {
     return function(s) {
       var idx = s.length - suffix.length;  // value may be negative
-      return s.slice(idx) === suffix ? Just(s.slice(0, idx)) : Nothing;
+      return s.slice (idx) === suffix ? Just (s.slice (0, idx)) : Nothing;
     };
   }
   S.stripSuffix =
-  def('stripSuffix')({})([$.String, $.String, $Maybe($.String)])(stripSuffix);
+  def ('stripSuffix')
+      ({})
+      ([$.String, $.String, $Maybe ($.String)])
+      (stripSuffix);
 
   //# words :: String -> Array String
   //.
@@ -4729,11 +4898,11 @@
   //. ['foo', 'bar', 'baz']
   //. ```
   function words(s) {
-    var words = s.split(/\s+/);
-    return words.slice(words[0] === '' ? 1 : 0,
+    var words = s.split (/\s+/);
+    return words.slice (words[0] === '' ? 1 : 0,
                        words[words.length - 1] === '' ? -1 : Infinity);
   }
-  S.words = def('words')({})([$.String, $.Array($.String)])(words);
+  S.words = def ('words') ({}) ([$.String, $.Array ($.String)]) (words);
 
   //# unwords :: Array String -> String
   //.
@@ -4747,9 +4916,9 @@
   //. 'foo bar baz'
   //. ```
   function unwords(xs) {
-    return xs.join(' ');
+    return xs.join (' ');
   }
-  S.unwords = def('unwords')({})([$.Array($.String), $.String])(unwords);
+  S.unwords = def ('unwords') ({}) ([$.Array ($.String), $.String]) (unwords);
 
   //# lines :: String -> Array String
   //.
@@ -4764,10 +4933,10 @@
   //. ['foo', 'bar', 'baz']
   //. ```
   function lines(s) {
-    var match = s.replace(/\r\n?/g, '\n').match(/^(?=[\s\S]).*/gm);
+    var match = s.replace (/\r\n?/g, '\n').match (/^(?=[\s\S]).*/gm);
     return match == null ? [] : match;
   }
-  S.lines = def('lines')({})([$.String, $.Array($.String)])(lines);
+  S.lines = def ('lines') ({}) ([$.String, $.Array ($.String)]) (lines);
 
   //# unlines :: Array String -> String
   //.
@@ -4781,9 +4950,9 @@
   //. 'foo\nbar\nbaz\n'
   //. ```
   function unlines(xs) {
-    return Z.reduce(function(s, x) { return s + x + '\n'; }, '', xs);
+    return Z.reduce (function(s, x) { return s + x + '\n'; }, '', xs);
   }
-  S.unlines = def('unlines')({})([$.Array($.String), $.String])(unlines);
+  S.unlines = def ('unlines') ({}) ([$.Array ($.String), $.String]) (unlines);
 
   //# splitOn :: String -> String -> Array String
   //.
@@ -4798,11 +4967,11 @@
   //. ```
   function splitOn(separator) {
     return function(s) {
-      return s.split(separator);
+      return s.split (separator);
     };
   }
   S.splitOn =
-  def('splitOn')({})([$.String, $.String, $.Array($.String)])(splitOn);
+  def ('splitOn') ({}) ([$.String, $.String, $.Array ($.String)]) (splitOn);
 
   //# splitOnRegex :: GlobalRegExp -> String -> Array String
   //.
@@ -4826,35 +4995,35 @@
   //. ```
   function splitOnRegex(pattern) {
     return function(s) {
-      return withRegex(pattern, function() {
+      return withRegex (pattern, function() {
         var result = [];
         var lastIndex = 0;
         var match;
-        while ((match = pattern.exec(s)) != null) {
+        while ((match = pattern.exec (s)) != null) {
           if (pattern.lastIndex === lastIndex && match[0] === '') {
             if (pattern.lastIndex === s.length) return result;
             pattern.lastIndex += 1;
           } else {
-            result.push(s.slice(lastIndex, match.index));
+            result.push (s.slice (lastIndex, match.index));
             lastIndex = match.index + match[0].length;
           }
         }
-        result.push(s.slice(lastIndex));
+        result.push (s.slice (lastIndex));
         return result;
       });
     };
   }
   S.splitOnRegex =
-  def('splitOnRegex')
-     ({})
-     ([$.GlobalRegExp, $.String, $.Array($.String)])
-     (splitOnRegex);
+  def ('splitOnRegex')
+      ({})
+      ([$.GlobalRegExp, $.String, $.Array ($.String)])
+      (splitOnRegex);
 
   return S;
 
   }
 
-  return createSanctuary({checkTypes: true, env: defaultEnv});
+  return createSanctuary ({checkTypes: true, env: defaultEnv});
 
 }));
 
