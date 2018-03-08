@@ -9,7 +9,7 @@ test ('sub', function() {
 
   eq (typeof S.sub, 'function');
   eq (S.sub.length, 1);
-  eq (S.sub.toString (), 'sub :: FiniteNumber -> (FiniteNumber -> FiniteNumber)');
+  eq (S.sub.toString (), 'sub :: FiniteNumber -> FiniteNumber -> FiniteNumber');
 
   eq (S.map (S.sub (1)) ([1, 2, 3]), [0, 1, 2]);
 
